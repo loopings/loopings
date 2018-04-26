@@ -1,0 +1,124 @@
+@extends('layouts.master')
+@section('title')
+Nouvel EPCI
+@endsection
+@section('subtitle')
+
+@endsection
+@section('javascript')
+  <script type="text/javascript">
+    $('#date-container input').datepicker({
+      format: "dd/mm/yyyy",
+      todayBtn: "linked",
+      language: "fr",
+      autoclose: true
+    });
+  </script>
+@endsection
+@section('content')
+<div class="col-md-6">
+  {{Form::open(['url' => '/epci', 'method' => 'post'])}}
+  <div class="panel panel-default">
+    <div class="panel-heading">Général</div>
+    <div class="panel-body">
+      {{Form::label('nom_groupement', 'Nom du groupement')}}
+      {{Form::text('nom_groupement', '',  ['class' => 'form-control'])}}
+
+      {{ Form::label('type', 'type : ') }}
+      {{ Form::text('type_epci','', array('class' => 'form-control')) }}
+
+      {{ Form::label('code siren', ' code siren : ') }}
+      {{ Form::text('code_siren','', array('class' => 'form-control')) }}
+
+      {{ Form::label('civilite', ' civilite') }}
+      {{ Form::text('civilite','', array('class' => 'form-control')) }}
+
+      {{ Form::label('prenom_president', 'prenom president : ') }}
+      {{ Form::text('prenom_president','', array('class' => 'form-control')) }}
+
+      {{ Form::label('nom_president', ' nom president : ') }}
+      {{ Form::text('nom_president','', array('class' => 'form-control')) }}
+
+      {{ Form::label('adresse_siege', 'adresse siege : ') }}
+      {{ Form::text('adresse_siege','', array('class' => 'form-control')) }}
+
+      {{ Form::label('code_postal', 'code postal : ') }}
+      {{ Form::text('code_postal','', array('class' => 'form-control')) }}
+
+      {{ Form::label('tel', ' tel :') }}
+      {{ Form::text('tel','', array('class' => 'form-control')) }}
+
+      {{ Form::label('fax', ' fax :') }}
+      {{ Form::text('fax','', array('class' => 'form-control')) }}
+
+      {{ Form::label('courriel', 'courriel :') }}
+      {{ Form::text('courriel','', array('class' => 'form-control')) }}
+
+      {{ Form::label('site_internet', ' site_internet :') }}
+      {{ Form::text('site_internet','', array('class' => 'form-control')) }}
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default ">
+    <div class="panel-heading">Général2</div>
+    <div class="panel-body">
+
+
+
+      {{ Form::label('vulnerabilite_energetique', 'vulnerabilite energetique : ') }}
+      {{ Form::text('vulnerabilite_energetique','', array('class' => 'form-control')) }}
+
+      {{ Form::label('libelle_pdu', 'libelle pdu : ') }}
+      {{ Form::text('libelle_pdu','', array('class' => 'form-control')) }}
+
+      {{ Form::label('etat_avancement_pdu', 'etat avancement du pdu :') }}
+      {{ Form::text('etat_avancement_pdu','', array('class' => 'form-control')) }}
+
+
+       <div id="date-container" class="form-group">
+      {{ Form::label('date_validation_pdu', ' date validation pdu :') }}
+      {{ Form::text('date_validation_pdu','', array('class' => 'form-control')) }}
+      </div>
+
+  
+
+ 
+
+      {{ Form::label('lien_doc_pdu', ' lien doc pdu :') }}
+      {{ Form::text('lien_doc_pdu','', array('class' => 'form-control')) }}
+
+      {{ Form::label('libelle_plh', 'libelle plh : ') }}
+      {{ Form::text('libelle_plh','', array('class' => 'form-control')) }}
+
+      {{ Form::label('etat_avancement_plh', ' etat avancement plh :') }}
+      {{ Form::text('etat_avancement_plh','', array('class' => 'form-control')) }}
+
+      {{ Form::label('date_validation plh', 'date validation plh :') }}
+      {{ Form::text('date_validation_plh','', array('class' => 'form-control')) }}
+
+      {{ Form::label('lien_doc_plh', ' lien doc plh :') }}
+      {{ Form::text('lien_doc_plh','', array('class' => 'form-control')) }}
+
+
+      {{ Form::label('doc_ofpi', ' doc ofpi :') }}
+      {{ Form::text('doc_ofpi','', array('class' => 'form-control')) }}
+
+
+      {{ Form::label('video epci foncier', 'video epci foncier :') }}
+      {{ Form::text('video_epci_foncier','', array('class' => 'form-control')) }}
+
+
+      {{ Form::label('etat', 'etat : ') }}
+      {{ Form::text('etat','', array('class' => 'form-control')) }}
+
+      {{ Form::label('resultat_fusion', ' resultat fusion :') }}
+      {{ Form::text('resultat_fusion','', array('class' => 'form-control')) }}
+
+    </div>
+  </div>
+</div>
+{{Form::button('Enregistrer', ['class' => 'btn btn-default', 'type' => 'submit'])}}
+{{Form::button('Annuler', ['class' => 'btn btn-default', 'type' => 'reset'])}}
+{{Form::close()}}
+@endsection

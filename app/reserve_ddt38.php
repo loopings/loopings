@@ -1,0 +1,11 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class reserve_ddt38 extends Model
+{
+    protected $table = "reserve_ddt38";
+	public $timestamps = false;
+}

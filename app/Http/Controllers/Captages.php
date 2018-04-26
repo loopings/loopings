@@ -1,0 +1,158 @@
+<?php
+
+namespace App\Http\Controllers;
+
+//use Illuminate\Database\Eloquent\Model;
+
+use App\captage_ddt38;
+
+use Illuminate\Http\Request;
+use DB;
+use Illuminate\Database\QueryException;
+class Captages extends Controller
+{
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+     $captages = captage_ddt38::orderBy('nom_captage')->paginate(10);
+     return view('captages.index')->with('captages', $captages);
+ }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return View('captages.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+      $message=null;
+      try{
+        $nom_captage=$request->nom_captage;
+        $service=$request->service;
+        $dup=$request->dup;
+        $annee_maj=$request->annee_maj;
+       
+
+
+
+        captage_ddt38::insert(
+                array(
+                'nom_captage'=>$nom_captage,
+                'service'=>$service,
+                'dup'=>$dup,
+                'annee_maj'=>$annee_maj,
+                
+
+                )
+
+            );
+    }catch(QueryException $ex){
+
+        $message=$ex->getMessage();
+
+
+    }
+
+
+    return redirect('captage')->with('message', $message);
+}
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $captage= captage_ddt38::find($id);
+        return view('captages.edit',compact('captage'))->with('captage', $captage);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+
+
+     $message=null;
+     try{
+       DB::table('captage_ddt38')
+       ->where('id',$id)
+       ->update  ( 
+           array(
+            'nom_captage'=>$request->nom_captage,
+            'service'=>$request->service,
+            'dup'=>$request->dup,
+            'annee_maj'=>$request->annee_maj
+            
+
+                )
+        );
+
+   }catch(QueryException $ex){
+
+    $message=$ex->getMessage();
+}
+
+return redirect('captage')->with('message', $message);
+}
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $message=null;
+        try{
+            captage_ddt38::destroy($id);
+        }catch(QueryException $ex){
+
+            $message=$ex->getMessage();
+        }
+
+
+        return redirect('captage')->with('message', $message);
+
+    }
+
+
+
+}
