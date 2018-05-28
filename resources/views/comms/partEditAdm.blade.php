@@ -162,27 +162,6 @@
 
 
 
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Supervision DDT38
-      </div>
-      <div class="panel-body">
-        <div class="form-group col-md-6">
-          {{Form::label('id_agent_car', 'Agent_car : ')}}
-          {{Form::select('id_agent_car', $agent_cars ,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
-        </div>
-        <div class="form-group col-md-6">
-          {{Form::label('id_cham', 'Chargé d\'aménagement CHAM : ')}}
-          {{Form::select('id_cham', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
-        </div>
-        <div class="form-group col-md-6">
-          {{Form::label('id_cads', 'CADS : ')}}
-          {{Form::select('id_cads', $cadss ,null, ['placeholder' => 'Sélectionner un instructeur', 'class' => 'form-control'])}}
-        </div>
-      </div>
-
-    </div>
-  </div>
+ 
 
 </div>

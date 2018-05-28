@@ -171,74 +171,8 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         <td>
           <div class="tooltip-demo">
             <button data-html="true" data-original-title="
-            <u><b>Autres champs dans cette table:</b></u> <br>
-            fax    
-            email2      <br>
-            surface_hectares      <br>
-            civilite_maire      <br>
-            lien_synthavis      <br>
-            nb_actifs     <br>
-            nb_actifs_restants      <br>
-            nb_actifs_sortants      <br>
-            docurba     <br>
-            annee_maj_docurba     <br>
-            lien_enjeuxagri     <br>
-            nb_men_tot      <br>
-            nb_men_1veh     <br>
-            nb_men_2veh     <br>
-            annee_maj_motor     <br>
-            numer_docurba     <br>
-            annee_maj_num_docurba     <br>
-            mise_en_place_ppr     <br>
-            type_ppr      <br>
-            prescri_pprm      <br>
-            prescri_pprt      <br>
-            prescri_ppri      <br>
-            prescri_pprmin      <br>
-            prescription      <br>
-            anne_maj_ppr      <br>
-            valant_pas_ppr      <br>
-            type_pas_ppr      <br>
-            pac_pprn      <br>
-            pac_pprt      <br>
-            annee_maj_pas_ppr     <br>
-            valant_ppr      <br>
-            type_valant_ppr     <br>
-            annee_maj_va_ppr      <br>
-            class_zonemontagne      <br>
-            arrete_20fev1974      <br>
-            arrete_29janv1982     <br>
-            arrete_28avr1976      <br>
-            annee_maj_zm      <br>
-            objectif_log_cons     <br>
-            scot_dec_objectif     <br>
-            type_polarite     <br>
-            nb_lits_touristiques      <br>
-            nb_ppi      <br>
-            loi_sru     <br>
-            anne_maj_sru      <br>
-            id_agent_car      <br>
-            id_cham     <br>
-            id_scot     <br>
-            id_terri38      <br>
-            id_pnr      <br>
-            id_ze     <br>
-            id_dta      <br>
-            id_uu     <br>
-            id_au     <br>
-            id_cucs     <br>
-            id_epci     <br>
-            id_cads<br>
-            commune_etat      <br>   
-            resultat_fusion <br>
-            lien_bddreal  <br>    
-            lien_gmaps      <br>
-            lien_insee_chiffres   <br>  
-            lien_agriterri38     <br> 
-            lien_geoidecarto      <br>
-            lien_dossier_complet_insee <br>     
-            lien_admin_francaise     <br> 
-            lien_asso_maires<br>
+            <u><b> Veuillez  éditer cette commune pour accéder aux autres champs de la table</b></u> <br>
+            
             " type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="">
             <span class="fa fa-ellipsis-h" aria-hidden="true"></span>
           </button>

@@ -47,7 +47,6 @@ class Natura2000s extends Controller
       $message=null;
       try{
         $nom_natura2000=$request->nom_natura2000;
-        $departements=$request->departements;
         $annee_maj=$request->annee_maj;
         
 
@@ -56,7 +55,6 @@ class Natura2000s extends Controller
         natura2000_ddt38::insert(
                 array(
                 'nom_natura2000'=>$nom_natura2000,
-                'departements'=>$departements,
                 'annee_maj'=>$annee_maj
 
                 )
@@ -115,7 +113,6 @@ class Natura2000s extends Controller
        ->update  ( 
            array(
             'nom_natura2000'=>$request->nom_natura2000,
-            'departements'=>$request->departements,
             'annee_maj'=>$request->annee_maj
 
                 )

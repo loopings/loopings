@@ -1,43 +1,72 @@
   <div>
 
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Déplacements domicile-travail et actifs restants/sortants
-        </div>
-        <div class="panel-body">
-          <div class="form-group col-md-4">
-            {{Form::label('nb_actifs', 'Nombre d\'actifs au total : ')}}
-            {{Form::text('nb_actifs', '', ['class' => 'form-control'])}}
-          </div>
-          <div class="form-group col-md-4">
-            {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants : ')}}
-            {{Form::text('nb_actifs_restants', '', ['class' => 'form-control'])}}
-          </div>
-          <div class="form-group col-md-4">
-            {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants : ')}}
-            {{Form::text('nb_actifs_sortants', '', ['class' => 'form-control'])}}
-          </div>
 
+   <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Supervision DDT38
+      </div>
+      <div class="panel-body">
+        <div class="form-group col-md-6">
+          {{Form::label('id_agent_car', 'Responsable de la cellule affichage des risques : ')}}
+          {{Form::select('id_agent_car', $agent_cars ,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
+        </div>
+        <div class="form-group col-md-6">
+          {{Form::label('id_agent_car2', 'Second responsable de la cellule affichage des risques (laissez vide si inexistant) : ')}}
+          {{Form::select('id_agent_car2', $agent_cars ,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
+        </div>
+        <div class="form-group col-md-6">
+          {{Form::label('id_cham', 'Chargé de planification à la DDT : ')}}
+          {{Form::select('id_cham', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
+        </div>
+         <div class="form-group col-md-6">
+          {{Form::label('id_cham2', 'Second chargé de planification à la DDT (laissez vide si inexistant) : ')}}
+          {{Form::select('id_cham2', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
         </div>
       </div>
+
     </div>
+  </div>
 
 
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-         Zones d'emplois
-       </div>
-       <div class="panel-body">
-        <div class="form-group col-md-6">
-          {{Form::label('id_ze', 'Zone d\'emploi: ')}}
-          {{Form::select('id_ze', $zes ,null, ['placeholder' => 'Sélectionner une zone', 'class' => 'form-control'])}}
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Déplacements domicile-travail et actifs restants/sortants
+      </div>
+      <div class="panel-body">
+        <div class="form-group col-md-4">
+          {{Form::label('nb_actifs', 'Nombre d\'actifs au total: ')}}
+          {{Form::text('nb_actifs', '', ['class' => 'form-control'])}}
+        </div>
+        <div class="form-group col-md-4">
+          {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants: ')}}
+          {{Form::text('nb_actifs_restants', '', ['class' => 'form-control'])}}
+        </div>
+        <div class="form-group col-md-4">
+          {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants: ')}}
+          {{Form::text('nb_actifs_sortants', '', ['class' => 'form-control'])}}
         </div>
 
       </div>
     </div>
   </div>
+
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       Zones d'emplois
+     </div>
+     <div class="panel-body">
+      <div class="form-group col-md-6">
+        {{Form::label('id_ze', 'Zone d\'emploi: ')}}
+        {{Form::select('id_ze', $zes ,null, ['placeholder' => 'Sélectionner une zone', 'class' => 'form-control'])}}
+      </div>
+
+    </div>
+  </div>
+</div>
 </div>
 
 
@@ -64,29 +93,92 @@
         plus : ')}}
         {{Form::text('nb_men_2veh', '', ['class' => 'form-control'])}}
       </div>
+      
+      <div class="form-group col-md-4">
+        {{Form::label('evolution_5', 'Evolution sur les 5 dernières années : ')}}
+        {{Form::text('evolution_5', '', ['class' => 'form-control'])}}
+      </div>
 
+      <div class="form-group col-md-4">
+        {{Form::label('annee_maj_motor', 'Année de la donnée : ')}}
+        {{Form::text('annee_maj_motor', '', ['class' => 'form-control'])}}
+      </div>
     </div>
   </div>
 </div>
 
 
-<div class="col-md-6">
+<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
       Documents employés pour la réglementation de 
       l’urbanisme
     </div>
     <div class="panel-body">
-      <div class="form-group col-md-12">
+      <div class="form-group col-md-6">
         {{Form::label('docurba', 'Type de document réglementaire appliqué et 
         procédure en cours : ')}}
         {{Form::text('docurba', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('annee_maj_docurba', 'Année de la donnée : ')}}
+        {{Form::text('annee_maj_docurba', '', ['class' => 'form-control'])}}
       </div>
 
 
     </div>
   </div>
 </div>
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Numérisation des documents réglementaires 
+      d’urbanisme
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-md-6">
+        <b>Etat de la numérisation des documents 
+        réglementaires d’urbanisme: </b>
+        <br><br>
+        <input name='numer_docurba' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
+
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('annee_maj_num_docurba', 'Année de la donnée : ')}}
+        {{Form::text('annee_maj_num_docurba', '', ['class' => 'form-control'])}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Documents opposables
+    </div>
+    <div class="panel-body">
+     <div class="form-group col-md-6">
+      <b>disposition opposable : </b>
+      <br><br>
+      <input name='disposition_opposable' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
+
+    </div>
+    <div class="form-group col-md-6">
+      {{Form::label('doc_urba_opposable', 'Document urbanisme opposable : ')}}
+      {{Form::text('doc_urba_opposable', '', ['class' => 'form-control'])}}
+    </div>
+
+    <div class="form-group col-md-6">
+      {{Form::label('dern_doc_oppo_num', 'Dernier document opposable numérisé : ')}}
+      {{Form::text('dern_doc_oppo_num', '', ['class' => 'form-control'])}}
+    </div>
+
+
+  </div>
+</div>
+</div>
+
 
 <div class="col-md-6">
   <div class="panel panel-default">
@@ -105,217 +197,98 @@
 </div>
 
 
-<div class="col-md-6">
+
+
+
+<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Numérisation des documents réglementaires 
-      d’urbanisme
+      Zones dites « loi Montagne »
     </div>
-    <div class="panel-body">
-      <div class="form-group col-md-12">
-        <b>Etat de la numérisation des documents 
-          réglementaires d’urbanisme: </b>
-          <br><br>
-          <input name='numer_docurba' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
 
-        </div>
+
+    <div class="panel-body">
+
+
+      <div class="form-group col-md-4">
+        <b>Etat sur le classement ou non en zone « loi 
+        Montagne » :</b>
+        <br><br>
+        <input name='class_zonemontagne' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
+
       </div>
+
+      <div class="form-group col-md-8">
+        {{Form::label('liste_hameaux', 'Liste des hameaux : ')}}
+        {{Form::text('liste_hameaux', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-6">
+        {{Form::label('annee_maj_zm', 'Année de la donnée : ')}}
+        {{Form::text('annee_maj_zm', '', ['class' => 'form-control'])}}
+      </div>
+
     </div>
   </div>
-
-
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-       Plans de Prévention des Risques (PPR)
-     </div>
-     <div class="panel-body">
-
-       <div class="form-group col-md-4">
-        <b>Etat sur la mise en place ou non d’un document de 
-          type PPR: </b>
-          <br><br>
-          <input name='mise_en_place_ppr' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-        </div>
-
-
-
-
-
-
-        <div class="form-group col-md-4">
-          <b>Etat sur la prescription ou non d’un PPRM : </b>
-          <br><br>
-          <input name='prescri_pprm' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <b>Etat sur la prescription ou non d’un PPRT :  </b>
-          <br><br>
-          <input name='prescri_pprt' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <b>Etat sur la prescription ou non d’un PPRI :</b>
-          <br><br>
-          <input name='prescri_ppri' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-        </div>
-
-        <div class="form-group col-md-4">
-          <b>Etat sur la prescription ou non d’un PPRMIN :</b>
-          <br><br>
-          <input name='prescri_pprmin' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-        </div>
-
-
-
-
-
-        <div class="form-group col-md-4">
-          <b>Etat sur la prescription ou non d’un document de 
-            type PPR :</b>
-            <br><br>
-            <input name='prescription' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-
-          </div>
-
-          <div class="form-group col-md-4">
-            <b>Etat sur la mise en place ou non d’un document ne 
-              valant pas PPR :</b>
-              <br><br>
-              <input name='valant_pas_ppr' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-
-            </div>
-
-            
-
-
-
-
-            <div class="form-group col-md-4">
-              <b>Etat sur l’existence ou non d’un porté à 
-                connaissance pour un PPRN:</b>
-                <br><br>
-                <input name='pac_pprn' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-              </div>
-
-
-              <div class="form-group col-md-4">
-                <b>Etat sur l’existence ou non d’un porté à 
-                  connaissance pour un PPRT:</b>
-                  <br><br>
-                  <input name='pac_pprt' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-                </div>
-
-
-
-
-
-                <div class="form-group col-md-4">
-                  <b>Etat sur la mise en place ou non d’un document 
-                    valant PPR:</b>
-                    <br><br>
-                    <input name='valant_ppr' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-
-                  </div>
-
-
-
-                  <div class="form-group col-md-12">
-
-                    <div class="form-group col-md-4">
-                      {{Form::label('type_ppr', 'Type de PPR : ')}}
-                      {{Form::text('type_ppr', '', ['class' => 'form-control'])}}
-                    </div>
-
-
-                    <div class="form-group col-md-4">
-                      {{Form::label('type_pas_ppr', 'Type de document valant pas PPR : ')}}
-                      {{Form::text('type_pas_ppr', '', ['class' => 'form-control'])}}
-                    </div>
-                    <div class="form-group col-md-4">
-                      {{Form::label('type_valant_ppr', 'Type de document valant PPR : ')}}
-                      {{Form::text('type_valant_ppr', '', ['class' => 'form-control'])}}
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div class="col-md-12">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  Zones dites « loi Montagne »
-                </div>
-
-
-                <div class="panel-body">
-
-
-                  <div class="form-group col-md-9">
-                    <b>Etat sur le classement ou non en zone « loi 
-                      Montagne » :</b>
-                      <br><br>
-                      <input name='class_zonemontagne' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
-
-
-                    </div>
-
-                    <div class="form-group col-md-4">
-                      {{Form::label('arrete_20fev1974', 'Parties du territoire communal classées en zone « loi Montagne » par l’arrêté du 20 février 1974 : ')}}
-                      {{Form::text('arrete_20fev1974', '', ['class' => 'form-control'])}}
-                    </div>
-
-                    <div class="form-group col-md-4">
-                      {{Form::label('arrete_28avr1976', 'Parties du territoire communal classées en zone « loi Montagne » par l’arrêté du 28 avril 1976 : ')}}
-                      {{Form::text('arrete_28avr1976', '', ['class' => 'form-control'])}}
-                    </div>                      
-
-                    <div class="form-group col-md-4">
-                      {{Form::label('arrete_29janv1982', 'Parties du territoire communal classées en zone « loi Montagne » par l’arrêté du 29 janvier 1982 : ')}}
-                      {{Form::text('arrete_29janv1982', '', ['class' => 'form-control'])}}
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-
-
-
-              <div class="col-md-12">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    Aménagement
-                  </div>
-                  <div class="panel-body">
-                    <div class="form-group col-md-4">
-                      {{Form::label('id_dta', 'Directives Territoriales d’Aménagement : ')}}
-                      {{Form::select('id_dta', $dtas ,null, ['placeholder' => 'Sélectionner une directive', 'class' => 'form-control'])}}
-                    </div>
-                    <div class="form-group col-md-4">
-                      {{Form::label('id_au', 'Typologie aires urbaines : ')}}
-                      {{Form::select('id_au', $aus,null, ['placeholder' => 'Sélectionner une typologie', 'class' => 'form-control'])}}
-                    </div>
-                    <div class="form-group col-md-4">
-                      {{Form::label('id_uu', 'Unités urbaines : ')}}
-                      {{Form::select('id_uu', $uus ,null, ['placeholder' => 'Sélectionner une unité', 'class' => 'form-control'])}}
-                    </div>
-
-
-                  </div>
-                </div>
-              </div>
+</div>
+
+
+
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Aménagement
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-md-4">
+        {{Form::label('id_dta', 'Directives Territoriales d’Aménagement : ')}}
+        {{Form::select('id_dta', $dtas ,null, ['placeholder' => 'Sélectionner une directive', 'class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-4">
+        {{Form::label('id_au', 'Typologie aires urbaines : ')}}
+        {{Form::select('id_au', $aus,null, ['placeholder' => 'Sélectionner une typologie', 'class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-4">
+        {{Form::label('id_uu', 'Unités urbaines : ')}}
+        {{Form::select('id_uu', $uus ,null, ['placeholder' => 'Sélectionner une unité', 'class' => 'form-control'])}}
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Autres
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-md-6">
+        {{Form::label('tx_amenagement', 'Taxe d\'aménagement : ')}}
+        {{Form::text('tx_amenagement', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-6">
+        {{Form::label('competence_urba', 'Compétence urbanisme : ')}}
+        {{Form::text('competence_urba', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('tri', 'TRI : ')}}
+        {{Form::text('tri', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('slgri', 'SLGRI : ')}}
+        {{Form::text('slgri', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-12">
+        {{Form::label('regl_boisement', 'Commune concernée par une réglementation de boisement : ')}}
+        {{Form::text('regl_boisement', '', ['class' => 'form-control'])}}
+      </div>
+
+      
+    </div>
+  </div>
+</div>

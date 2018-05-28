@@ -98,7 +98,7 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 		<thead>
 			<tr>
 				<th>
-					Id troncons
+					Nom commune
 				</th>
 
 				<th>
@@ -107,9 +107,7 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 				<th>
 					Categorie nuisance sonore
 				</th>
-				<th>
-					Numero route ou troncon
-				</th>
+			
 				<th>
 					Longueur
 				</th>
@@ -125,7 +123,7 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 			@foreach($tronconss as $troncons)
 			<tr>
 				<td>
-					{{$troncons->id}}
+					{{$troncons->nom_comm}}
 				</td>
 				<td>
 					{{$troncons->type}}
@@ -135,14 +133,8 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 				</td>
 
 				<td>
-					{{$troncons->numero_route_ou_troncon}}
-				</td>
-
-
-				<td>
 					{{$troncons->longueur_m}}
 				</td>
-
 
 				<td>
 					{{$troncons->annee_maj}}

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Database\Eloquent\Model;
 
 use App\troncons_ddt38;
-
+use App\comm_ddt38;
 
 use Illuminate\Http\Request;
 use DB;
@@ -21,9 +21,20 @@ class Tronconss extends Controller
     public function index()
     {
         //
-     $tronconss = troncons_ddt38::orderBy('id')->paginate(15);
+    
     // dd($tronconss);
-     return view('tronconss.index')->with('tronconss', $tronconss);
+
+          $tronconss = DB::table('troncons_ddt38')
+
+     ->join('comm_ddt38', function ($join) {
+        $join->on('troncons_ddt38.id_comm', '=', 'comm_ddt38.id');})
+     ->select( 'troncons_ddt38.id','nom_comm','type','categorie_nuisonore','longueur_m','annee_maj')
+     ->orderBy('nom_comm')
+     ->orderBy('type')
+     ->orderBy('categorie_nuisonore')
+     ->paginate(20);
+
+      return view('tronconss.index')->with('tronconss', $tronconss);
  }
 
     /**
@@ -33,7 +44,8 @@ class Tronconss extends Controller
      */
     public function create()
     {
-        return View('tronconss.create');
+         $comms=comm_ddt38::orderBy("nom_comm")->pluck('nom_comm','id');
+        return View('tronconss.create')->with('comms', $comms);
     }
 
     /**
@@ -48,10 +60,10 @@ class Tronconss extends Controller
       try{
    
         $longueur_m=$request->longueur_m;
-        $type=strtoupper($request->type);
-        $categorie_nuisonore=strtoupper($request->categorie_nuisonore);
-        $numero_route_ou_troncon=strtoupper($request->numero_route_ou_troncon);
-         $annee_maj=date("Y");
+        $type=$request->type;
+        $categorie_nuisonore=$request->categorie_nuisonore;
+        $id_comm=$request->id_comm;
+         $annee_maj=$request->annee_maj;
 
 
         troncons_ddt38::insert(
@@ -60,7 +72,7 @@ class Tronconss extends Controller
                 'longueur_m'=>$longueur_m,
                 'type'=>$type,
                 'categorie_nuisonore'=>$categorie_nuisonore,
-                'numero_route_ou_troncon'=>$numero_route_ou_troncon,
+                'id_comm'=>$id_comm,
                 'annee_maj'=>$annee_maj
                 
 
@@ -121,10 +133,9 @@ class Tronconss extends Controller
            array(
            
             'longueur_m'=>$request->longueur_m,
-            'type'=>strtoupper($request->type),
-            'categorie_nuisonore'=>strtoupper($request->categorie_nuisonore),
-            'numero_route_ou_troncon'=>strtoupper($request->numero_route_ou_troncon),
-            'annee_maj'=>date("Y")
+            'type'=>$request->type,
+            'categorie_nuisonore'=>$request->categorie_nuisonore,
+            'annee_maj'=>$request->annee_maj
 
                 )
         );

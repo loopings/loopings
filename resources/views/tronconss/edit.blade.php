@@ -9,7 +9,7 @@ Mise à jour
 
 <div class="col-md-6">
 {{Form::model($troncons, ['method' => 'PUT', 'action' => ['Tronconss@update',$troncons->id]]) }}
-
+		<div class="panel panel-default">
 		<div class="panel-heading">Général</div>
 		<div class="panel-body">
 
@@ -23,12 +23,11 @@ Mise à jour
 {{ Form::label('categorie_nuisonore', 'Categorie nuisance sonore : ') }}
 {{ Form::text('categorie_nuisonore',$troncons->categorie_nuisonore, array('class' => 'form-control')) }}
 
-{{ Form::label('numero_route_ou_troncon', 'Numero route ou troncon : ') }}
-{{ Form::text('numero_route_ou_troncon',$troncons->numero_route_ou_troncon, array('class' => 'form-control')) }}
-
 {{ Form::label('longueur_m', 'Longueur : ') }}
 {{ Form::text('longueur_m',$troncons->longueur_m, array('class' => 'form-control')) }}
 
+{{ Form::label('annee_maj', 'Année de la donnée : ') }}
+{{ Form::text('annee_maj',$troncons->annee_maj, array('class' => 'form-control')) }}
 
 
 

@@ -138,9 +138,6 @@
                 <a href="/territoire">Territoire 38</a>
               </li>
               <li>
-                <a href="/cads">CADS</a>
-              </li>
-              <li>
                 <a href="/population">Population</a>
               </li>
 
@@ -163,9 +160,7 @@
               <li>
                 <a href="/icpe">ICPE</a>
               </li>
-              <li>
-                <a href="/maet">MAET</a>
-              </li>
+
 
               <li>
                 <a href="/pnr">PNR</a>
@@ -316,7 +311,11 @@
               <li>
                 <a href="/agriculture">Agriculture</a>
               </li>
+              <li>
+                <a href="/aocaop">AOC et AOP</a>
+              </li>
 
+            
             </ul>
 
 
@@ -332,7 +331,12 @@
               <li>
                 <a href="/pcaet">PCAET</a>
               </li>
-
+              <li>
+                <a href="/tepospepcv">TEPOS et PEPCV</a>
+              </li>
+              <li>
+                <a href="/pfre">PFRE</a>
+              </li>
               <li>
                 <a href="/troncons">Tronçons</a>
               </li>
@@ -404,7 +408,6 @@
             <li>Un canton</li>
             <li>Un APPB</li>
             <li>Une ICPE</li>
-            <li>Une MAET</li>
             <li>Une zone natura 2000</li>
             <li>Une zone ZNIEFF</li>
             <li>Une zone ZP</li>
@@ -412,7 +415,6 @@
             <li>Un contrat rivière</li>
             <li>Un SAGE</li>
             <li>Une STEP</li>
-            <li>Un tronçon</li>
           </ul>
           <div class="col-lg-6">
 

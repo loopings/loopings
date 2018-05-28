@@ -127,6 +127,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 
 
 
+
 				<th colspan="3">Actions</th>
 			</tr>
 		</thead>
@@ -158,6 +159,9 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 				</td>
 				<td>
 					{{$logement->maisons}}
+				</td>
+				<td>
+					{{$logement->appartements}}
 				</td>
 				<td>
 					{{$logement->appartements}}

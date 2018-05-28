@@ -34,12 +34,12 @@ $(':checkbox').checkboxpicker();
 
     <li role="presentation">
       <a href="#urbanisme" aria-controls="urbanisme" role="tab" data-toggle="tab">
-        Urbanisme
+        Urbanisme et risques 
       </a>
     </li>
     <li role="presentation">
       <a href="#logement" aria-controls="logement" role="tab" data-toggle="tab">
-        Logement
+        Logement et foncier
       </a>
     </li>
 

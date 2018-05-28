@@ -16,7 +16,8 @@ nouveau troncon
     <div class="panel-body">
 
 
-
+{{Form::label('id_comm', 'Commune : ')}}
+{{Form::select('id_comm', $comms,null, ['placeholder' => 'Sélectionner une commune', 'class' => 'form-control'])}}
 
 
 {{ Form::label('type', 'Type troncon (fer ou rte) : ') }}
@@ -25,11 +26,11 @@ nouveau troncon
 {{ Form::label('categorie_nuisonore', 'Categorie nuisance sonore : ') }}
 {{ Form::text('categorie_nuisonore','', array('class' => 'form-control')) }}
 
-{{ Form::label('numero_route_ou_troncon', 'Numero route ou troncon : ') }}
-{{ Form::text('numero_route_ou_troncon','', array('class' => 'form-control')) }}
-
 {{ Form::label('longueur_m', 'Longueur : ') }}
 {{ Form::text('longueur_m','', array('class' => 'form-control')) }}
+
+{{ Form::label('annee_maj', 'Année de la donnée : ') }}
+{{ Form::text('annee_maj','', array('class' => 'form-control')) }}
 
     </div>
   </div>

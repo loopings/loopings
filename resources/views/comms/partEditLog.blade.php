@@ -20,10 +20,6 @@
             {{Form::label('type_polarite', 'Type polarité : ')}}
             {{Form::text('type_polarite',$comm->type_polarite, ['class' => 'form-control'])}}
           </div>
-          <div class="form-group col-md-4">
-            {{Form::label('nb_lits_touristiques', 'Nombre de lits touristiques (entier)  : ')}}
-            {{Form::text('nb_lits_touristiques',$comm->nb_lits_touristiques, ['class' => 'form-control'])}}
-          </div>
 
           <div class="form-group col-md-4">
             {{Form::label('nb_ppi', 'Nombre de PPI (entier)  : ')}}
@@ -49,25 +45,28 @@
 
 
           <div class="form-group col-md-4">
-          {{Form::label('anne_maj_sru', 'Date de mise à jour de la donnée loi SRU (année) : ')}}
+            {{Form::label('anne_maj_sru', 'Date de mise à jour de la donnée loi SRU (année) : ')}}
             {{Form::text('anne_maj_sru',$comm->anne_maj_sru, ['class' => 'form-control'])}}
-          </div>
-
-
-
-
-
-
-          <div class="form-group col-md-8">
-            {{Form::label('id_cucs', 'Contrats Urbains de Cohésion Sociale (CUCS) : ')}}
-            {{Form::select('id_cucs', $cucss ,null, ['placeholder' => 'Sélectionner un contrat ', 'class' => 'form-control'])}}
-
           </div>
 
 
         </div>
 
 
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Foncier
+        </div>
+        <div class="panel-body">
+          <div class="form-group col-md-12">
+            {{Form::label('video_com_foncier', 'Vidéo foncier : ')}}
+            {{Form::text('video_com_foncier',$comm->video_com_foncier, ['class' => 'form-control'])}}
+          </div>
+        </div>
       </div>
     </div>
   </div>

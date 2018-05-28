@@ -106,6 +106,11 @@ Route::resource('colcompeauu', 'Colcompeauus');
 
 Route::resource('troncons', 'Tronconss');
 
+Route::resource('tepospepcv', 'Tepospepcvs');
+
+Route::resource('pfre', 'Pfres');
+Route::resource('aocaop', 'Aocaops');
+
 Route::resource('population', 'Populations');
 
 Route::resource('barrage', 'Barrages');

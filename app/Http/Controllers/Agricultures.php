@@ -68,7 +68,7 @@ class Agricultures extends Controller
         $exploit=$request->exploit;
         $sau_ha=$request->sau_ha;
         $cheptel=$request->cheptel;
-        $orientecheco=strtoupper($request->orientecheco);
+        $orientecheco=$request->orientecheco;
         $surflabour_ha=$request->surflabour_ha;
         $surfcultperm_ha=$request->surfcultperm_ha;
         $unitravail=$request->unitravail;
@@ -150,7 +150,7 @@ class Agricultures extends Controller
             'exploit'=>$request->exploit,
             'sau_ha'=>$request->sau_ha,
             'cheptel'=>$request->cheptel,
-            'orientecheco'=>strtoupper($request->orientecheco),
+            'orientecheco'=>$request->orientecheco,
             'surflabour_ha'=>$request->surflabour_ha,
             'surfcultperm_ha'=>$request->surfcultperm_ha,
             'unitravail'=>$request->unitravail,
