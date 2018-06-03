@@ -76,9 +76,12 @@
           <br><br>
           <input name='comm_exoneree' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
         </div>
-
+        <div class="form-group col-md-4">
+          {{Form::label('comm_tourist', 'Commune touristique: ')}}
+          {{Form::text('comm_tourist','', ['class' => 'form-control'])}}
+        </div>
         <div class="form-group col-md-12">
-          {{Form::label('lien_politique_ville', 'Lien olitique de la ville: ')}}
+          {{Form::label('lien_politique_ville', 'Lien politique de la ville: ')}}
           {{Form::text('lien_politique_ville', '', ['class' => 'form-control'])}}
         </div>
 
@@ -87,7 +90,7 @@
     </div>
   </div>
 
-<div class="col-md-12">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
         Transition énergétique et déplacements :
@@ -122,53 +125,53 @@
         Foncier :
       </div>
       <div class="panel-body">
-         <div class="form-group col-md-12">
-          {{Form::label('video_com_foncier', 'Vidéo foncier : ')}}
-          {{Form::text('video_com_foncier', '', ['class' => 'form-control'])}}
-        </div>
-
-        <div class="form-group col-md-4">
-          {{Form::label('zap', 'ZAP : ')}}
-          {{Form::text('zap', '', ['class' => 'form-control'])}}
-        </div>
-        <div class="form-group col-md-4">
-          {{Form::label('paen', 'PAEN : ')}}
-          {{Form::text('paen', '', ['class' => 'form-control'])}}
-        </div>
-        <div class="form-group col-md-4">
-          {{Form::label('cdepnaf', 'CDEPNAF : ')}}
-          {{Form::text('cdepnaf', '', ['class' => 'form-control'])}}
-        </div>
-        <div class="form-group col-md-4">
-          {{Form::label('epf', 'EPF : ')}}
-          {{Form::text('epf', '', ['class' => 'form-control'])}}
-        </div>
-       
-
-        <div class="form-group col-md-4">
-          {{Form::label('libelle_plh', 'Libellé PLH : ')}}
-          {{Form::text('libelle_plh', '', ['class' => 'form-control'])}}
-        </div>
-
-        <div class="form-group col-md-4">
-          {{Form::label('etat_avancement_plh', 'Etat d\'avancement PLH  : ')}}
-          {{Form::text('etat_avancement_plh', '', ['class' => 'form-control'])}}
-        </div>
-
-        <div class="form-group col-md-4">
-          {{Form::label('date_validation_plh', 'Date validation PLH  : ')}}
-          {{Form::text('date_validation_plh', '', ['class' => 'form-control'])}}
-        </div>
-
-        <div class="form-group col-md-4">
-          {{Form::label('lien_doc_plh', 'lien doc PLH  : ')}}
-          {{Form::text('lien_doc_plh', '', ['class' => 'form-control'])}}
-        </div>
-
-
+       <div class="form-group col-md-12">
+        {{Form::label('video_com_foncier', 'Vidéo foncier : ')}}
+        {{Form::text('video_com_foncier', '', ['class' => 'form-control'])}}
       </div>
+
+      <div class="form-group col-md-4">
+        {{Form::label('zap', 'ZAP : ')}}
+        {{Form::text('zap', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-4">
+        {{Form::label('paen', 'PAEN : ')}}
+        {{Form::text('paen', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-4">
+        {{Form::label('cdepnaf', 'CDEPNAF : ')}}
+        {{Form::text('cdepnaf', '', ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-4">
+        {{Form::label('epf', 'EPF : ')}}
+        {{Form::text('epf', '', ['class' => 'form-control'])}}
+      </div>
+
+
+      <div class="form-group col-md-4">
+        {{Form::label('libelle_plh', 'Libellé PLH : ')}}
+        {{Form::text('libelle_plh', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-4">
+        {{Form::label('etat_avancement_plh', 'Etat d\'avancement PLH  : ')}}
+        {{Form::text('etat_avancement_plh', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-4">
+        {{Form::label('date_validation_plh', 'Date validation PLH  : ')}}
+        {{Form::text('date_validation_plh', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-4">
+        {{Form::label('lien_doc_plh', 'lien doc PLH  : ')}}
+        {{Form::text('lien_doc_plh', '', ['class' => 'form-control'])}}
+      </div>
+
+
     </div>
   </div>
+</div>
 </div>
 
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Colcompeaups
+Collectivité compétente en distribution d'eau potable
 @endsection
 @section('subtitle')
 

@@ -17,8 +17,11 @@ Route::get('/admin', function () {
         return Redirect::intended('/');
     }
  $search_comm=DB::table('comm_ddt38')->orderBy('nom_comm')->pluck('nom_comm','id');
+ $search_epci=DB::table('epci_ddt38')->orderBy('nom_groupement')->pluck('nom_groupement','id');
 
-    return view('index')->with('search_comm',$search_comm);
+    return view('index')
+    ->with('search_comm',$search_comm)
+    ->with('search_epci',$search_epci);
 });
 
 Route::get('testbs', 'TestBS@index');
@@ -122,6 +125,7 @@ Route::resource('zus', 'Zuss');
 
 Route::resource('logement', 'Logements');
 
+Route::resource('pasto', 'Pastos');
 //logements commencés
 Route::resource('logementc', 'Logementcs');
 
@@ -131,13 +135,22 @@ Route::resource('plui', 'Pluis');
 
 Route::resource('agriculture', 'Agricultures');
 Route::resource('lien', 'Liens');
+
 //Association
+//commune
 Route::post('/assoc','Assocs@index');
-
-
 Route::get('/assoc/create/{type_assoc}/{nomtable}/{typenom}/{nomid}/{id}','Assocs@create');
 
 Route::post('/assoc/store','Assocs@store');
+
+
+//epci
+Route::post('/assoce','Assoces@index');
+
+Route::get('/assoce/create/{type_assoc}/{nomtable}/{typenom}/{nomid}/{id}','Assoces@create');
+
+Route::post('/assoce/store','Assoces@store');
+
 
 
 

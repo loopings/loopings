@@ -114,7 +114,7 @@
                 <a href="/comm">Communes</a>
               </li>
 
-               <li>
+              <li>
                 <a href="/epci">EPCI</a>
               </li>
 
@@ -153,7 +153,7 @@
               <li>
                 <a href="/appb">APPB</a>
               </li>
-                <li>
+              <li>
                 <a href="/reserve">Reserve</a>
               </li>
 
@@ -223,7 +223,7 @@
                 <a href="/cm">Contrats milieux</a>
               </li>
 
-               <li>
+              <li>
                 <a href="/contactcm">Contacts contrats milieux</a>
               </li>
 
@@ -239,41 +239,41 @@
                 <a href="/step">STEP</a>
               </li>
 
-               <li>
-                <a href="/cheau">Cheau</a>
-              </li>
-
-               <li>
-                <a href="/hydroelec">Hydroelec</a>
+              <li>
+                <a href="/cheau">Contact chargé de la police d'eau et ouvrage soumis à la police de l'eau</a>
               </li>
 
               <li>
-                <a href="/conteco">Conteco</a>
+                <a href="/hydroelec">Contact pour l'hydroélectricité</a>
               </li>
 
               <li>
-                <a href="/contdigba">Contdigba</a>
+                <a href="/conteco">Contact sur les questions de continuité écologique</a>
+              </li>
+
+              <li>
+                <a href="/contdigba">Contact pour les digues et barrages</a>
               </li>
               <li>
                 <a href="/captage">Captage</a>
               </li>
               <li>
-                <a href="/resstrat">Resstrat</a>
+                <a href="/resstrat">Ressource stratégique pour l'avenir</a>
               </li>
               <li>
                 <a href="/gemapi">Gemapi</a>
               </li>
               <li>
-                <a href="/colcompeaup">colcompeaup</a>
+                <a href="/colcompeaup">Collectivité compétente en distribution d'eau potable</a>
               </li>
               <li>
-                <a href="/colgestass">colgestass</a>
+                <a href="/colgestass">Service gestionnaire de l'assainissement</a>
               </li>
               <li>
-                <a href="/colgesteaup">colgesteaup</a>
+                <a href="/colgesteaup">Service gestionnaire d'eau potable</a>
               </li>
               <li>
-                <a href="/colcompeauu">colcompeauu</a>
+                <a href="/colcompeauu">Collectivité compétente en traitement d'eaux usées</a>
               </li>
 
             </ul>
@@ -314,8 +314,11 @@
               <li>
                 <a href="/aocaop">AOC et AOP</a>
               </li>
+              <li>
+                <a href="/pasto">Pastoralisme</a>
+              </li>
 
-            
+
             </ul>
 
 
@@ -373,9 +376,9 @@
 
             <!-- /.nav-second-level -->
           </li>
-	  <li>
-		<a href="/users">Gestion des utilisateurs</a>
-	  </li>
+          <li>
+            <a href="/users">Gestion des utilisateurs</a>
+          </li>
         </ul>
       </div>
       <!-- /.sidebar-collapse -->
@@ -386,15 +389,15 @@
 
 
 
-  <div id="page-wrapper" style="min-height: 92.25vh;">
+  <div id="page-wrapper" style="min-height: 95.25vh;">
 
     <br> <br>
     <div class="content-main">
 
-      <div class="panel panel-danger">
+      <div class="panel panel-primary">
 
         <div class="panel-heading">
-          <h1 class="panel-title">Association</h1>
+          <h1 class="panel-title">Association Communes</h1>
         </div>
 
 
@@ -404,18 +407,39 @@
 
         <div class="panel-body">
           Veuillez sélectionner une commune que vous pourriez associer à
-          <ul>
-            <li>Un canton</li>
-            <li>Un APPB</li>
-            <li>Une ICPE</li>
-            <li>Une zone natura 2000</li>
-            <li>Une zone ZNIEFF</li>
-            <li>Une zone ZP</li>
-            <li>Une charte forestière</li>
-            <li>Un contrat rivière</li>
-            <li>Un SAGE</li>
-            <li>Une STEP</li>
-          </ul>
+          <div class="col-lg-12">
+            <br>
+
+          <div class="col-md-6">
+            <ul>
+              <li>Un canton</li>
+              <li>Un APPB</li>
+              <li>Une ICPE</li>
+              <li>Une zone natura 2000</li>
+              <li>Une zone ZNIEFF</li>
+              <li>Une zone ZP(Site patrimoniaux remarquables)</li>
+              <li>Une charte forestière</li>
+              <li>Un contrat milieux</li>
+              <li>Un SAGE</li>
+              <li>Une Réserve</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              
+              <li>Un Captage</li>
+              <li>Une Ressource stratégique pour l'avenir</li>
+              <li>Une Collectivité compétente en distribution d'eau potable</li>
+              <li>Un Service gestionnaire d'eau potable </li>
+              <li>Une Collectivité compétente en traitement d'eaux usées </li>
+              <li>Service gestionnaire de l'assainissement </li>
+              <li>AOC/AOP</li>
+
+            </ul>
+          </div>
+          </div>
+
+
           <div class="col-lg-6">
 
             {{Form::open(['url' => '/assoc', 'method' => 'post'])}}
@@ -430,20 +454,37 @@
       </div>
 
 
-      <div class="panel panel-success">
+      <div class="panel panel-primary">
 
         <div class="panel-heading">
-          <h1 class="panel-title">Ajouter un administrateur</h1>
+          <h1 class="panel-title">Association EPCI</h1>
         </div>
-
-
-
-
-        <!-- /.col-lg-12 -->
-
         <div class="panel-body">
+          Veuillez sélectionner une EPCI que vous pourriez associer à
+          <div class="col-lg-12">
+            <br>
 
-        </div>
+          <div class="col-md-6">
+            <ul>
+              <li>Un contact contrat milieux</li>
+              <li>TEPOS ou PEPCV</li>
+              <li>PFRE</li>
+            </ul>
+          </div>
+          </div>
+
+ <div class="col-lg-6">
+
+            {{Form::open(['url' => '/assoce', 'method' => 'post'])}}
+            {{Form::select('idsearch', $search_epci,null, ['placeholder' => 'Rechercher un EPCI', 'class' => 'selectpicker','data-live-search'=> 'true'])}}
+            <button class="btn btn-link btn-lg" type="submit">
+              <span class="glyphicon glyphicon-search "></span>
+            </button>
+            {{Form::close()}}
+            <br>
+          </div>
+
+
       </div>
 
     </div>
@@ -451,10 +492,6 @@
 
 
   </div>
-  <!-- /#page-wrapper -->
-
-
-  <!-- /#wrapper -->
 
 
 </div>

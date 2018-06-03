@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Hydroelec
+Contact pour l'hydroélectricité
 @endsection
 @section('subtitle')
 
@@ -96,7 +96,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		<thead>
 			<tr>
 				<th>
-					Nom hydroelec
+					Nom Contact
 				</th>
 
 				<th>

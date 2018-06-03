@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Contecos
+Contact sur les questions de continuité écologique
 @endsection
 @section('subtitle')
 
@@ -96,7 +96,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		<thead>
 			<tr>
 				<th>
-					Nom conteco
+					Nom contact
 				</th>
 
 				<th>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-col gest asss
+Service gestionnaire de l'assainissement
 @endsection
 @section('subtitle')
 

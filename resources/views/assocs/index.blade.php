@@ -64,7 +64,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 			</a>
 		</p>
 	</div>
-@else
+	@else
 	<div class="alert alert-success alert-dismissable">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		<p><b> {{$message}}</b></p>
@@ -74,107 +74,111 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	@endif
 	@endif
 </div>
+<br><br><br><br>
+		<div class="panel panel-primary">
 
-<div class="col-md-12">
-	<table class="table table-striped">
-		
-		<tbody>
+        <div class="panel-heading">
+          <h1 class="panel-title">Association Communes</h1>
+        </div>
+        <div class="panel-body">
+		<div class="list-group">
 
-			<tr>
-				<td>
-					<a href="/assoc/create/assoc_cantons/cantons_ddt38/nom_canton/id_cant/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Cantons
-					</a>
-				</td>
-				
-				<td>
-					<a href="/assoc/create/assoc_appb/appb_ddt38/nom_appb/id_appb/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						APPB
-					</a>
-				</td>
+			<a href="/assoc/create/assoc_cantons/cantons_ddt38/nom_canton/id_cant/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Cantons
+			</a>
+			
 
-				<td> 
-					<a href="/assoc/create/assoc_icpe/icpe_ddt38/ents_proprietaire/id_icpe/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						ICPE
-					</a>
-				</td>
-			</tr>
-
-			<tr>
-				<td>
-					<a href="/assoc/create/assoc_maet/maet_ddt38/nom_maet/id_maet/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						MAET
-					</a>
-				</td>
-				
-				<td>
-					<a href="/assoc/create/assoc_natura2000/natura2000_ddt38/nom_natura2000/id_natura2000/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Natura2000
-					</a>
-				</td>
-
-				<td> 
-					<a href="/assoc/create/assoc_znieff/znieff_ddt38/nom_znieff/id_znieff/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						ZNIEFF
-					</a>
-				</td>
-			</tr>
+			<a href="/assoc/create/assoc_appb/appb_ddt38/nom_appb/id_appb/{{$comm->id}}" class="list-group-item list-group-item-action">
+				APPB
+			</a>
 
 
-			<tr>
-				<td>
-					<a href="/assoc/create/assoc_zp/zp_ddt38/id/id_zp/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						ZP
-					</a>
-				</td>
-				
-				<td>
-					<a href="/assoc/create/assoc_cf/cf_ddt38/nom_chforest/id_chforest/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Chartes forestières
-					</a>
-				</td>
+			
+			<a href="/assoc/create/assoc_icpe/icpe_ddt38/ents_proprietaire/id_icpe/{{$comm->id}}" class="list-group-item list-group-item-action">
+				ICPE
+			</a>
+			
 
-				<td> 
-					<a href="/assoc/create/assoc_cr/cr_ddt38/nom_contrat/id_contrat_riviere/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Contrats rivières
-					</a>
-				</td>
-			</tr>
+			
+			
+			<a href="/assoc/create/assoc_natura2000/natura2000_ddt38/nom_natura2000/id_natura2000/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Natura2000
+			</a>
 
 
-			<tr>
-				<td>
-					<a href="/assoc/create/assoc_digues/digues_ddt38/id/id_digue/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Digues
-					</a>
-				</td>
-				
-				<td>
-					<a href="/assoc/create/assoc_sage/sage_ddt38/nom_sage/id_sage/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						SAGE
-					</a>
-				</td>
+			
+			<a href="/assoc/create/assoc_znieff/znieff_ddt38/nom_znieff/id_znieff/{{$comm->id}}" class="list-group-item list-group-item-action">
+				ZNIEFF
+			</a>
 
-				<td> 
-					<a href="/assoc/create/assoc_step/step_ddt38/nom_step/id_step/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						STEP
-					</a>
-				</td>
-			</tr>
+			<a href="/assoc/create/assoc_reserve/reserve_ddt38/nom_reserve/id_reserve/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Réserve
+			</a>
+			
 
 
-					<tr>
-					<td></td>
-				<td>
-					<a href="/assoc/create/assoc_troncons/troncons_ddt38/id/id_tr/{{$comm->id}}" class="btn btn-info "  style="width: 150px">
-						Tronçons
-					</a>
-				</td>
-				<td></td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+			<a href="/assoc/create/assoc_zp/zp_ddt38/site_patri_remarq/id_zp/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Site patrimoniaux remarquables
+			</a>
+
+
+			<a href="/assoc/create/assoc_cf/cf_ddt38/nom_chforest/id_chforest/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Chartes forestières
+			</a>
+			
+
+			
+			<a href="/assoc/create/assoc_cm/cm_ddt38/nom_contrat/id_cm/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Contrats milieux
+			</a>
+
+			
+
+
+			<a href="/assoc/create/assoc_sage/sage_ddt38/nom_sage/id_sage/{{$comm->id}}" class="list-group-item list-group-item-action">
+				SAGE
+			</a>
+			
+
+			
+			<a href="/assoc/create/assoc_step/step_ddt38/nom_step/id_step/{{$comm->id}}" class="list-group-item list-group-item-action">
+				STEP
+			</a>
+			
+			<a href="/assoc/create/assoc_captage/captage_ddt38/nom_captage/id_captage/{{$comm->id}}" class="list-group-item list-group-item-action">
+				CAPTAGE
+			</a>
+			
+			<a href="/assoc/create/assoc_res_strat/resstrat_ddt38/nom_resstrat/id_captage/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Ressource stratégique pour l'avenir(aires à préserver)
+			</a>
+
+			<a href="/assoc/create/assoc_comp_eaup/colcompeaup_ddt38/nom_colcompeaup/id_col/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Collectivité compétente en distribution d'eau potable
+			</a>
+
+			<a href="/assoc/create/assoc_col_gest_eaup/colgesteaup_ddt38/nom_colgesteaup/id_col/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Service gestionnaire d'eau potable
+			</a>
+
+			<a href="/assoc/create/assoc_comp_eauu/colcompeauu_ddt38/nom_colcompeauu/id_col/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Collectivité compétente en traitement d'eaux usées
+			</a>
+
+			<a href="/assoc/create/assoc_col_gest_ass/colgestass_ddt38/nom_colgestass/id_col/{{$comm->id}}" class="list-group-item list-group-item-action">
+				Service gestionnaire de l'assainissement
+			</a>
+
+			<a href="/assoc/create/assoc_aoc_aop/aocaop_ddt38/nom_aocaop/id_aoc_aop/{{$comm->id}}" class="list-group-item list-group-item-action">
+				AOC/AOP
+			</a>
+
+
+		</div>
+      </div>
+  </div>
+
+
 
 
 

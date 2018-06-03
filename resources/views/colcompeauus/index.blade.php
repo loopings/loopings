@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-col comp eauus
+Collectivité compétente en traitement d'eaux usées
 @endsection
 @section('subtitle')
 

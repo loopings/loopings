@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Resstrats
+Ressource stratégique pour l'avenir
 @endsection
 @section('subtitle')
 

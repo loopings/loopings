@@ -1,5 +1,5 @@
  <div>
-   <div class="col-md-12">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading">
         Supervision DDT38
@@ -10,14 +10,22 @@
           {{Form::select('id_agent_car', $agent_cars ,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
         </div>
         <div class="form-group col-md-6">
-          {{Form::label('id_cham', 'chargé de planification à la DDT : ')}}
+          {{Form::label('id_agent_car2', 'Second responsable de la cellule affichage des risques (laissez vide si inexistant) : ')}}
+          {{Form::select('id_agent_car2', $agent_cars ,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
+        </div>
+        <div class="form-group col-md-6">
+          {{Form::label('id_cham', 'Chargé de planification à la DDT : ')}}
           {{Form::select('id_cham', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
         </div>
-        
+        <div class="form-group col-md-6">
+          {{Form::label('id_cham2', 'Second chargé de planification à la DDT (laissez vide si inexistant) : ')}}
+          {{Form::select('id_cham2', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
+        </div>
       </div>
 
     </div>
   </div>
+
 
   <div class="col-md-6">
    <div class="panel panel-default">
@@ -26,15 +34,15 @@
    </div>
    <div class="panel-body">
      <div class="form-group col-md-4">
-      {{Form::label('nb_actifs', 'Nombre d\'actifs au total : ')}}
+      {{Form::label('nb_actifs', 'Nombre d\'actifs au total')}}
       {{Form::text('nb_actifs',$comm->nb_actifs, ['class' => 'form-control'])}}
     </div>
     <div class="form-group col-md-4">
-      {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants : ')}}
+      {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants')}}
       {{Form::text('nb_actifs_restants',$comm->nb_actifs_restants, ['class' => 'form-control'])}}
     </div>
     <div class="form-group col-md-4">
-      {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants : ')}}
+      {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants')}}
       {{Form::text('nb_actifs_sortants',$comm->nb_actifs_sortants, ['class' => 'form-control'])}}
     </div>
 
@@ -82,6 +90,15 @@
     {{Form::label('nb_men_2veh', 'Nombre de ménages possédant deux véhicules et 
     plus : ')}}
     {{Form::text('nb_men_2veh',$comm->nb_men_2veh, ['class' => 'form-control'])}}
+  </div>
+  <div class="form-group col-md-4">
+    {{Form::label('evolution_5', 'Evolution sur les 5 dernières années : ')}}
+    {{Form::text('evolution_5', $comm->evolution_5, ['class' => 'form-control'])}}
+  </div>
+
+  <div class="form-group col-md-4">
+    {{Form::label('nb_voit_men', 'Nombre de voiture par ménage : ')}}
+    {{Form::text('nb_voit_men', $comm->nb_voit_men, ['class' => 'form-control'])}}
   </div>
 
   <div class="form-group col-md-4">
@@ -150,7 +167,7 @@
       </div>
 
       <div class="form-group col-md-6">
-       {{Form::label('annee_maj_num_docurba', 'date de mise à jour de la donnée Etat de la numérisation des documents (année) :: ')}}
+       {{Form::label('annee_maj_num_docurba', 'date de mise à jour de la donnée Etat de la numérisation des documents (année) : ')}}
        {{Form::text('annee_maj_num_docurba',$comm->annee_maj_num_docurba, ['class' => 'form-control'])}}
      </div>
    </div>
@@ -158,7 +175,35 @@
 
  </div>
 </div>
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Documents opposables
+    </div>
+    <div class="panel-body">
+     <div class="form-group col-md-6">
+      <b>disposition opposable : </b>
+      <br><br>
+      <input name='disposition_opposable' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui" @if($comm->disposition_opposable)checked @endif>
 
+    </div>
+    <div class="form-group col-md-6">
+      {{Form::label('doc_urba_opposable', 'Document urbanisme opposable : ')}}
+      {{Form::text('doc_urba_opposable', $comm->doc_urba_opposable, ['class' => 'form-control'])}}
+    </div>
+
+    <div class="form-group col-md-6">
+      {{Form::label('dern_doc_oppo_num', 'Dernier document opposable numérisé : ')}}
+      {{Form::text('dern_doc_oppo_num', $comm->dern_doc_oppo_num, ['class' => 'form-control'])}}
+    </div>
+    <div class="form-group col-md-6">
+      {{Form::label('date_dern_doc_opposable', 'Date du dernier document opposable numérisé : ')}}
+      {{Form::text('date_dern_doc_opposable', $comm->date_dern_doc_opposable, ['class' => 'form-control'])}}
+    </div>
+
+  </div>
+</div>
+</div>
 
 <div class="col-md-12">
   <div class="panel panel-default">
@@ -221,4 +266,37 @@
   </div>
 </div>
 
+
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Autres
+    </div>
+    <div class="panel-body">
+      <div class="form-group col-md-6">
+        {{Form::label('tx_amenagement', 'Taxe d\'aménagement : ')}}
+        {{Form::text('tx_amenagement', $comm->tx_amenagement, ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-6">
+        {{Form::label('competence_urba', 'Compétence urbanisme : ')}}
+        {{Form::text('competence_urba', $comm->competence_urba, ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('tri', 'TRI : ')}}
+        {{Form::text('tri', $comm->tri, ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-6">
+        {{Form::label('slgri', 'SLGRI : ')}}
+        {{Form::text('slgri', $comm->slgri, ['class' => 'form-control'])}}
+      </div>
+      <div class="form-group col-md-12">
+        {{Form::label('regl_boisement', 'Commune concernée par une réglementation de boisement : ')}}
+        {{Form::text('regl_boisement', $comm->regl_boisement, ['class' => 'form-control'])}}
+      </div>
+
+      
+    </div>
+  </div>
+</div>
 </div>

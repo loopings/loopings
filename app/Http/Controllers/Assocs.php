@@ -6,19 +6,28 @@ use Illuminate\Http\Request;
 use App\assoc_appb;		
 use App\assoc_cantons;		
 use App\assoc_cf;		
-use App\assoc_cr;		
+use App\assoc_cm;		
 use App\assoc_digues;		
 use App\assoc_icpe;		
 use App\assoc_maet;		
 use App\assoc_natura2000;		
 use App\assoc_sage;		
-use App\assoc_step;		
-use App\assoc_tronçons;		
+use App\assoc_step;			
 use App\assoc_znieff;		
 use App\assoc_zp;
 use App\comm_ddt38;
 use App\cantons_ddt38;
-
+use App\assoc_captage;
+use App\assoc_res_strat;
+use App\assoc_comp_eaup;
+use App\assoc_col_gest_eaup;
+use App\assoc_comp_eauu;
+use App\assoc_col_gest_ass;
+use App\assoc_contact_cm;
+use App\assoc_tepos_pepcv;
+use App\assoc_pfre;
+use App\assoc_aoc_aop;
+use App\reserve_ddt38;
 
 class Assocs extends Controller
 {

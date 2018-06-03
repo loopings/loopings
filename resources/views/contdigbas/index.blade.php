@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-Contdigbas
+Contact pour les digues et barrages
 @endsection
 @section('subtitle')
 
@@ -96,7 +96,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		<thead>
 			<tr>
 				<th>
-					Nom contdigba
+					Nom contact
 				</th>
 
 				<th>

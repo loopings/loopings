@@ -19,7 +19,7 @@
           {{Form::label('id_cham', 'Chargé de planification à la DDT : ')}}
           {{Form::select('id_cham', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
         </div>
-         <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
           {{Form::label('id_cham2', 'Second chargé de planification à la DDT (laissez vide si inexistant) : ')}}
           {{Form::select('id_cham2', $chams,null, ['placeholder' => 'Sélectionner un agent', 'class' => 'form-control'])}}
         </div>
@@ -36,15 +36,15 @@
       </div>
       <div class="panel-body">
         <div class="form-group col-md-4">
-          {{Form::label('nb_actifs', 'Nombre d\'actifs au total: ')}}
+          {{Form::label('nb_actifs', 'Nombre d\'actifs au total')}}
           {{Form::text('nb_actifs', '', ['class' => 'form-control'])}}
         </div>
         <div class="form-group col-md-4">
-          {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants: ')}}
+          {{Form::label('nb_actifs_restants', 'Nombre d\'actifs restants')}}
           {{Form::text('nb_actifs_restants', '', ['class' => 'form-control'])}}
         </div>
         <div class="form-group col-md-4">
-          {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants: ')}}
+          {{Form::label('nb_actifs_sortants', 'Nombre d\'actifs sortants')}}
           {{Form::text('nb_actifs_sortants', '', ['class' => 'form-control'])}}
         </div>
 
@@ -97,6 +97,11 @@
       <div class="form-group col-md-4">
         {{Form::label('evolution_5', 'Evolution sur les 5 dernières années : ')}}
         {{Form::text('evolution_5', '', ['class' => 'form-control'])}}
+      </div>
+
+      <div class="form-group col-md-4">
+        {{Form::label('nb_voit_men', 'Nombre de voiture par ménage : ')}}
+        {{Form::text('nb_voit_men','', ['class' => 'form-control'])}}
       </div>
 
       <div class="form-group col-md-4">
@@ -173,7 +178,10 @@
       {{Form::label('dern_doc_oppo_num', 'Dernier document opposable numérisé : ')}}
       {{Form::text('dern_doc_oppo_num', '', ['class' => 'form-control'])}}
     </div>
-
+    <div class="form-group col-md-6">
+      {{Form::label('date_dern_doc_opposable', 'Date du dernier document opposable numérisé : ')}}
+      {{Form::text('date_dern_doc_opposable','', ['class' => 'form-control'])}}
+    </div>
 
   </div>
 </div>

@@ -28,18 +28,18 @@ $(':checkbox').checkboxpicker();
     </li>
     <li role="presentation">
       <a href="#rnp" aria-controls="rnp" role="tab" data-toggle="tab">
-        Ressources naturelles
+        Ressources naturelles/eaux et forets
       </a>
     </li>
 
     <li role="presentation">
       <a href="#urbanisme" aria-controls="urbanisme" role="tab" data-toggle="tab">
-        Urbanisme et risques 
+        Urbanisme/transitions energétiques/déplacements 
       </a>
     </li>
     <li role="presentation">
       <a href="#logement" aria-controls="logement" role="tab" data-toggle="tab">
-        Logement et foncier
+        Logement, politique de la ville et foncier 
       </a>
     </li>
 

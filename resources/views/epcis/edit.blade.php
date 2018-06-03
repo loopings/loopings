@@ -12,7 +12,7 @@ todayBtn: "linked",
 language: "fr",
 autoclose: true
 });
-
+$(':checkbox').checkboxpicker();
 @endsection
 @section('content')
 
@@ -113,110 +113,190 @@ autoclose: true
 </div>
 
 
-<div class="col-md-12">
-  <div class="panel panel-default ">
-    <div class="panel-heading">Données Urbanisme et foncier</div>
+<div class="panel panel-default ">
+    <div class="panel-heading">Urbanisme/Eaux et forets </div>
     <div class="panel-body">
+
+        <div class="form-group col-md-6">
+        <b>Présence d'une DTA opposable : </b>
+        <br><br>
+        <input name='dta_opposable' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui"@if($epci->dta_opposable)checked @endif>
+
+      </div>
 
       <div class="col-md-12">
 
-        <div class="form-group col-md-4">
-          {{ Form::label('vulnerabilite_energetique', 'vulnerabilite energetique : ') }}
-          {{ Form::text('vulnerabilite_energetique',$epci->vulnerabilite_energetique, array('class' => 'form-control')) }}
+        <div class="form-group col-md-6">
+          {{ Form::label('aep', 'AEP : ') }}
+          {{ Form::text('aep',$epci->aep, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ Form::label('competence_concernee', 'EPCI compétente en traitement des eaux usées: ') }}
+          {{ Form::text('competence_concernee',$epci->competence_concernee, array('class' => 'form-control')) }}
         </div>
 
-
-        <div class="form-group col-md-4">
-          {{ Form::label('libelle_pdu', 'Libelle pdu : ') }}
-          {{ Form::text('libelle_pdu',$epci->libelle_pdu, array('class' => 'form-control')) }}
+        <div class="form-group col-md-12">
+          {{ Form::label('carte_occup_agrico', 'Lien vers carte de l\'occupation agricole du sol et tissu urbain :') }}
+          {{ Form::text('carte_occup_agrico',$epci->carte_occup_agrico, array('class' => 'form-control')) }}
         </div>
 
+      </div>
+    </div>
+</div>
 
-        <div class="form-group col-md-4">
-          {{ Form::label('etat_avancement_pdu', 'Etat avancement du pdu :') }}
-          {{ Form::text('etat_avancement_pdu',$epci->etat_avancement_pdu, array('class' => 'form-control')) }}
+
+  <div class="panel panel-default ">
+    <div class="panel-heading">Agriculture </div>
+    <div class="panel-body">
+      <div class="col-md-12">
+
+        <div class="form-group col-md-12">
+          {{ Form::label('recensement_agri_2010', 'Resencement agricole 2010 (lien) : ') }}
+          {{ Form::text('recensement_agri_2010',$epci->recensement_agri_2010, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-5">
+          {{ Form::label('tab_group_cult_bio', 'Tableau surface des groupes principaux de culture /pourcentage bio: ') }}
+          {{ Form::text('tab_group_cult_bio',$epci->tab_group_cult_bio, array('class' => 'form-control')) }}
         </div>
 
-
-        <div id="date-container" class="form-group col-md-4">
-          
-            {{ Form::label('date_validation_pdu', ' Date validation pdu :') }}
-            {{ Form::text('date_validation_pdu', date("d/m/Y",strtotime($epci->date_validation_pdu)), array('class' => 'form-control')) }}
-       
+        <div class="form-group col-md-5">
+          {{ Form::label('carte_occup_agrico', 'Lien vers carte de l\'occupation agricole du sol et tissu urbain :') }}
+          {{ Form::text('carte_occup_agrico',$epci->carte_occup_agrico, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-2">
+          {{ Form::label('culture_decl_année', 'Année culture déclarée : ') }}
+          {{ Form::text('culture_decl_année',$epci->culture_decl_année, array('class' => 'form-control')) }}
         </div>
 
+      </div>
+    </div>
+</div>
+
+    <div class="panel panel-default ">
+      <div class="panel-heading">Transition énergétique et déplacements </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+
+          <div class="form-group col-md-4">
+            {{ Form::label('vulnerabilite_energetique', 'vulnerabilite energetique : ') }}
+            {{ Form::text('vulnerabilite_energetique',$epci->vulnerabilite_energetique, array('class' => 'form-control')) }}
+          </div>
+          <div class="form-group col-md-4">
+            {{ Form::label('libelle_pdu', 'Libelle PDU : ') }}
+            {{ Form::text('libelle_pdu',$epci->libelle_pdu, array('class' => 'form-control')) }}
+          </div>
+
+          <div class="form-group col-md-4">
+            {{ Form::label('etat_avancement_pdu', 'Etat d\'avancement du PDU :') }}
+            {{ Form::text('etat_avancement_pdu',$epci->etat_avancement_pdu, array('class' => 'form-control')) }}
+          </div>
+
+          <div class="form-group col-md-4">
+
+           <div id="date-container" class="form-group">
+            {{ Form::label('date_validation_pdu', ' Date de validation du PDU :') }}
+            {{ Form::text('date_validation_pdu',$epci->date_validation_pdu, array('class' => 'form-control')) }}
+          </div>
+
+        </div>
 
         <div class="form-group col-md-4">
-          {{ Form::label('lien_doc_pdu', ' Lien doc pdu :') }}
+          {{ Form::label('lien_doc_pdu', ' Lien doc PDU :') }}
           {{ Form::text('lien_doc_pdu',$epci->lien_doc_pdu, array('class' => 'form-control')) }}
         </div>
       </div>
+      <div class="col-md-12">
+        <div class="form-group col-md-6">
+          {{ Form::label('nb_emploi_terri', ' Nombre d\'emplois localisés sur le territoire :') }}
+          {{ Form::text('nb_emploi_terri',$epci->nb_emploi_terri, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ Form::label('actif_res_tr_terri', ' Nombre d\'actifs ayant un emploi résidants sur le territoire  :') }}
+          {{ Form::text('actif_res_tr_terri',$epci->actif_res_tr_terri, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ Form::label('actif_res_tr_horsterri', ' Nombre d\'actifs résidents travaillant hors du territoire :') }}
+          {{ Form::text('actif_res_tr_horsterri',$epci->actif_res_tr_horsterri, array('class' => 'form-control')) }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ Form::label('nb_actif_res_terri', ' Nombre d\'actifs résidents travaillant sur le territoire :') }}
+          {{ Form::text('nb_actif_res_terri',$epci->nb_actif_res_terri, array('class' => 'form-control')) }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+  <div class="panel panel-default ">
+    <div class="panel-heading">Logement et foncier</div>
+    <div class="panel-body">
+
+      <div class="col-md-12">
+        <div class="form-group col-md-4">
+          {{ Form::label('libelle_plhi', 'Libelle PLHi : ') }}
+          {{ Form::text('libelle_plhi',$epci->libelle_plhi, array('class' => 'form-control')) }}
+        </div>
+
+        <div  class="form-group col-md-4" >
+          {{ Form::label('etat_avancement_plhi', ' Etat avancement PLHi :') }}
+          {{ Form::text('etat_avancement_plhi',$epci->etat_avancement_plhi, array('class' => 'form-control')) }}
+        </div>
+
+        <div id="date-container" class="form-group col-md-4">
+          {{ Form::label('date_validation_plhi', 'Date validation PLHi :') }}
+          {{ Form::text('date_validation_plhi',$epci->date_validation_plhi, array('class' => 'form-control')) }}
+        </div>
+
+        <div class="form-group col-md-4">
+          {{ Form::label('lien_doc_plhi', ' Lien doc PLHi :') }}
+          {{ Form::text('lien_doc_plhi',$epci->lien_doc_plhi, array('class' => 'form-control')) }}
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group col-md-4">
+          {{ Form::label('vulnerabilite_ener_log', 'Vulnérabilité énergétique au logement : ') }}
+          {{ Form::text('vulnerabilite_ener_log',$epci->vulnerabilite_ener_log, array('class' => 'form-control')) }}
+        </div>
+
+        <div  class="form-group col-md-4" >
+          {{ Form::label('coproprio_deg_frag', ' Copropriétés dégradées ou fragiles :') }}
+          {{ Form::text('coproprio_deg_frag',$epci->coproprio_deg_frag, array('class' => 'form-control')) }}
+        </div>
+
+        <div  class="form-group col-md-4">
+          {{ Form::label('nb_quart_prio', 'Nombre de quartier prioritaire :') }}
+          {{ Form::text('nb_quart_prio',$epci->nb_quart_prio, array('class' => 'form-control')) }}
+        </div>
+
+        <div class="form-group col-md-4">
+          {{ Form::label('nb_hab_quart_prio', ' Nombre d\'habitants résidants dans des quartier prioritaire :') }}
+          {{ Form::text('nb_hab_quart_prio',$epci->nb_hab_quart_prio, array('class' => 'form-control')) }}
+        </div>
+      </div>
 
 
       <div class="col-md-12">
-      <div class="form-group col-md-4">
-          {{ Form::label('libelle_plh', 'Libelle plh : ') }}
-          {{ Form::text('libelle_plh',$epci->libelle_plh, array('class' => 'form-control')) }}
+        <div class="form-group col-md-6">
+          {{ Form::label('doc_ofpi', ' Doc ofpi :') }}
+          {{ Form::text('doc_ofpi',$epci->doc_ofpi, array('class' => 'form-control')) }}
         </div>
 
-
-        <div class="form-group col-md-4">
-          {{ Form::label('etat_avancement_plh', ' Etat avancement plh :') }}
-          {{ Form::text('etat_avancement_plh',$epci->etat_avancement_plh, array('class' => 'form-control')) }}
+        <div class="form-group col-md-6">
+          {{ Form::label('video_epci_foncier', 'Video epci foncier :') }}
+          {{ Form::text('video_epci_foncier',$epci->video_epci_foncier, array('class' => 'form-control')) }}
         </div>
-
-
-        <div id="date-container" class="form-group col-md-4">
-          {{ Form::label('date_validation plh', 'Date validation plh :') }}
-          {{ Form::text('date_validation_plh',$epci->date_validation_plh, array('class' => 'form-control')) }}
-        </div>
-
-
-        <div class="form-group col-md-4">
-          {{ Form::label('lien_doc_plh', ' Lien doc plh :') }}
-          {{ Form::text('lien_doc_plh',$epci->lien_doc_plh, array('class' => 'form-control')) }}
-
-        </div>
-
       </div>
 
 
 
-<div class="col-md-12">
-      <div class="form-group col-md-6">
-        {{ Form::label('doc_ofpi', ' Doc ofpi :') }}
-        {{ Form::text('doc_ofpi',$epci->doc_ofpi, array('class' => 'form-control')) }}
-
-      </div>
-
-
-      <div class="form-group col-md-6">
-        {{ Form::label('video epci foncier', 'Video epci foncier :') }}
-        {{ Form::text('video_epci_foncier',$epci->video_epci_foncier, array('class' => 'form-control')) }}
-      </div>
-
-</div>
-
-<div class="col-md-12">
-      <div class="form-group col-md-6">
-
-
-         {{Form::label('etat', 'EPCI actuel ou fusionné ? : ')}}
-          {{Form::select('etat', ['actuel'=>'actuel','fusionné'=>'fusionné'] ,null, ['placeholder' => 'Sélectionner ', 'class' => 'form-control'])}}
-      </div>
-
-
-      <div class="form-group col-md-6">
-         {{Form::label('resultat_fusion', 'EPCI résultant si fusion: ')}}
-          {{Form::select('resultat_fusion', $epcis,null, ['placeholder' => 'Sélectionner un EPCI ', 'class' => 'form-control'])}}
-
-
-      </div>
-
-</div>
-
-   </div>
-</div>
+    </div>
+  </div>
 </div>
 <div class="col-md-12">
   

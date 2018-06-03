@@ -82,27 +82,27 @@ class Comms extends Controller
     	$aus=au_ddt38::orderBy("typologie")->pluck('typologie','id');
     	$uus=uu_ddt38::orderBy("libelle_uu")->pluck('libelle_uu','id');
       $gemapis=gemapi_ddt38::orderBy("nom_gemapi")->pluck('nom_gemapi','id');
-    	$cheaus=cheau_ddt38::orderBy("nom_cheau")->pluck('nom_cheau','id');
+      $cheaus=cheau_ddt38::orderBy("nom_cheau")->pluck('nom_cheau','id');
       $contecos=conteco_ddt38::orderBy("nom_conteco")->pluck('nom_conteco','id');
       $hydroelecs=hydroelec_ddt38::orderBy("nom_hydroelec")->pluck('nom_hydroelec','id');
       $contdigbas=contdigba_ddt38::orderBy("nom_contdigba")->pluck('nom_contdigba','id');
 
-    	return View('comms.create')->with('epcis', $epcis)
-    	->with('territoires', $territoires)
-    	->with('scots', $scots)
-    	->with('agent_cars', $agent_cars)
-    	->with('chams', $chams)
-    	->with('cadss', $cadss)
-    	->with('pnrs',$pnrs)
-    	->with('zes',$zes)
-    	->with('aus',$aus)
-    	->with('uus',$uus)
+      return View('comms.create')->with('epcis', $epcis)
+      ->with('territoires', $territoires)
+      ->with('scots', $scots)
+      ->with('agent_cars', $agent_cars)
+      ->with('chams', $chams)
+      ->with('cadss', $cadss)
+      ->with('pnrs',$pnrs)
+      ->with('zes',$zes)
+      ->with('aus',$aus)
+      ->with('uus',$uus)
       ->with('gemapis',$gemapis)
       ->with('cheaus',$cheaus)
       ->with('contecos',$contecos)
       ->with('hydroelecs',$hydroelecs)
       ->with('contdigbas',$contdigbas)
-    	->with('dtas',$dtas);
+      ->with('dtas',$dtas);
     }
 
     /**
@@ -459,25 +459,33 @@ return redirect('comm')->with('message', $message);
     	$dtas=dta_ddt38::orderBy("nom_dta")->pluck('nom_dta','id');
     	$aus=au_ddt38::orderBy("typologie")->pluck('typologie','id');
     	$uus=uu_ddt38::orderBy("libelle_uu")->pluck('libelle_uu','id');
-    	$cucss=cucs_ddt38::orderBy("nom_cucs")->pluck('nom_cucs','id');
+    	$gemapis=gemapi_ddt38::orderBy("nom_gemapi")->pluck('nom_gemapi','id');
+      $cheaus=cheau_ddt38::orderBy("nom_cheau")->pluck('nom_cheau','id');
+      $contecos=conteco_ddt38::orderBy("nom_conteco")->pluck('nom_conteco','id');
+      $hydroelecs=hydroelec_ddt38::orderBy("nom_hydroelec")->pluck('nom_hydroelec','id');
+      $contdigbas=contdigba_ddt38::orderBy("nom_contdigba")->pluck('nom_contdigba','id');
 
 
-    	$comm= comm_ddt38::find($id);
+      $comm= comm_ddt38::find($id);
 
 
-    	return view('comms.edit',compact('comm'))->with('comm', $comm)
-    	->with('epcis', $epcis)
-    	->with('territoires', $territoires)
-    	->with('scots', $scots)
-    	->with('agent_cars', $agent_cars)
-    	->with('chams', $chams)
-    	->with('cadss', $cadss)
-    	->with('pnrs',$pnrs)
-    	->with('zes',$zes)
-    	->with('aus',$aus)
-    	->with('uus',$uus)
-    	->with('cucss',$cucss)
-    	->with('dtas',$dtas);
+      return view('comms.edit',compact('comm'))->with('comm', $comm)
+      ->with('epcis', $epcis)
+      ->with('territoires', $territoires)
+      ->with('scots', $scots)
+      ->with('agent_cars', $agent_cars)
+      ->with('chams', $chams)
+      ->with('cadss', $cadss)
+      ->with('pnrs',$pnrs)
+      ->with('zes',$zes)
+      ->with('aus',$aus)
+      ->with('uus',$uus)
+      ->with('gemapis',$gemapis)
+      ->with('cheaus',$cheaus)
+      ->with('contecos',$contecos)
+      ->with('hydroelecs',$hydroelecs)
+      ->with('contdigbas',$contdigbas)
+      ->with('dtas',$dtas);
     }
 
     /**
@@ -579,20 +587,58 @@ return redirect('comm')->with('message', $message);
           'lien_dossier_complet_insee'=>$request->lien_dossier_complet_insee,      
           'lien_admin_francaise'=>$request->lien_admin_francaise,      
           'lien_asso_maires'=>$request->lien_asso_maires,
-          'lien_synth_risques'=>$request->lien_synth_risques
+          'lien_synth_risques'=>$request->lien_synth_risques,
+          'disposition_opposable'=>$this->checkCB($request->disposition_opposable),
+          'doc_urba_opposable'=>$request->doc_urba_opposable,
+          'date_dern_doc_opposable'=>$request->date_dern_doc_opposable,
+          'tx_amenagement'=>$request->tx_amenagement,
+          'competence_urba'=>$request->competence_urba,
+          'dern_doc_oppo_num'=>$request->dern_doc_oppo_num,
+          'tri'=>$request->tri,
+          'slgri'=>$request->slgri,
+          'regl_boisement'=>$request->regl_boisement,
+          'zone_nitrate'=>$request->zone_nitrate,
+          'captage_prioritaire'=>$request->captage_prioritaire,
+          'sdage_deficit_aver'=>$request->sdage_deficit_aver,
+          'pgre'=>$request->pgre,
+          'sdage_equi_frag'=>$request->sdage_equi_frag,
+          'id_gemapi'=>$request->id_gemapi,
+          'comm_carrencee'=>$this->checkCB($request->comm_carrencee),
+            'comm_exoneree'=>$this->checkCB($request->comm_exoneree),
+          'comm_tourist'=>$request->comm_tourist,
+          'lien_politique_ville'=>$request->lien_politique_ville,
+          'nb_voit_men'=>$request->nb_voit_men,
+          'evolution_5'=>$request->evolution_5,
+          'territoire_pdu'=>$request->territoire_pdu,
+          'territoire_ppa'=>$request->territoire_ppa,
+          'territoire_peb'=>$request->territoire_peb,
+          'id_cheau'=>$request->id_cheau,
+          'id_hydroelec'=>$request->id_hydroelec,
+          'id_eco'=>$request->id_eco,
+          'id_contdigba'=>$request->id_contdigba,
+          'zap'=>$request->zap,
+          'paen'=>$request->paen,
+          'cdepnaf'=>$request->cdepnaf,
+          'epf'=>$request->epf,
+          'id_agent_car2'=>$request->id_agent_car2,
+          'id_cham2'=>$request->id_cham2,
+          'libelle_plh'=>$request->libelle_plh,
+          'etat_avancement_plh'=>$request->etat_avancement_plh,
+          'date_validation_plh'=>$request->date_validation_plh,
+          'lien_doc_plh'=>$request->lien_doc_plh
 
 
 
         )
-    		);
+);
 
-    	}catch(QueryException $ex){
+}catch(QueryException $ex){
 
-    		$message=$ex->getMessage();
-    	}
+  $message=$ex->getMessage();
+}
 
-    	return redirect('comm')->with('message', $message);
-    }
+return redirect('comm')->with('message', $message);
+}
 
     /**
      * Remove the specified resource from storage.
