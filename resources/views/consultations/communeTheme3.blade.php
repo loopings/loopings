@@ -1,3 +1,124 @@
+<div class="col-md-12">
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title"> Urbanisme</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between ">Chargé de planification <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}} @endif</b>  </li>
+
+				@if(!empty($cham2)) 
+				<li class="list-group-item justify-content-between ">Deuxième chargé de planification <b>{{$cham2->prenom_cham}}&nbsp;{{$cham2->nom_cham}} </b>  </li>
+				@endif
+
+				<li class="list-group-item justify-content-between ">Présence d'une DTA <b>
+					@if(!empty($dta)) {{$dta->nom_dta}}&nbsp;(Année de mise à jour {{$dta->annee_maj}}) 
+					@else
+					Pas de DTA
+				@endif </b>  </li>
+
+				<li class="list-group-item justify-content-between ">SCOT :  <b>@if(!empty($scot)){{$scot->nom_scot}}
+				@else
+				Non
+				@endif</b>  
+				</li>
+
+				
+
+				<li class="list-group-item justify-content-between ">et comprenant des dispositions opposables :  <b>
+				@if(!isset($comm->disposition_opposable))
+					Pas d'informations	
+				@else
+						@if($comm->disposition_opposable)Oui
+						@else Non
+						@endif
+				 
+				@endif</b>  
+				</li>
+
+				<li class="list-group-item justify-content-between ">Document d'urbanisme opposable :  <b>
+				@if(!isset($comm->doc_urba_opposable))
+					Pas d'informations	
+				@else
+						{{$comm->disposition_opposable}}
+						
+				@endif</b>  
+				</li>
+
+				<li class="list-group-item justify-content-between ">Date du dernier document opposable :  <b>
+				@if(!isset($comm->date_dern_doc_opposable))
+					Pas d'informations	
+				@else
+						{{$comm->date_dern_doc_opposable}}
+						
+				@endif</b>  
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Procédure en cours
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="procedure_en_cours")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b>
+				</li>	
+				<li class="list-group-item justify-content-between "> 
+					Liste des SUP de la commune
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="liste_sup")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between ">Taxe d'aménagement :  <b>
+				@if(!isset($comm->tx_amenagement))
+					Pas d'informations	
+				@else
+						{{$comm->tx_amenagement}}
+						
+				@endif</b>  
+				</li>
+				<li class="list-group-item justify-content-between ">Compétence urbanisme :  <b>
+				@if(!isset($comm->competence_urba))
+					Pas d'informations	
+				@else
+						{{$comm->competence_urba}}
+						
+				@endif</b>  
+				</li>
+				<li class="list-group-item justify-content-between ">Dernier document opposable numérisé :  <b>
+				@if(!isset($comm->dern_doc_oppo_num))
+					Pas d'informations	
+				@else
+						{{$comm->dern_doc_oppo_num}}
+						
+				@endif</b>  
+				</li>	
+					<li class="list-group-item justify-content-between "> 
+					Mesures de restrictions à l'urbanisation pour assainissement insuffisant
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="mesure_restrictions")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b>
+				</li>
+
+
+			</ul>
+		</div>
+	</div>
+</div>
+
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="card">
@@ -315,9 +436,9 @@
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 
-			@if(!empty($comm->lien_synth_risques))
+				@if(!empty($comm->lien_synth_risques))
 				<li class="list-group-item justify-content-between ">Accès au site Géorisques - zoom à la commune :
-				<a href="{{$comm->lien_synth_risques}}" target="_blank" style="max-width: 90%;" >
+					<a href="{{$comm->lien_synth_risques}}" target="_blank" style="max-width: 90%;" >
 						<b>Cliquez ici <br></b>
 					</a>
 				</li>

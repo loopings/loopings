@@ -364,11 +364,14 @@
             <!-- /.nav-second-level -->
           </li>
           <li>
-            <a href="#">Liens utiles<span class="fa arrow"></span></a>
+            <a href="#">Liens<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
 
               <li>
                 <a href="/lien">Liens uniques</a>
+              </li>
+               <li>
+                <a href="/lienG">Liens généraux</a>
               </li>
 
 

@@ -135,6 +135,7 @@ Route::resource('plui', 'Pluis');
 
 Route::resource('agriculture', 'Agricultures');
 Route::resource('lien', 'Liens');
+Route::resource('lienG', 'LienGs');
 
 //Association
 //commune

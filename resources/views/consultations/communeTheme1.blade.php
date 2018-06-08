@@ -1,5 +1,11 @@
 
 <div class="col-md-12">
+
+
+<div class="row">
+		
+
+<div class="col-md-6">	
 	<div class="card">
 		<div class="card-block">
 			<h3 class="card-title">
@@ -34,10 +40,11 @@
 	</div>
 </div>
 
+		
 
 
 
-<div class="col-md-12">
+<div class="col-md-6">
 	<div class="card">
 		<div class="card-block">
 			<h3 class="card-title"><i class="glyphicon glyphicon-king"></i> Périmètres de gouvernance
@@ -48,10 +55,6 @@
 				</li>
 
 				<li class="list-group-item justify-content-between ">Territoire 38 :  <b>@if(!empty($terri)) {{$terri->nom_terri38}} @endif</b>  
-				</li>
-
-
-				<li class="list-group-item justify-content-between ">SCOT :  <b>@if(!empty($scot)){{$scot->nom_scot}}@endif</b>  
 				</li>
 
 				<li class="list-group-item justify-content-between">Cantons :
@@ -66,7 +69,10 @@
 	</div>
 </div>
 
+</div>
 
+
+</div>
 
 <!--
 
@@ -78,6 +84,9 @@
 							<li class="list-group-item justify-content-between ">Chargé d'aménagement <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}}&nbsp;&nbsp;&nbsp;{{$cham->serv_am}} @endif</b>  </li>
 							<li class="list-group-item justify-content-between ">Agent CAR <b>
 								@if(!empty($agent_car)) {{$agent_car->prenom_car}}&nbsp;{{$agent_car->nom_car}}&nbsp;&nbsp;&nbsp;{{$agent_car->zonage_car}} @endif</b>  </li>
+
+								<li class="list-group-item justify-content-between ">SCOT :  <b>@if(!empty($scot)){{$scot->nom_scot}}@endif</b>  
+				</li>
 							</ul>
 						</div>
 					</div>
@@ -163,16 +172,7 @@
 
 
 
-							@if(!empty($comm->lien_bddreal))
-							<li class="list-group-item justify-content-between ">Lien BD DREAL :
-								<a href="{{$comm->lien_bddreal}}" target="_blank" style="max-width: 90%;" >
-									<b>
-										Cliquez ici 
-										<br>
-									</b>
-								</a>
-							</li>
-							@endif
+							
 
 							@foreach($lien_theme1s as $lien_theme1)
 							<li class="list-group-item justify-content-between ">{{$lien_theme1->libelle}} :

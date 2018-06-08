@@ -24,10 +24,10 @@ use App\agriculture_ddt38;
 use App\troncons_ddt38;
 use App\lgmts_commences_ddt38;
 use App\lien_unique;
+use App\lienG_ddt38;
 
 use App\assoc_cantons;
 use App\assoc_appb;
-use App\assoc_icpe;
 use App\assoc_maet;
 use App\assoc_natura2000;
 use App\assoc_znieff;
@@ -37,11 +37,11 @@ use App\assoc_cf;
 use App\assoc_digues;
 use App\assoc_sage;
 use App\assoc_step;
-use App\assoc_troncons;
+use App\assoc_reserve;
 
 use App\cantons_ddt38;
 use App\appb_ddt38;
-use App\icpe_ddt38;
+use App\reserve_ddt38;
 use App\maet_ddt38;
 use App\natura2000_ddt38;
 use App\pnr_ddt38;
@@ -72,6 +72,7 @@ class Consultations extends Controller
      $terri=territoires38_ddt38::find($comm->id_terri38);
      $scot=scot_ddt38::find($comm->id_scot);
      $cham=cham_ddt38::find($comm->id_cham);
+     $cham2=cham_ddt38::find($comm->id_cham2);
      $agent_car=agent_car_ddt38::find($comm->id_agent_car);
      $pnr=pnr_ddt38::find($comm->id_pnr);
      $ze=ze_ddt38::find($comm->id_ze);
@@ -97,9 +98,9 @@ class Consultations extends Controller
      $appbs=appb_ddt38::find($assoc_appb->pluck('id_appb'));
 
 
-   //icpe
-     $assoc_icpe=DB::table('assoc_icpe')->where('id_comm',$request->idsearch)->get();
-     $icpes=icpe_ddt38::find($assoc_icpe->pluck('id_icpe'));
+   //reserve
+     $assoc_reserve=DB::table('assoc_reserve')->where('id_comm',$request->idsearch)->get();
+     $reserves=reserve_ddt38::find($assoc_reserve->pluck('id_reserve'));
 
    //maet
      $assoc_maet=DB::table('assoc_maet')->where('id_comm',$request->idsearch)->get();
@@ -155,7 +156,7 @@ class Consultations extends Controller
     $lien_theme7s=lien_unique::where('onglet','Air et Bruit')->orderBy('ordre')->get();
     $lien_theme8s=lien_unique::where('onglet','Foncier')->orderBy('ordre')->get();
 
-
+    $lienGs=lienG_ddt38::orderBy('nom')->get();
      return view('consultations.commune')->with('comm',$comm)
      ->with('resultat_fusion',$resultat_fusion)
      ->with('populations',$populations)
@@ -164,9 +165,10 @@ class Consultations extends Controller
      ->with('scot',$scot)
      ->with('cantons',$cantons)
      ->with('cham',$cham)
+     ->with('cham2',$cham2)
      ->with('agent_car',$agent_car)
      ->with('appbs',$appbs)
-     ->with('icpes',$icpes)
+     ->with('reserves',$reserves)
      ->with('maets',$maets)
      ->with('natura2000s',$natura2000s)
      ->with('znieffs',$znieffs)
@@ -197,6 +199,7 @@ class Consultations extends Controller
      ->with('lien_theme6s',$lien_theme6s)
      ->with('lien_theme7s',$lien_theme7s)
      ->with('lien_theme8s',$lien_theme8s)
+     ->with('lienGs',$lienGs)
      ;
  }
   public function voirCommGet($id)
@@ -233,9 +236,9 @@ class Consultations extends Controller
      $appbs=appb_ddt38::find($assoc_appb->pluck('id_appb'));
 
 
-   //icpe
-     $assoc_icpe=DB::table('assoc_icpe')->where('id_comm',$id)->get();
-     $icpes=icpe_ddt38::find($assoc_icpe->pluck('id_icpe'));
+   //reserve
+     $assoc_reserve=DB::table('assoc_reserve')->where('id_comm',$id)->get();
+     $reserves=reserve_ddt38::find($assoc_reserve->pluck('id_reserve'));
 
    //maet
      $assoc_maet=DB::table('assoc_maet')->where('id_comm',$id)->get();
@@ -302,7 +305,7 @@ class Consultations extends Controller
      ->with('cham',$cham)
      ->with('agent_car',$agent_car)
      ->with('appbs',$appbs)
-     ->with('icpes',$icpes)
+     ->with('reserves',$reserves)
      ->with('maets',$maets)
      ->with('natura2000s',$natura2000s)
      ->with('znieffs',$znieffs)
