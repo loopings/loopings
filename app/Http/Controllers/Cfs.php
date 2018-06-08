@@ -47,9 +47,8 @@ class Cfs extends Controller
    
         $annee_maj=$request->annee_maj;
         $demarche_en_cours=$request->demarche_en_cours;
-        $tx_bois=$request->tx_bois; 
-        $existence_reg_bois=$request->existence_reg_bois; 
-        $existence_for_prot=$request->existence_for_prot;
+        $nom_charte=$request->nom_charte; 
+        
 
 
         cf_ddt38::insert(
@@ -57,9 +56,7 @@ class Cfs extends Controller
             
                 'annee_maj'=>$annee_maj,
                 'demarche_en_cours'=>$demarche_en_cours,
-                'tx_bois'=>$tx_bois,
-                'existence_reg_bois' =>$existence_reg_bois,
-                'existence_for_prot'=>$existence_for_prot
+                'nom_charte'=>$nom_charte
   
                 )
 
@@ -118,9 +115,8 @@ class Cfs extends Controller
            array(
             'annee_maj'=>$request->annee_maj,
             'demarche_en_cours'=>$request->demarche_en_cours,
-            'tx_bois'=>$request->tx_bois,
-            'existence_reg_bois' =>$request->existence_reg_bois,
-            'existence_for_prot'=>$request->existence_for_prot
+             'nom_charte'=>$request->nom_charte
+
 
                 )
         );

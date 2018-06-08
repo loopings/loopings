@@ -219,10 +219,8 @@
 
 
       <div class="form-group col-md-4">
-        <b>Etat sur le classement ou non en zone « loi 
-        Montagne » :</b>
-        <br><br>
-        <input name='class_zonemontagne' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui">
+         {{Form::label('class_zonemontagne', 'Etat sur le classement ou non en zone « loi Montagne » : ')}}
+        {{Form::text('class_zonemontagne', '', ['class' => 'form-control'])}}
 
       </div>
 

@@ -32,7 +32,7 @@ use App\assoc_maet;
 use App\assoc_natura2000;
 use App\assoc_znieff;
 use App\assoc_zp;
-use App\assoc_cr;
+use App\assoc_cm;
 use App\assoc_cf;
 use App\assoc_digues;
 use App\assoc_sage;
@@ -47,7 +47,7 @@ use App\natura2000_ddt38;
 use App\pnr_ddt38;
 use App\znieff_ddt38;
 use App\zp_ddt38;
-use App\cr_ddt38;
+use App\cm_ddt38;
 use App\cf_ddt38;
 use App\digues_ddt38;
 use App\sage_ddt38;
@@ -123,8 +123,8 @@ class Consultations extends Controller
      $cfs=cf_ddt38::find($assoc_cf->pluck('id_chforest'));
 
    //contrats rivières cr
-     $assoc_cr=DB::table('assoc_cr')->where('id_comm',$request->idsearch)->get();
-     $crs=cr_ddt38::find($assoc_cr->pluck('id_contrat_riviere'));
+     $assoc_cr=DB::table('assoc_cm')->where('id_comm',$request->idsearch)->get();
+     $crs=cm_ddt38::find($assoc_cr->pluck('id_contrat_riviere'));
 
    //digues
      $assoc_digues=DB::table('assoc_digues')->where('id_comm',$request->idsearch)->get();
@@ -139,9 +139,9 @@ class Consultations extends Controller
      $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
     //Tronçons
-     $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$request->idsearch)->get();
+    /* $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$request->idsearch)->get();
      $troncons=troncons_ddt38::find($assoc_troncons->pluck('id_tr'));
-     
+     */
 
      //LIENS UNIQUES
     $lien_theme1s=lien_unique::where('onglet','Fiche administrative')->orderBy('ordre')->get();
@@ -185,7 +185,7 @@ class Consultations extends Controller
      ->with('zus',$zus)
      ->with('lgmts',$lgmts)
      ->with('agricultures',$agricultures)
-     ->with('troncons',$troncons)
+     ->with('troncons',0)
      ->with('lgmtcs',$lgmtcs)
      ->with('lien_theme1s',$lien_theme1s)
      ->with('lien_theme2s',$lien_theme2s)
@@ -257,8 +257,8 @@ class Consultations extends Controller
      $cfs=cf_ddt38::find($assoc_cf->pluck('id_chforest'));
 
    //contrats rivières cr
-     $assoc_cr=DB::table('assoc_cr')->where('id_comm',$id)->get();
-     $crs=cr_ddt38::find($assoc_cr->pluck('id_contrat_riviere'));
+     $assoc_cr=DB::table('assoc_cm')->where('id_comm',$id)->get();
+     $crs=cm_ddt38::find($assoc_cm->pluck('id_contrat_riviere'));
 
    //digues
      $assoc_digues=DB::table('assoc_digues')->where('id_comm',$id)->get();

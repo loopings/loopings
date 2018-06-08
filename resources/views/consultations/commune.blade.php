@@ -56,7 +56,7 @@
 
  <body class="index-page">
   <!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: #af3e27;" >
+  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: red;" >
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/">
@@ -122,7 +122,7 @@
                 <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="blue" style="width: 1200px;" >
                   <li class="nav-item" style="width: 150px;">
                     <a class="nav-link active" data-toggle="tab" href="#fiche" role="tab">
-                      <i class="glyphicon glyphicon-list-alt "></i><br> Fiche administrative
+                      <i class="glyphicon glyphicon-list-alt "></i><br> Fiche administrative et données générales
                     </a>
                   </li>
                   <li class="nav-item" style="width: 150px;">
@@ -132,7 +132,7 @@
                   </li>
                   <li class="nav-item" style="width: 150px;">
                     <a class="nav-link" data-toggle="tab" href="#urbanisme" role="tab">
-                      <i class="glyphicon glyphicon-road"></i><br>  Urbanisme, risques et déplacements
+                      <i class="glyphicon glyphicon-road"></i><br>  Urbanisme et risques
                     </a>
                   </li>
                   
@@ -156,7 +156,7 @@
 
                   <li class="nav-item" style="width: 150px;">
                     <a class="nav-link" data-toggle="tab" href="#air" role="tab">
-                      <i class="glyphicon glyphicon-bullhorn"></i><br>  Air et Bruit
+                      <i class="glyphicon glyphicon-bullhorn"></i><br>  Transition énergétique et Déplacements
                     </a>
                   </li>
 
@@ -294,6 +294,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <footer class="footer" data-background-color="black">
     <div class="container">

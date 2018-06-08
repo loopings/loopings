@@ -262,7 +262,7 @@ $(':checkbox').checkboxpicker();
         </div>
 
         <div class="form-group col-md-4">
-          {{ Form::label('nb_hab_quart_prio', ' Nombre d\'habitants résidants dans des quartier prioritaire :') }}
+          {{ Form::label('nb_hab_quart_prio', ' Nombre d\'habitants résidants dans des quartiers prioritaires (Nombre+Année) :') }}
           {{ Form::text('nb_hab_quart_prio','', array('class' => 'form-control')) }}
         </div>
       </div>

@@ -174,7 +174,7 @@ class Comms extends Controller
 
 
           //zone montagne
-          $class_zonemontagne=$this->checkCB($request->class_zonemontagne);//boolean
+          $class_zonemontagne=$request->class_zonemontagne;
           $liste_hameaux=$request->liste_hameaux;
           $annee_maj_zm=$request->annee_maj_zm;
 
@@ -186,7 +186,7 @@ class Comms extends Controller
 
           $nb_ppi=$request->nb_ppi;
           
-          $loi_sru=$this->checkCB($request->loi_sru);//boolean
+          $loi_sru=$request->loi_sru;
           $anne_maj_sru=$request->anne_maj_sru;
           
           
@@ -257,6 +257,11 @@ class Comms extends Controller
           $etat_avancement_plh=$request->etat_avancement_plh;
           $date_validation_plh=$request->date_validation_plh;
           $lien_doc_plh=$request->lien_doc_plh;
+
+          //chartes forestières
+          $tx_bois=$request->tx_bois;
+          $existence_reg_bois =$request->existence_reg_bois;
+          $existence_for_prot=$request->existence_for_prot;
 
           
 
@@ -401,7 +406,10 @@ class Comms extends Controller
              'libelle_plh'=>$libelle_plh,
              'etat_avancement_plh'=>$etat_avancement_plh,
              'date_validation_plh'=>$date_validation_plh,
-             'lien_doc_plh'=>$lien_doc_plh 
+             'lien_doc_plh'=>$lien_doc_plh,
+             'tx_bois'=>$tx_bois,
+             'existence_reg_bois'=>$existence_reg_bois,
+             'existence_for_prot'=>$existence_for_prot
 
            )
 
@@ -545,7 +553,7 @@ return redirect('comm')->with('message', $message);
 
 
             //zone montagne
-          'class_zonemontagne'=>$this->checkCB($request->class_zonemontagne),//boolean
+          'class_zonemontagne'=>$request->class_zonemontagne,
 
           'liste_hameaux'=>$request->liste_hameaux,
 
@@ -557,7 +565,7 @@ return redirect('comm')->with('message', $message);
           'scot_dec_objectif'=>$request->scot_dec_objectif,
           'type_polarite'=>$request->type_polarite,
           'nb_ppi'=>$request->nb_ppi,
-          'loi_sru'=>$this->checkCB($request->loi_sru),//boolean
+          'loi_sru'=>$request->loi_sru,
           'anne_maj_sru'=>$request->anne_maj_sru,
           'video_com_foncier'=>$request->video_com_foncier,
 
@@ -604,7 +612,7 @@ return redirect('comm')->with('message', $message);
           'sdage_equi_frag'=>$request->sdage_equi_frag,
           'id_gemapi'=>$request->id_gemapi,
           'comm_carrencee'=>$this->checkCB($request->comm_carrencee),
-            'comm_exoneree'=>$this->checkCB($request->comm_exoneree),
+          'comm_exoneree'=>$this->checkCB($request->comm_exoneree),
           'comm_tourist'=>$request->comm_tourist,
           'lien_politique_ville'=>$request->lien_politique_ville,
           'nb_voit_men'=>$request->nb_voit_men,
@@ -625,7 +633,10 @@ return redirect('comm')->with('message', $message);
           'libelle_plh'=>$request->libelle_plh,
           'etat_avancement_plh'=>$request->etat_avancement_plh,
           'date_validation_plh'=>$request->date_validation_plh,
-          'lien_doc_plh'=>$request->lien_doc_plh
+          'lien_doc_plh'=>$request->lien_doc_plh,
+          'tx_bois'=>$request->tx_bois,
+          'existence_reg_bois' =>$request->existence_reg_bois,
+          'existence_for_prot'=>$request->existence_for_prot
 
 
 

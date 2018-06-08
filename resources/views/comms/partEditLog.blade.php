@@ -27,12 +27,8 @@
           </div>
 
           <div class="form-group col-md-4">
-            <b>Loi Solidarité et Renouvellement Urbain (SRU) : </b>
-            <br><br>
-            
-
-            <input name='loi_sru' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui" @if($comm->loi_sru)checked @endif>
-
+            {{Form::label('loi_sru', 'Loi SRU : ')}}
+            {{Form::text('loi_sru',$comm->loi_sru, ['class' => 'form-control'])}}
           </div>
 
 

@@ -17,23 +17,11 @@ Nouvelle charte
 
 
 
-
+{{ Form::label('nom_charte', ' Nom de la charte : ') }}
+{{ Form::text('nom_charte','', array('class' => 'form-control')) }}
 
 {{ Form::label('demarche_en_cours', ' Démarche en cours : ') }}
 {{ Form::text('demarche_en_cours','', array('class' => 'form-control')) }}
-
-
-{{ Form::label('tx_bois', ' Taux de boisement : ') }}
-{{ Form::text('tx_bois','', array('class' => 'form-control')) }}
-
-
-{{ Form::label('existence_reg_bois', ' Existence réglementation boisement : ') }}
-{{ Form::text('existence_reg_bois','', array('class' => 'form-control')) }}
-
-
-{{ Form::label('existence_for_prot', ' Existence forêt protection : ') }}
-{{ Form::text('existence_for_prot','', array('class' => 'form-control')) }}
-
 
 {{ Form::label('annee_maj', ' Année de mise à jour de la donnée : ') }}
 {{ Form::text('annee_maj','', array('class' => 'form-control')) }}

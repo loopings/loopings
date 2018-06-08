@@ -10,34 +10,34 @@ Chartes forestières
 
 // tooltip demo
 $('.tooltip-demo').tooltip({
-	selector: "[data-toggle=tooltip]",
-	container: "body"
+selector: "[data-toggle=tooltip]",
+container: "body"
 })
 // popover demo
 $("[data-toggle=popover]")
 .popover()
 // Script pour la confirmation de suppression
 $('#ModalSupp').on('show', function() {
-	var id = $(this).data('id'),
-			removeBtn = $(this).find('.danger');
+var id = $(this).data('id'),
+removeBtn = $(this).find('.danger');
 })
 //Confirmation de suppression
 $('.confirm-delete').on('click', function(e) {
-	e.preventDefault();
+e.preventDefault();
 
-	var id = $(this).data('id');
-	$('#ModalSuppr').data('id', id).modal('show');
+var id = $(this).data('id');
+$('#ModalSuppr').data('id', id).modal('show');
 });
 
 $('#btnYes').click(function() {
-	var id = $('#ModalSuppr').data('id');
+var id = $('#ModalSuppr').data('id');
 
-	document.getElementById(id).submit();
+document.getElementById(id).submit();
 });
 //Fin de confirmation de suppression
 //Confirmation de modification
 $('#ModalMod').on('show.bs.modal', function(e) {
-	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 //Fin de confirmation de modification
 @endsection
@@ -96,18 +96,11 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
-
+				<th>
+					Nom charte
+				</th>
 				<th>
 					Démarche en cours
-				</th>
-				<th>
-					Taux de boisement
-				</th>
-				<th>
-					Existence réglementation boisement
-				</th>
-				<th>
-					Existence forêt protection
 				</th>
 				<th>
 					Année de mise à jour de la donnée
@@ -120,18 +113,12 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 		<tbody>
 			@foreach($cfs as $cf)
 			<tr>
+				<td>
+					{{$cf->nom_charte}}
+				</td>
 
 				<td>
 					{{$cf->demarche_en_cours}}
-				</td>
-				<td>
-					{{$cf->tx_bois}}
-				</td>
-				<td>
-					{{$cf->existence_reg_bois}}
-				</td>
-				<td>
-					{{$cf->existence_for_prot}}
 				</td>
 
 				<td>

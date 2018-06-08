@@ -215,28 +215,25 @@
     <div class="panel-body">
 
 
-      <div class="form-group col-md-4">
-        <b>Etat sur le classement ou non en zone « loi 
-        Montagne » :</b>
-        <br><br>
-        <input name='class_zonemontagne' type="checkbox" data-switch-always  data-off-label="Non" data-on-label="Oui" @if($comm->class_zonemontagne)checked @endif>
+     <div class="form-group col-md-4">
+       {{Form::label('class_zonemontagne', 'Etat sur le classement ou non en zone « loi Montagne » : ')}}
+       {{Form::text('class_zonemontagne', $comm->class_zonemontagne, ['class' => 'form-control'])}}
 
+     </div>
 
-      </div>
-
-      <div class="form-group col-md-8">
-        {{Form::label('liste_hameaux', 'Liste des hameaux : ')}}
-        {{Form::text('liste_hameaux',$comm->liste_hameaux, ['class' => 'form-control'])}}
-      </div>
-
-
-      <div class="form-group col-md-6">
-        {{Form::label('annee_maj_zm', 'date de mise à jour de la donnée loi Montagne (année) : ')}}
-        {{Form::text('annee_maj_zm',$comm->annee_maj_zm, ['class' => 'form-control'])}}
-      </div>
-
+     <div class="form-group col-md-8">
+      {{Form::label('liste_hameaux', 'Liste des hameaux : ')}}
+      {{Form::text('liste_hameaux',$comm->liste_hameaux, ['class' => 'form-control'])}}
     </div>
+
+
+    <div class="form-group col-md-6">
+      {{Form::label('annee_maj_zm', 'date de mise à jour de la donnée loi Montagne (année) : ')}}
+      {{Form::text('annee_maj_zm',$comm->annee_maj_zm, ['class' => 'form-control'])}}
+    </div>
+
   </div>
+</div>
 </div>
 
 
