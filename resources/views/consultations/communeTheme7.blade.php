@@ -1,5 +1,5 @@
-<div style="position:fixed;">
-	<ul class="nav nav-pills flex-column" >
+
+<div style="position:fixed;">	<ul class="nav nav-pills flex-column" >
 
 		@if (!empty($troncons->first()))
 		<li class="nav-item" >
@@ -16,7 +16,6 @@
 
 	</ul> 
 </div>
-
 
 @if (!empty($troncons->first()))
 

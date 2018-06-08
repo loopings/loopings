@@ -139,6 +139,8 @@ class Consultations extends Controller
      $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
     //Tronçons
+
+     $troncons=troncons_ddt38::where('id_comm',$request->idsearch)->get();
     /* $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$request->idsearch)->get();
      $troncons=troncons_ddt38::find($assoc_troncons->pluck('id_tr'));
      */
@@ -185,7 +187,7 @@ class Consultations extends Controller
      ->with('zus',$zus)
      ->with('lgmts',$lgmts)
      ->with('agricultures',$agricultures)
-     ->with('troncons',0)
+     ->with('troncons',$troncons)
      ->with('lgmtcs',$lgmtcs)
      ->with('lien_theme1s',$lien_theme1s)
      ->with('lien_theme2s',$lien_theme2s)
@@ -273,9 +275,11 @@ class Consultations extends Controller
      $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
     //Tronçons
-     $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$id)->get();
+          $troncons=troncons_ddt38::where('id_comm',$request->idsearch)->get();
+
+    /* $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$id)->get();
      $troncons=troncons_ddt38::find($assoc_troncons->pluck('id_tr'));
-     
+     */
 
      //LIENS UNIQUES
     $lien_theme1s=lien_unique::where('onglet','Fiche administrative')->orderBy('ordre')->get();
@@ -319,7 +323,7 @@ class Consultations extends Controller
      ->with('zus',$zus)
      ->with('lgmts',$lgmts)
      ->with('agricultures',$agricultures)
-     ->with('troncons',$troncons)
+    ->with('troncons',$troncons)
      ->with('lgmtcs',$lgmtcs)
      ->with('lien_theme1s',$lien_theme1s)
      ->with('lien_theme2s',$lien_theme2s)

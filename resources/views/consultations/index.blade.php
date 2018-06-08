@@ -116,14 +116,18 @@
               <div class="col-md-6">
 
 
+<form method="POST" action="/commune" accept-charset="UTF-8" style="white-space: nowrap;">
+               
 
-                {{Form::open(['url' => '/commune', 'method' => 'post'])}}
+
+                
                 {{Form::select('idsearch', $search_comm,null, ['placeholder' => 'Rechercher une commune', 'class'=>'form-control chosen-select'])}}
                 {{ csrf_field() }}
+
                 <button class="btn btn-link btn-lg" type="submit">
                   <span class="now-ui-icons ui-1_zoom-bold "></span>
                 </button>
-                {{Form::close()}}
+               </form>  
                  
                 
 

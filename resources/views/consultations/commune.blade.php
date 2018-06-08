@@ -56,7 +56,7 @@
 
  <body class="index-page">
   <!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: red;" >
+  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: #af3e27;max-height: 60px;" >
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/">
@@ -94,20 +94,20 @@
   <!-- End Navbar -->
   <div class="wrapper">
     <div class="main">
-@if($comm->commune_etat='fusionée' && !empty($resultat_fusion) )
-    <br><br><br><br>
+      @if($comm->commune_etat='fusionée' && !empty($resultat_fusion) )
+      <br><br><br><br>
       <div class="container">
-      <div class="col-md-12">   
-        <div class="card card-inverse card-danger text-center" style="max-height: 150px;">
-          <div class="card-block">
-          <h4 class="card-title"><i class="glyphicon glyphicon-warning-sign"></i></h4>
-            <blockquote class="card-blockquote">
-              <p>La commune {{$comm->nom_comm}} a été fusionnée .<br> La commune résultante est <a href="/commune/{{$resultat_fusion->id}}" style="color:white"><cite title="Source Title">{{$resultat_fusion->nom_comm}}</cite></a></p>
-             
-            </blockquote>
+        <div class="col-md-12">   
+          <div class="card card-inverse card-danger text-center" style="max-height: 150px;">
+            <div class="card-block">
+              <h4 class="card-title"><i class="glyphicon glyphicon-warning-sign"></i></h4>
+              <blockquote class="card-blockquote">
+                <p>La commune {{$comm->nom_comm}} a été fusionnée .<br> La commune résultante est <a href="/commune/{{$resultat_fusion->id}}" style="color:white"><cite title="Source Title">{{$resultat_fusion->nom_comm}}</cite></a></p>
+
+              </blockquote>
+            </div>
           </div>
         </div>
-      </div>
       </div>
       @endif
 
@@ -119,48 +119,48 @@
 
 
               <div class="card" style="width: 1200px;">
-                <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="blue" style="width: 1200px;" >
-                  <li class="nav-item" style="width: 150px;">
+                <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="blue" style="width: 1200px; background-color: #af3e27; " >
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link active" data-toggle="tab" href="#fiche" role="tab">
-                      <i class="glyphicon glyphicon-list-alt "></i><br> Fiche administrative et données générales
+                      <span class="glyphicon glyphicon-list-alt" ></span><br> Fiche administrative et données générales
                     </a>
                   </li>
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#ressource" role="tab">
                       <i class="glyphicon glyphicon-picture"></i><br>  Ressources naturelles et paysagères
                     </a>
                   </li>
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#urbanisme" role="tab">
                       <i class="glyphicon glyphicon-road"></i><br>  Urbanisme et risques
                     </a>
                   </li>
                   
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#eauf" role="tab">
                       <i class="glyphicon glyphicon-tree-deciduous"></i><br>  Eaux et Forêts
                     </a>
                   </li>
 
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#logement" role="tab">
                       <i class="now-ui-icons business_bank"></i><br>  Logement et politique de la ville
                     </a>
                   </li>
 
-                  <li class="nav-item" style="width: 150px;">
+                <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#agriculture" role="tab">
                       <i class="glyphicon glyphicon-grain"></i><br>  Agriculture
                     </a>
                   </li>
 
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#air" role="tab">
                       <i class="glyphicon glyphicon-bullhorn"></i><br>  Transition énergétique et Déplacements
                     </a>
                   </li>
 
-                  <li class="nav-item" style="width: 150px;">
+                  <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#foncier" role="tab">
                       <i class="glyphicon glyphicon-home"></i> <br> Foncier
                     </a>
@@ -171,144 +171,76 @@
                   <div class="tab-content text-center">
                     <div class="tab-pane active" id="fiche" role="tabpanel">
 
-                     @include ('consultations.communeTheme1',[
-                     'comm'=>$comm,
-                     "populations"=>$populations,
-                     'epci'=>$epci,
-                     'terri'=>$terri,
-                     'scot'=>$scot,
-                     'cantons'=>$cantons,
-                     'agent_car'=>$agent_car,
-                     'cham'=>$cham,
-                     'lien_theme1s'=>$lien_theme1s
-                     
-
-                     ])
+                     @include ('consultations.communeTheme1')
 
                    </div>
 
                    <div class="tab-pane" id="ressource" role="tabpanel">
 
-                     @include ('consultations.communeTheme2',[
-                     'comm'=>$comm,
-                     "appbs"=>$appbs,
-                     "icpes"=>$icpes,
-                     "maets"=>$maets,
-                     "natura2000s"=>$natura2000s,
-                     "znieffs"=>$znieffs,
-                     "pnr"=>$pnr,
-                     'lien_theme2s'=>$lien_theme2s
-                     ])
-
-                   </div>
-
-                   <div class="tab-pane" id="urbanisme" role="tabpanel">
-
-                     @include ('consultations.communeTheme3',[
-                     'comm'=>$comm,
-                     "ze"=>$ze,
-                     "dta"=>$dta,
-                     "au"=>$au,
-                     "uu"=>$uu,
-                     "zps"=>$zps,
-                     'lien_theme3s'=>$lien_theme3s
-
-                     ])
-
-
-                   </div>
-                   <div class="tab-pane" id="eauf" role="tabpanel">
-
-                     @include ('consultations.communeTheme4',[
-                     'comm'=>$comm,
-                     "barrages"=>$barrages,
-                     "cfs"=>$cfs,
-                     "crs"=>$crs,
-                     "digues"=>$digues,
-                     "sages"=>$sages,
-                     "steps"=>$steps,
-                     'lien_theme4s'=>$lien_theme4s
-                     ])
-
-                   </div>
-
-
-
-
-                   <div class="tab-pane" id="logement" role="tabpanel">
-
-                     @include ('consultations.communeTheme5',[
-                     'comm'=>$comm,
-                     "cucs"=>$cucs,
-                     "quartiers"=>$quartiers,
-                     "lgmts"=>$lgmts,
-                     "zus"=>$zus,
-                     'lien_theme5s'=>$lien_theme5s
-                     ])
-                   </div>
-
-                   <div class="tab-pane " id="agriculture" role="tabpanel">
-
-                     @include ('consultations.communeTheme6',[
-                     'comm'=>$comm,
-                     "agricultures"=>$agricultures,
-                     'lien_theme6s'=>$lien_theme6s
-
-                     ])
-
-                   </div>
-
-                   <div class="tab-pane " id="air" role="tabpanel">
-
-                     @include ('consultations.communeTheme7',[
-                     'comm'=>$comm,
-                     "troncons"=>$troncons,
-                     'lien_theme7s'=>$lien_theme7s
-
-                     ])
-
-                   </div>
-
-                   <div class="tab-pane " id="foncier" role="tabpanel">
-
-                    @include ('consultations.communeTheme8',[
-                    'comm'=>$comm,
-                    "lgmtcs"=>$lgmtcs,
-                    'lien_theme8s'=>$lien_theme8s
-                    
-                    ])
+                    @include ('consultations.communeTheme2')
 
                   </div>
 
+                  <div class="tab-pane" id="urbanisme" role="tabpanel">
+                    @include ('consultations.communeTheme3')
+
+                    ])
+
+                  </div>
+                  <div class="tab-pane" id="eauf" role="tabpanel">
+                    @include ('consultations.communeTheme4')
+
+                  </div>
+
+                  <div class="tab-pane" id="logement" role="tabpanel">
+
+                    @include ('consultations.communeTheme5')
+                  </div>
+
+                  <div class="tab-pane " id="agriculture" role="tabpanel">
+
+                   @include ('consultations.communeTheme6')
+
+                 </div>
+
+                 <div class="tab-pane " id="air" role="tabpanel">
+
+                   @include ('consultations.communeTheme7')
+
+                 </div>
+
+                 <div class="tab-pane " id="foncier" role="tabpanel">
+
+                   @include ('consultations.communeTheme8')
+
+                 </div>
+               </div>
+
+             </div>
+           </div>
+         </div>
 
 
-
-
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
 </div>
 
-  <footer class="footer" data-background-color="black">
-    <div class="container">
-      <nav>
+<footer class="footer" data-background-color="black">
+  <div class="container">
+    <nav>
 
-      </nav>
-      <div class="copyright">
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, Design inspiré de
-        <a href="http://www.invisionapp.com" target="_blank">Invision</a>/ Conception et codage SIDSIC38 - Malek Mehamsadji
-      </div>
+    </nav>
+    <div class="copyright">
+      <script>
+        document.write(new Date().getFullYear())
+      </script>, Design inspiré de
+      <a href="http://www.invisionapp.com" target="_blank">Invision</a>/ Conception et codage SIDSIC38 - Malek Mehamsadji
     </div>
-  </footer>
+  </div>
+</footer>
 </div>
 </body>
 <!--   Core JS Files   -->
