@@ -176,11 +176,11 @@
 			<ul class="list-group">
 
 				<li class="list-group-item justify-content-between "> 
-					Nom :  
+					Nom 
 					<b>{{$znieff->nom_znieff}}<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
-					Année de mise à jour de la donnée :  
+					Année de mise à jour de la donnée 
 					<b>{{$znieff->annee_maj}}<br></b>
 				</li>
 
@@ -213,11 +213,11 @@
 			<ul class="list-group">
 
 				<li class="list-group-item justify-content-between "> 
-					Nom :  
+					Nom
 					<b>{{$pnr->nom_pnr}}<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
-					Année de mise à jour de la donnée :  
+					Année de mise à jour de la donnée  
 					<b>{{$pnr->annee_maj}}<br></b>
 				</li>
 
@@ -246,7 +246,7 @@
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 				@if(!empty($comm->lien_bddreal))
-							<li class="list-group-item justify-content-between ">Lien BD DREAL :
+							<li class="list-group-item justify-content-between ">Lien BD DREAL 
 								<a href="{{$comm->lien_bddreal}}" target="_blank" style="max-width: 90%;" >
 									<b>
 										Cliquez ici 
@@ -256,7 +256,7 @@
 							</li>
 							@endif
 				@foreach($lien_theme2s as $lien_theme2)
-				<li class="list-group-item justify-content-between ">{{$lien_theme2->libelle}} :
+				<li class="list-group-item justify-content-between ">{{$lien_theme2->libelle}} 
 					<a href="{{$lien_theme2->lien}}" target="_blank" style="max-width: 90%;" >
 						<b>Cliquez ici <br></b>
 					</a>

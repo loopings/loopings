@@ -47,64 +47,69 @@
 </div>
 
 
-@if (!empty($barrages->first()))
 
-<div class="col-md-9 offset-md-2">
-	<div class="card" id="barrages">
+<div class="col-md-10 offset-md-2">
+	<div class="card">
 		<div class="card-block">
-			<h3 class="card-title">Barrages </h3>
-			@foreach($barrages as $barrage)
+			<h3 class="card-title"> Milieux</h3>
 			<ul class="list-group">
+				<li class="list-group-item justify-content-between "> 
+					Contact à la DDT chargé de la police des eaux et ouvrage soumis à la police de l'eau
+					<b>{{$cheau->nom_cheau}}({{$cheau->annee_maj}})<br></b>
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Contact à la DDT pour l'hydroélectricité
+					<b>{{$hydroelec->nom_hydroelec}}({{$hydroelec->annee_maj}})<br></b>
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Contact à la DDT sur les questions écologiques
+					<b>{{$conteco->nom_conteco}}({{$conteco->annee_maj}})<br></b>
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Contact à la DDT pour les digues et barrages
+					<b>{{$contdigba->nom_contdigba}}({{$contdigba->annee_maj}})<br></b>
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Commune concernée par la zone nitrate
+					 <b>
+						@if(!isset($comm->zone_nitrate))
+						pas d'information	
+						@else
+						{{$comm->zone_nitrate}}
+						@endif
+
+					</b>  
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Commune concernée par l'aire d'alimentation d'un captage prioritaire
+					 <b>
+						@if(!isset($comm->captage_prioritaire))
+						pas d'information	
+						@else
+						{{$comm->captage_prioritaire}}
+						@endif
+
+					</b>  
+				</li>
 
 				<li class="list-group-item justify-content-between "> 
-					Nom :  
-					<b>{{$barrage->nom_barrage}}<br></b>
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Type :  
-					<b>{{$barrage->type_barrage}}<br></b>
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Nom gestionnaire :
-					<b>{{$barrage->nom_gestionnaire}}<br></b>
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Type gestionnaire :
-					<b>{{$barrage->type_gestionnaire}}<br></b>
+					Présence de captage avec DUP, voir GeoIde eau-ouvrage pour visualiser les périmètres immédiats/rapprochés et éloignés
+					 @if (!empty($captages->first()))
+						@foreach($captages as $captage)
+							<b>{{$captage->nom_captage}} {{$captage->dup}}({{$captage->annee_maj}})  </b><br>
+						@endforeach
+					@else
+					<b>Pas de captage</b>	
+					@endif	
+
 				</li>
 
-			</ul>
-			<br>
-			@endforeach
-		</div>
-	</div>
+
+	</ul>
+</div>
+</div>
 </div>
 
-@endif
-
-@if (!empty($cfs->first()))
-
-<div class="col-md-9 offset-md-2">
-	<div class="card" id="cf">
-		<div class="card-block">
-			<h3 class="card-title">Chartes forestières </h3>
-			@foreach($cfs as $cf)
-			<ul class="list-group">
-
-				<li class="list-group-item justify-content-between "> 
-					Nom :  
-					<b>{{$cf->nom_chforest}}<br></b>
-				</li>
-
-
-			</ul>
-			<br>
-			@endforeach
-		</div>
-	</div>
-</div>
-
-@endif
 
 
 @if (!empty($crs->first()))
@@ -262,16 +267,16 @@
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 				@foreach($lien_theme4s as $lien_theme4)
-									<li class="list-group-item justify-content-between ">{{$lien_theme4->libelle}} :
-										<a href="{{$lien_theme4->lien}}" target="_blank" style="max-width: 90%;" >
-											<b>Cliquez ici <br></b>
-										</a>
-									</li>	
-									@endforeach
+				<li class="list-group-item justify-content-between ">{{$lien_theme4->libelle}} :
+					<a href="{{$lien_theme4->lien}}" target="_blank" style="max-width: 90%;" >
+						<b>Cliquez ici <br></b>
+					</a>
+				</li>	
+				@endforeach
 
 
 
-				</ul>
-			</div>
+			</ul>
 		</div>
 	</div>
+</div>

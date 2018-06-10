@@ -1,435 +1,404 @@
 <div class="col-md-12">
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title"> Urbanisme</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between ">Chargé de planification <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}} @endif</b>  </li>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-block">
+					<h3 class="card-title"> Urbanisme</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between ">Chargé de planification <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}} @endif</b>  </li>
 
-				@if(!empty($cham2)) 
-				<li class="list-group-item justify-content-between ">Deuxième chargé de planification <b>{{$cham2->prenom_cham}}&nbsp;{{$cham2->nom_cham}} </b>  </li>
-				@endif
+						@if(!empty($cham2)) 
+						<li class="list-group-item justify-content-between ">Deuxième chargé de planification <b>{{$cham2->prenom_cham}}&nbsp;{{$cham2->nom_cham}} </b>  </li>
+						@endif
 
-				<li class="list-group-item justify-content-between ">Présence d'une DTA <b>
-					@if(!empty($dta)) {{$dta->nom_dta}}&nbsp;(Année de mise à jour {{$dta->annee_maj}}) 
-					@else
-					Pas de DTA
-				@endif </b>  </li>
+						<li class="list-group-item justify-content-between ">Présence d'une DTA<br> <b>
+							@if(!empty($dta)) {{$dta->nom_dta}}&nbsp;(Année de mise à jour {{$dta->annee_maj}}) 
+							@else
+							Pas de DTA
+						@endif </b>  </li>
 
-				<li class="list-group-item justify-content-between ">SCOT :  <b>@if(!empty($scot)){{$scot->nom_scot}}
-				@else
-				Non
-				@endif</b>  
-				</li>
+						<li class="list-group-item justify-content-between ">SCOT  <b>@if(!empty($scot)){{$scot->nom_scot}}
+							@else
+							Non
+						@endif</b>  
+					</li>
 
-				
 
-				<li class="list-group-item justify-content-between ">et comprenant des dispositions opposables :  <b>
-				@if(!isset($comm->disposition_opposable))
-					Pas d'informations	
-				@else
+
+					<li class="list-group-item justify-content-between ">et comprenant des dispositions opposables  <b>
+						@if(!isset($comm->disposition_opposable))
+						pas d'information	
+						@else
 						@if($comm->disposition_opposable)Oui
 						@else Non
 						@endif
-				 
-				@endif</b>  
+
+					@endif</b>  
 				</li>
 
-				<li class="list-group-item justify-content-between ">Document d'urbanisme opposable :  <b>
-				@if(!isset($comm->doc_urba_opposable))
-					Pas d'informations	
-				@else
-						{{$comm->disposition_opposable}}
-						
-				@endif</b>  
-				</li>
+				<li class="list-group-item justify-content-between ">Document d'urbanisme opposable  <b>
+					@if(!isset($comm->doc_urba_opposable))
+					pas d'information	
+					@else
+					{{$comm->disposition_opposable}}
 
-				<li class="list-group-item justify-content-between ">Date du dernier document opposable :  <b>
+				@endif</b>  
+			</li>
+
+			<li class="list-group-item justify-content-between ">Date du dernier document opposable  <b>
 				@if(!isset($comm->date_dern_doc_opposable))
-					Pas d'informations	
+				pas d'information	
 				@else
-						{{$comm->date_dern_doc_opposable}}
-						
-				@endif</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Procédure en cours
-					<b>
-						@foreach($lienGs as $lienG)
-						@if($lienG->nom=="procedure_en_cours")
-						<a href="{{$lienG->lien}}" target="_blank">
-							<b>Cliquez ici</b>
-						</a>
-						@endif
-						@endforeach
-					</b>
-				</li>	
-				<li class="list-group-item justify-content-between "> 
-					Liste des SUP de la commune
-					<b>
-						@foreach($lienGs as $lienG)
-						@if($lienG->nom=="liste_sup")
-						<a href="{{$lienG->lien}}" target="_blank">
-							<b>Cliquez ici</b>
-						</a>
-						@endif
-						@endforeach
-					</b>
-				</li>
-				<li class="list-group-item justify-content-between ">Taxe d'aménagement :  <b>
-				@if(!isset($comm->tx_amenagement))
-					Pas d'informations	
-				@else
-						{{$comm->tx_amenagement}}
-						
-				@endif</b>  
-				</li>
-				<li class="list-group-item justify-content-between ">Compétence urbanisme :  <b>
-				@if(!isset($comm->competence_urba))
-					Pas d'informations	
-				@else
-						{{$comm->competence_urba}}
-						
-				@endif</b>  
-				</li>
-				<li class="list-group-item justify-content-between ">Dernier document opposable numérisé :  <b>
-				@if(!isset($comm->dern_doc_oppo_num))
-					Pas d'informations	
-				@else
-						{{$comm->dern_doc_oppo_num}}
-						
-				@endif</b>  
-				</li>	
-					<li class="list-group-item justify-content-between "> 
-					Mesures de restrictions à l'urbanisation pour assainissement insuffisant
-					<b>
-						@foreach($lienGs as $lienG)
-						@if($lienG->nom=="mesure_restrictions")
-						<a href="{{$lienG->lien}}" target="_blank">
-							<b>Cliquez ici</b>
-						</a>
-						@endif
-						@endforeach
-					</b>
-				</li>
+				{{$comm->date_dern_doc_opposable}}
+
+			@endif</b>  
+		</li>
+		<li class="list-group-item justify-content-between "> 
+			Procédure en cours
+			<b>
+				@foreach($lienGs as $lienG)
+				@if($lienG->nom=="procedure_en_cours")
+				<a href="{{$lienG->lien}}" target="_blank">
+					<b>Cliquez ici</b>
+				</a>
+				@endif
+				@endforeach
+			</b>
+		</li>	
+		<li class="list-group-item justify-content-between "> 
+			Liste des SUP de la commune
+			<b>
+				@foreach($lienGs as $lienG)
+				@if($lienG->nom=="liste_sup")
+				<a href="{{$lienG->lien}}" target="_blank">
+					<b>Cliquez ici</b>
+				</a>
+				@endif
+				@endforeach
+			</b>
+		</li>
+		<li class="list-group-item justify-content-between ">Taxe d'aménagement  <b>
+			@if(!isset($comm->tx_amenagement))
+			pas d'information	
+			@else
+			{{$comm->tx_amenagement}}
+
+		@endif</b>  
+	</li>
+	<li class="list-group-item justify-content-between ">Compétence urbanisme  <b>
+		@if(!isset($comm->competence_urba))
+		pas d'information	
+		@else
+		{{$comm->competence_urba}}
+
+	@endif</b>  
+</li>
+<li class="list-group-item justify-content-between ">Dernier document opposable numérisé  <b>
+	@if(!isset($comm->dern_doc_oppo_num))
+	pas d'information	
+	@else
+	{{$comm->dern_doc_oppo_num}}
+
+@endif</b>  
+</li>	
+<li class="list-group-item justify-content-between "> 
+	Mesures de restrictions à l'urbanisation <br>pour assainissement insuffisant
+	<b>
+		@foreach($lienGs as $lienG)
+		@if($lienG->nom=="mesure_restrictions")
+		<a href="{{$lienG->lien}}" target="_blank">
+			<b>Cliquez ici</b>
+		</a>
+		@endif
+		@endforeach
+	</b>
+</li>
 
 
-			</ul>
-		</div>
-	</div>
+</ul>
 </div>
-
-
-<div class="row">
-	<div class="col-md-6">
-		<div class="card">
-			<div class="card-block">
-				<h3 class="card-title"> Déplacements domicile-travail - dernières données disponibles N-2</h3>
-				<ul class="list-group">
-					<li class="list-group-item justify-content-between ">Nombre d'actifs total :<b>{{$comm->nb_actifs}}</b>  </li>
-					<li class="list-group-item justify-content-between ">Actifs résidents travaillant dans la commune :<b>{{$comm->nb_actifs_restants}}</b>  </li>
-
-					<li class="list-group-item justify-content-between ">Actifs résidents travaillant hors de la commune :<b>{{$comm->nb_actifs_sortants}}</b> 
-					</li>
-
-
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="card">
-			<div class="card-block">
-				<h3 class="card-title">Motorisation des ménages  </h3>					<br/><br/>
-				<ul class="list-group">
-					<li class="list-group-item justify-content-between ">Nombre de ménages :  <b>{{$comm->nb_men_tot}}</b>  </li>
-
-					<li class="list-group-item justify-content-between ">Ménages possédant au moins un véhicule:  <b>{{$comm->nb_men_1veh}}</b>  </li>
-
-					<li class="list-group-item justify-content-between ">Ménages possédant deux véhicules et plus:  <b>{{$comm->nb_men_2veh}}</b>  </li>
-
-				</ul>
-			</div>
-		</div>
-	</div>
 </div>
-
-
-<div class="col-md-12">
-	<div class="card" style="max-height: 120px;">
-		<div class="card-block">
-			<div class="row">
-
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Documents employés pour la réglementation de l'urbanisme :<b>{{$comm->docurba}}</b>  </li>
-					</ul>
-				</div>
-
-
-
-
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Numérisation des documents réglementaires d'urbanisme :<b> &nbsp; &nbsp; &nbsp;@if($comm->numer_docurba)Oui @else Non @endif</b>  </li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 
 
 
-<div class="col-md-12">
+<div class="col-md-6">
 	<div class="card">
 		<div class="card-block">
-			<h3 class="card-title"> Plans de Prévention des Risques(PPR)</h3>
-			<div class="row">
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Application d'un PPR :<b>@if($comm->mise_en_place_ppr)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Type de PPR :<b>{{$comm->type_ppr}}</b>  </li>
-
-						<li class="list-group-item justify-content-between ">Prescription d'un PPR Multirisques :<b>@if($comm->prescri_pprm)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Prescription d'un PPR Inondation :<b>@if($comm->prescri_ppri)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Prescription d'un PPR Technologiques :<b>@if($comm->prescri_pprt)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Prescription d'un PPR Miniers :<b>@if($comm->prescri_min)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Prescription d'un PPR :<b>@if($comm->prescription)Oui @else Non @endif</b>  </li>
-
-
-					</ul>
-				</div>
-				<br>
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Mise en place d'un document ne valant pas PPR :<b>@if($comm->valant_pas_ppr)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Type de document ne valant pas PPR :<b>{{$comm->type_pas_ppr}}</b>  </li>
-
-						<li class="list-group-item justify-content-between ">Existence d'un porté à connaissance pour un PPRN :<b>@if($comm->pac_pprn)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Existence d'un porté à connaissance pour un PPRT :<b>@if($comm->pac_pprt)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Mise en place d'un document valant PPR :<b>@if($comm->valant_ppr)Oui @else Non @endif</b>  </li>
-						<li class="list-group-item justify-content-between ">Type de document valant PPR :<b>{{$comm->type_valant_ppr}}</b>  </li>
-						
-
-
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<div class="col-md-12">
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title"> Zones dites "loi Montagne"</h3>
-			<div class="row">
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Classement en zone Montagne :<b>@if($comm->class_zonemontagne)Oui @else Non @endif</b>  </li>
-
-					</ul>
-				</div>
-				<br>
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Parties du territoire classés par l'arreté du 20 février 1974 :<b>{{$comm->arrete_20fev1974}}</b>  </li>
-					</ul>
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Parties du territoire classés par l'arreté du 28 avril 1976 :<b>{{$comm->arrete_28avr1976}}</b>  </li>
-					</ul>
-				</div>
-
-				<div class="col-md-6">
-					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Parties du territoire classés par l'arreté du 29 janvier 1982 :<b>{{$comm->arrete_29janv1982}}</b>  </li>
-					</ul>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	
-	@if(!empty($ze)) 
-	<div class="col-md-6 ">
-		<div class="card" id="ze">
-			<div class="card-block">
-				<h3 class="card-title">Zones d'emplois<br />&nbsp;</h3>
-				<ul class="list-group">
-
-					<li class="list-group-item justify-content-between "> 
-						Libellé :  
-						<b>{{$ze->libelle_ze}}<br></b>
-					</li>
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
-	@endif
-
-	@if(!empty($dta)) 
-	<div class="col-md-6 ">
-		<div class="card" id="dta">
-			<div class="card-block">
-				<h3 class="card-title">Directives Territoriales d'Aménagement(DTA) </h3>
-				<ul class="list-group">
-
-					<li class="list-group-item justify-content-between "> 
-						Nom :  
-						<b>{{$dta->nom_dta}}<br></b>
-					</li>
-
-
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
-
-	@endif
-</div>
-
-<div class="row">
-	
-	@if(!empty($au)) 
-	<div class="col-md-6 ">
-		<div class="card" id="au">
-			<div class="card-block">
-				<h3 class="card-title">Aires urbaines </h3>
-				<ul class="list-group">
-
-					<li class="list-group-item justify-content-between "> 
-						Typologie :  
-						<b>{{$au->typologie}}<br></b>
-					</li>
-
-					<li class="list-group-item justify-content-between ">
-						Libellé de la ville centre : 
-						<b> {{$au->libelle_ville_centre}} <br></b> 
-					</li>
-					<li class="list-group-item justify-content-between "><br />&nbsp;</li>
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
-	@endif
-
-	@if(!empty($uu)) 
-	<div class="col-md-6 ">
-		<div class="card" id="uu">
-			<div class="card-block">
-				<h3 class="card-title">Unités urbaines </h3>
-				<ul class="list-group">
-
-					<li class="list-group-item justify-content-between "> 
-						Libellé de l'unité :  
-						<b>{{$uu->libelle_uu}}<br></b>
-					</li>
-					<li class="list-group-item justify-content-between "> 
-						Population:  
-						<b>{{$uu->code_details}}<br></b>
-					</li>
-					<li class="list-group-item justify-content-between "> 
-						Code géographique :  
-						<b>{{$uu->code_geographique}}<br></b>
-					</li>
-
-
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
-
-	@endif
-</div>
-
-
-
-@if (!empty($zps->first()))
-<div class="col-md-12 ">
-	<div class="card" id="zp">
-		<div class="card-block">
-			<h3 class="card-title">Zones ZP </h3>
-			@foreach($zps as $zp)
+			
+			@if(!empty($ze))
+			<h3 class="card-title"> 
+				Zones d'emplois
+			</h3>
 			<ul class="list-group">
+				<li class="list-group-item justify-content-between ">Libellé 
+					<b>
 
-				<li class="list-group-item justify-content-between "> 
-					Arrêté ZPPAUP:  
-					<b>@if($zp->arrete_zppaup)Oui @else Non @endif<br></b>
+						{{$ze->libelle_ze}} (Année de mise à jour {{$ze->annee_maj}})
+						
+
+					</b>  
+				</li>
+			</ul>
+			<br>
+			@endif
+
+			@if(!empty($au))
+			<h3 class="card-title"> 
+				Aires urbaines
+			</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between ">typologie 
+					<b>
+						{{$au->typologie}} (Année de mise à jour {{$au->annee_maj}})
+					</b>  
+				</li>
+				<li class="list-group-item justify-content-between ">Libellé de la ville centre 
+					<b>
+						{{$au->libelle_ville_centre}}
+					</b>  
+				</li>
+			</ul>
+			<br>
+			@endif
+			@if(!empty($au))
+			<h3 class="card-title"> 
+				Unités urbaines
+			</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between ">Libellé de l'unité 
+					<b>
+						{{$uu->libelle_uu}} (Année de mise à jour {{$uu->annee_maj}})
+					</b>  
+				</li>
+				<li class="list-group-item justify-content-between ">Population 
+					<b>
+						{{$uu->population}}
+					</b>  
+				</li>
+			</ul>
+			@endif
+
+
+		</div>
+
+	</div>
+
+
+	@if(!empty($comm->lien_bddreal))
+
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title"> ICPE
+			</h3>
+			<ul class="list-group">			
+				<li class="list-group-item justify-content-between ">Lien BD DREAL 
+					<a href="{{$comm->lien_bddreal}}" target="_blank" style="max-width: 90%;" >
+						<b>
+							Cliquez ici 
+							<br>
+						</b>
+					</a>
+				</li>				
+			</ul>
+		</div>
+	</div>
+
+	@endif
+
+</div>
+</div>
+</div>
+
+
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title"> Prévention des risques
+			</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between ">Responsable de la cellule affichage des risques <b>@if(!empty($cham)) {{$agent_car->prenom_car}}&nbsp;{{$agent_car->nom_car}} @endif</b>  
 				</li>
 
+				@if(!empty($agent_car2)) 
+				<li class="list-group-item justify-content-between ">Deuxième chargé de planification <b>{{$agent_car2->prenom_car}}&nbsp;{{$agent_car2->nom_car}} </b>  
+				</li>
+				@endif
 
 				<li class="list-group-item justify-content-between ">
-					Date de l'arrêté ZPPAUP : 
-					<b>{{date("d-m-Y", strtotime($zp->date_arrete_zppaup))}}<br></b> 
+					Lien vers le planning des priorités 
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="lien_planning_priorités_risques")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b> 
 				</li>
 
 				<li class="list-group-item justify-content-between ">
-					Déliberation d'une AVAP : 
-					<b>@if($zp->deliber_avap)Oui @else Non @endif<br></b> 
+					Lien vers la base de données "Risques" - intranet DDT
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="lien_bd_risques")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b> 
 				</li>
+				<li class="list-group-item justify-content-between ">
+					Accès aux documents liés à la réglementation des zonages -Réseau<br>(certains documents ne sont accessibles qu'au format papier) 
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="documents_lies_reglementation_zonages")
+						{{$lienG->lien}}
+						@endif
+						@endforeach
+					</b> 
+				</li>
+				<li class="list-group-item justify-content-between "> Commune concernée par un TRI 
+					<b>
+						@if(!isset($comm->tri))
+						pas d'information	
+						@else
+						{{$comm->tri}}
+						@endif
 
-				<li class="list-group-item justify-content-between ">
-					Date de la déliberation AVAP : 
-					<b>{{date("d-m-Y", strtotime($zp->date_deliber_avap))}}<br></b> 
+					</b>  
 				</li>
+				<li class="list-group-item justify-content-between "> Existence d'une stratégie locale de gestion du risque inondation SLGRI approuvée 
+					<b>
+						@if(!isset($comm->slgri))
+						pas d'information	
+						@else
+						{{$comm->slgri}}
+						@endif
 
-				<li class="list-group-item justify-content-between ">
-					Arrêté AVAP : 
-					<b>@if($zp->arrete_avap)Oui @else Non @endif<br></b> 
-				</li>
-
-				<li class="list-group-item justify-content-between ">
-					Date de l'arrêté AVAP : 
-					<b>{{date("d-m-Y", strtotime($zp->date_arrete_avap))}}<br></b> 
-				</li>
-				<li class="list-group-item justify-content-between ">
-					Etude AVAP :					
-					<b>{{$zp->etude_avap}}<br></b> 
-				</li>
-
-				<li class="list-group-item justify-content-between ">
-					Délibération SPR : 
-					<b>@if($zp->deliber_spr)Oui @else Non @endif<br></b> 
-				</li>
-				<li class="list-group-item justify-content-between ">
-					Date de la déliberation SPR : 
-					<b>{{date("d-m-Y", strtotime($zp->date_deliber_spr))}}<br></b> 
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Arrêté SPR:  
-					<b>@if($zp->arrete_spr)Oui @else Non @endif<br></b>
-				</li>
-
-
-				<li class="list-group-item justify-content-between ">
-					Date de l'arrêté SPR : 
-					<b>{{date("d-m-Y", strtotime($zp->date_arrete_spr))}}<br></b> 
+					</b>  
 				</li>
 
 			</ul>
-			<br>
-			@endforeach
 		</div>
 	</div>
 </div>
-@endif
+
+
+<div class="col-md-12">
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title"> 
+				Zones dites "loi montagne" ne pas confondre avec les zones de handicap naturel (agriculture)
+			</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between "> Classement en zone Montagne 
+					<b>
+						@if(!isset($comm->class_zonemontagne))
+						pas d'information	
+						@else
+						{{$comm->class_zonemontagne}}
+						@endif
+
+					</b>  
+				</li>
+				@if(isset($comm->liste_hameaux))
+				<li class="list-group-item justify-content-between "> Si la commune est pariellementen zone montagne<br>Les hameaux classés( dernier ajout en 1982)
+					<b>
+						{{$comm->liste_hameaux}}
+					</b>  
+				</li>
+				@endif
+
+				<li class="list-group-item justify-content-between ">
+					Lien carte loi montagne 
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="carte_loi_montagne")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b> 
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-md-12">
+	<div class="row ">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-block">
+					<h3 class="card-title"> 
+						Espace boisé réglementé
+					</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between "> Commune concernée par une réglementation de boisement
+							<b>
+								@if(!isset($comm->existence_reg_bois))
+								pas d'information	
+								@else
+								{{$comm->existence_reg_bois}}
+								@endif
+
+							</b>  
+						</li>
+
+						<li class="list-group-item justify-content-between ">
+							Information sur les périmètres
+							<b>
+								@foreach($lienGs as $lienG)
+								@if($lienG->nom=="info_perimetre")
+								<a href="{{$lienG->lien}}" target="_blank">
+									<b>Cliquez ici</b>
+								</a>
+								@endif
+								@endforeach
+							</b> 
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-block">
+					<h3 class="card-title"> 
+						Zonage patrimonial
+					</h3>
+
+					<ul class="list-group">
+						@if (!empty($zps->first()))
+						@foreach($zps as $zp)
+
+						<li class="list-group-item justify-content-between "> 
+							Site patrimonial remarquable
+							<b>{{$zp->site_patri_remarq}} (Année de mise à jour {{$zp->annee_maj}}) <br></b>
+						</li> <br>
+						@endforeach
+						@else
+						<li class="list-group-item justify-content-between "> 
+							Pas de Site Patrimonial Remarquable sur la commune
+						</li>
+						@endif	
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
 <div class="col-md-12">
 	<div class="card" id="lien">
 		<div class="card-block">
@@ -437,7 +406,7 @@
 			<ul class="list-group">
 
 				@if(!empty($comm->lien_synth_risques))
-				<li class="list-group-item justify-content-between ">Accès au site Géorisques - zoom à la commune :
+				<li class="list-group-item justify-content-between ">Accès au site Géorisques - zoom à la commune 
 					<a href="{{$comm->lien_synth_risques}}" target="_blank" style="max-width: 90%;" >
 						<b>Cliquez ici <br></b>
 					</a>
@@ -445,15 +414,12 @@
 				@endif
 
 				@foreach($lien_theme3s as $lien_theme3)
-				<li class="list-group-item justify-content-between ">{{$lien_theme3->libelle}} :
+				<li class="list-group-item justify-content-between ">{{$lien_theme3->libelle}} 
 					<a href="{{$lien_theme3->lien}}" target="_blank" style="max-width: 90%;" >
 						<b>Cliquez ici <br></b>
 					</a>
 				</li>	
 				@endforeach
-
-
-
 			</ul>
 		</div>
 	</div>
