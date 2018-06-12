@@ -56,7 +56,7 @@
 
  <body class="index-page">
   <!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: #C90000;max-height: 60px;" >
+  <nav class="navbar navbar-toggleable-md bg-light fixed-top"  style="background-color: #6D0742;max-height: 60px;" >
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/">
@@ -119,7 +119,7 @@
 
 
               <div class="card" style="width: 1200px;">
-                <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="blue" style="width: 1200px; background-color: #C90000; " >
+                <ul class="nav nav-tabs nav-tabs-neutral justify-content-center" role="tablist" data-background-color="blue" style="width: 1200px; background-color: #6D0742; " >
                   <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link active" data-toggle="tab" href="#fiche" role="tab">
                       <span class="glyphicon glyphicon-list-alt" ></span><br> Fiche administrative et données générales

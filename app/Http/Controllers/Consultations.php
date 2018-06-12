@@ -39,6 +39,7 @@ use App\assoc_sage;
 use App\assoc_step;
 use App\assoc_reserve;
 use App\assoc_captage;
+use App\assoc_res_strat;
 
 use App\cantons_ddt38;
 use App\appb_ddt38;
@@ -58,6 +59,12 @@ use App\conteco_ddt38;
 use App\contdigba_ddt38;
 use App\cheau_ddt38;
 use App\captage_ddt38;
+use App\resstrat_ddt38;
+use App\gemapi_ddt38;
+use App\colgestass_ddt38;
+use App\colgesteaup_ddt38;
+use App\colcompeaup_ddt38;
+use App\colcompeauu_ddt38;
 class Consultations extends Controller
 {
     //
@@ -90,6 +97,7 @@ class Consultations extends Controller
    $hydroelec=hydroelec_ddt38::find($comm->id_hydroelec);
    $conteco=conteco_ddt38::find($comm->id_eco);
    $contdigba=contdigba_ddt38::find($comm->id_contdigba);
+   $gemapi=gemapi_ddt38::find($comm->id_gemapi);
    $cucs=cucs_ddt38::find($comm->id_cucs);
 
    $barrages=barrages_ddt38::where('id_comm',$request->idsearch)->get();
@@ -134,6 +142,11 @@ class Consultations extends Controller
    $assoc_captage=DB::table('assoc_captage')->where('id_comm',$request->idsearch)->get();
    $captages=captage_ddt38::find($assoc_captage->pluck('id_captage'));
 
+ //ressources stratégiques
+   $assoc_res_strat=DB::table('assoc_res_strat')->where('id_comm',$request->idsearch)->get();
+   $resstrats=resstrat_ddt38::find($assoc_res_strat->pluck('id_res_strat'));
+
+
    //chartes forestières cf
    $assoc_cf=DB::table('assoc_cf')->where('id_comm',$request->idsearch)->get();
    $cfs=cf_ddt38::find($assoc_cf->pluck('id_chforest'));
@@ -150,6 +163,25 @@ class Consultations extends Controller
    //SAGE
    $assoc_sage=DB::table('assoc_sage')->where('id_comm',$request->idsearch)->get();
    $sages=sage_ddt38::find($assoc_sage->pluck('id_sage'));
+
+
+      //GESTASS
+   $assoc_col_gest_ass=DB::table('assoc_col_gest_ass')->where('id_comm',$request->idsearch)->get();
+   $colgestasss=colgestass_ddt38::find($assoc_col_gest_ass->pluck('id_col'));
+
+      //GESTEAUP
+   $assoc_col_gest_eaup=DB::table('assoc_col_gest_eaup')->where('id_comm',$request->idsearch)->get();
+   $colgesteaups=colgesteaup_ddt38::find($assoc_col_gest_eaup->pluck('id_col'));
+
+      //COMPEAUP
+   $assoc_comp_eaup=DB::table('assoc_comp_eaup')->where('id_comm',$request->idsearch)->get();
+   $colcompeaups=colcompeaup_ddt38::find($assoc_comp_eaup->pluck('id_col'));
+
+      //COMPEAUU
+   $assoc_comp_eauu=DB::table('assoc_comp_eauu')->where('id_comm',$request->idsearch)->get();
+   $colcompeauus=colcompeauu_ddt38::find($assoc_comp_eauu->pluck('id_col'));
+
+
 
    //STEP
    $assoc_step=DB::table('assoc_step')->where('id_comm',$request->idsearch)->get();
@@ -200,11 +232,17 @@ class Consultations extends Controller
      ->with('conteco',$conteco)
      ->with('contdigba',$contdigba)
      ->with('captages',$captages)
+     ->with('resstrats',$resstrats)
+     ->with('gemapi',$gemapi)
      ->with('barrages',$barrages)
      ->with('cfs',$cfs)
      ->with('crs',$crs)
      ->with('digues',$digues)
      ->with('sages',$sages)
+     ->with('colgestasss',$colgestasss)
+     ->with('colgesteaups',$colgesteaups)
+     ->with('colcompeaups',$colcompeaups)
+     ->with('colcompeauus',$colcompeauus)
      ->with('steps',$steps)
      ->with('cucs',$cucs)
      ->with('quartiers',$quartiers)
@@ -245,6 +283,7 @@ class Consultations extends Controller
    $hydroelec=hydroelec_ddt38::find($comm->id_hydroelec);
    $conteco=conteco_ddt38::find($comm->id_conteco);
    $contdigba=contdigba_ddt38::find($comm->id_contdigba);
+   $gemapi=gemapi_ddt38::find($comm->id_gemapi);
    $cucs=cucs_ddt38::find($comm->id_cucs);
 
    $barrages=barrages_ddt38::where('id_comm',$id)->get();
@@ -288,6 +327,10 @@ class Consultations extends Controller
     //captage
    $assoc_captage=DB::table('assoc_captage')->where('id_comm',$request->idsearch)->get();
    $captages=captage_ddt38::find($assoc_captage->pluck('id_captage'));
+
+    //ressources stratégiques
+   $assoc_res_strat=DB::table('assoc_res_strat')->where('id_comm',$request->idsearch)->get();
+   $resstrats=resstrat_ddt38::find($assoc_res_strat->pluck('id_res_strat'));
 
    //chartes forestières cf
    $assoc_cf=DB::table('assoc_cf')->where('id_comm',$id)->get();
@@ -353,12 +396,18 @@ class Consultations extends Controller
      ->with('conteco',$conteco)
      ->with('contdigba',$contdigba)
      ->with('captages',$captages)
+     ->with('resstrats',$resstrats)
+     ->with('gemapi',$gemapi)
      ->with('zps',$zps)
      ->with('barrages',$barrages)
      ->with('cfs',$cfs)
      ->with('crs',$crs)
      ->with('digues',$digues)
      ->with('sages',$sages)
+     ->with('colgestasss',$colgestasss)
+     ->with('colgesteaups',$colgesteaups)
+     ->with('colcompeaups',$colcompeaups)
+     ->with('colcompeauus',$colcompeauus)
      ->with('steps',$steps)
      ->with('cucs',$cucs)
      ->with('quartiers',$quartiers)

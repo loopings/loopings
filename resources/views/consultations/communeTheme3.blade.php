@@ -161,7 +161,7 @@
 			</ul>
 			<br>
 			@endif
-			@if(!empty($au))
+			@if(!empty($uu))
 			<h3 class="card-title"> 
 				Unités urbaines
 			</h3>

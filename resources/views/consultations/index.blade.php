@@ -29,7 +29,7 @@
 
 <body class="index-page">
   <!-- Navbar -->
-  <nav class="navbar navbar-toggleable-md  fixed-top navbar-transparent " color-on-scroll="500" style="background-color: #af3e27;">
+  <nav class="navbar navbar-toggleable-md  fixed-top navbar-transparent " color-on-scroll="500" style="background-color: #6D0742;">
     <div class="container">
       <div class="navbar-translate">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -154,7 +154,7 @@
         <div class="container" >
           <div class="row">
             <div class="col-md-4 offset-md-4" >
-              <div class="card card-signup" style="background-color: #2798af;" >
+              <div class="card card-signup" style="background-color: #D0BF16;" >
                 <form class="form" method="POST" action="/login">
                   {{ csrf_field() }}
                   <div class="header header-primary text-center">
