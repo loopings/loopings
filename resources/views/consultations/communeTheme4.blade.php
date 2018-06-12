@@ -2,43 +2,6 @@
 <div style="position:fixed;">
 	<ul class="nav nav-pills flex-column" >
 
-		@if (!empty($barrages->first()))
-		<li class="nav-item" >
-			<a class="nav-link " href="#barrages"  style="width: 140px;background-color:#f0f5ff;"><br>Barrages</a>
-		</li>
-		@endif
-
-		@if (!empty($cfs->first()))
-		<li class="nav-item">
-			<a class="nav-link" href="#cf" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Chartes forestières</a>
-		</li>
-		@endif
-
-		@if (!empty($crs->first()))
-		<li class="nav-item">
-			<a class="nav-link" href="#cr" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Contrats rivères</a>
-		</li>
-		@endif
-
-		@if (!empty($digues->first()))
-		<li class="nav-item" >
-			<a class="nav-link" href="#digues" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Digues</a>
-		</li>
-		@endif
-
-
-		@if (!empty($sages->first()))
-		<li class="nav-item">
-			<a class="nav-link" href="#sage" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>SAGE</a>
-		</li>
-		@endif
-
-		@if (!empty($steps->first()))
-		<li class="nav-item">
-			<a class="nav-link" href="#step" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>STEP</a>
-		</li>
-		@endif
-
 		<li class="nav-item">
 			<a class="nav-link" href="#lien4" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Liens utiles</a>
 		</li>
@@ -211,21 +174,21 @@
 								@foreach($sages as $sage)
 
 								<li class="list-group-item justify-content-between"> 
-									Contact à la DDT pour les questions intéressant les SAGE :  
+									Contact à la DDT pour les questions intéressant les SAGE  
 									<b>{{$sage->contact1}}</b>
 								</li>
 								@if(isset($sage->contact2))
 								<li class="list-group-item justify-content-between"> 
-									Contact 2 à la DDT pour les questions intéressant les SAGE :  
+									Contact 2 à la DDT pour les questions intéressant les SAGE  
 									<b>{{$sage->contact2}}</b>
 								</li>
 								@endif
 								<li class="list-group-item justify-content-between"> 
-									Nom du SAGE :  
+									Nom du SAGE 
 									<b>{{$sage->nom_sage}}({{$sage->annee_maj}})</b>
 								</li>
 								<li class="list-group-item justify-content-between"> 
-									Lien fiche descriptive :  
+									Lien fiche descriptive  
 									<a href="{{$sage->lien_gesteau}}" target="_blank">
 										<b>cliquez ici</b>
 									</a>
@@ -256,12 +219,12 @@
 							<ul class="list-group">
 								
 								<li class="list-group-item justify-content-between "> 
-									Collectivité compétente en distribution d'eau potable-distribution :  
+									Collectivité compétente en distribution d'eau potable-distribution   
 									@foreach($colcompeaups as $colcompeaup)
 									<ul>
-									<li>
-									<b>{{$colcompeaup->nom_colcompeaup}}({{$colcompeaup->annee_maj}})<br></b>
-									</li>	
+										<li>
+											<b>{{$colcompeaup->nom_colcompeaup}}({{$colcompeaup->annee_maj}})<br></b>
+										</li>	
 									</ul>
 									@endforeach
 								</li>
@@ -272,87 +235,203 @@
 							
 							@endif
 
-							@if (!empty($colgestasss->first()))
+							@if (!empty($colgesteaups->first()))
 							<ul class="list-group">
-			
+
 								<li class="list-group-item justify-content-between "> 
-									Collectivité(s) gestionnaire d'eau potable-distribution :
-									@foreach($colgestasss as $colgestass)
+									Collectivité(s) gestionnaire d'eau potable-distribution 
+									@foreach($colgesteaups as $colgesteaup)
 									<ul>
-									<li>  
-									<b>{{$colgestass->nom_colgestass}} ({{$colgestass->annee_maj}})<br></b>
-									</li>	
+										<li>  
+											<b>{{$colgesteaup->nom_colgesteaup}} ({{$colgesteaup->annee_maj}})<br></b>
+										</li>	
 									</ul>
 									@endforeach
 								</li>
 								<br>			
 							</ul>
-						@endif
-	
+							@endif
+
 						</div>
 					</div>
 				</div>
 
-
-
-
-				@if (!empty($steps->first()))
-
-				<div class="col-md-9 offset-md-2">
-					<div class="card" id="step">
+				<div class="col-md-10 offset-md-2">
+					<div class="card" id="cr">
 						<div class="card-block">
-							<h3 class="card-title">Stations d'Epuration des eaux usées STEP </h3>
-							@foreach($steps as $step)
+							<h3 class="card-title">Assainissement </h3>
+
 							<ul class="list-group">
+								@if (!empty($colcompeauus->first()))
+
+								
+								<li class="list-group-item justify-content-between "> 
+									Collectivité compétente en traintement des eaux usées
+									@foreach($colcompeauus as $colcompeauu)
+									<ul>
+										<li>
+											<b>{{$colcompeauu->nom_colcompeauu}}({{$colcompeauu->annee_maj}})<br></b>
+										</li>	
+									</ul>
+									@endforeach
+								</li>
+								<br>
+								
+
+
+
+								@endif
+
+								@if (!empty($colgestasss->first()))
 
 								<li class="list-group-item justify-content-between "> 
-									Nom STEP :  
+									Collectivité(s) gestionnaire d'eau potable-distribution 
+									@foreach($colgestasss as $colgestass)
+									<ul>
+										<li>  
+											<b>{{$colgestass->nom_colgestass}} ({{$colgestass->annee_maj}})<br></b>
+										</li>	
+									</ul>
+									@endforeach
+								</li>
+								<br>			
+
+								@endif
+
+								@foreach($steps as $step)
+								<li class="list-group-item justify-content-between "> 
+									Nom de la STEP présente sur la commune   
 									<b>{{$step->nom_step}}<br></b>
 								</li>
-								<li class="list-group-item justify-content-between "> 
-									Etat technique:  
-									<b>{{$step->etat}}<br></b>
-								</li>
-								<li class="list-group-item justify-content-between "> 
-									Capacité de traitement :  
-									<b>{{$step->capacite}}<br></b>
-								</li>
 
+								<!--	
 								<li class="list-group-item justify-content-between "> 
-									Conformité de la capacité :
-									<b>{{$step->conformite_capacite}}<br></b>
+									Code SANDRE  
+									<b>{{$step->nom_step}}<br></b>
 								</li>
-								<li class="list-group-item justify-content-between "> 
-									Conformité de l'équipement :
-									<b>{{$step->conformite_equipement}}<br></b>
-								</li>
+							-->
+							<li class="list-group-item justify-content-between "> 
+								Commune rattachés à la STEP (voir carte)  
+								<b>
+									@foreach($lienGs as $lienG)
+									@if($lienG->nom=="commune_rattaches")
+									<a href="{{$lienG->lien}}" target="_blank">
+										<b>Cliquez ici</b>
+									</a>
+									@endif
+									@endforeach
+								</b>
+							</li>
 
-							</ul>
+							<li class="list-group-item justify-content-between "> 
+								Capacité de traitement 
+								<b>{{$step->capacite}}<br></b>
+							</li>
+
+							<li class="list-group-item justify-content-between "> 
+								Niveau de priorité en matière de restriction :  
+								<b>{{$step->niveau_priorite}}<br></b>
+							</li>
+
+							<li class="list-group-item justify-content-between "> 
+								Date(s) des courriers préfectoraux de notification de restriction
+								<b>{{$step->date_courrier}}<br></b>
+							</li>
+							<li class="list-group-item justify-content-between "> 
+								Mise en demeure 
+								<b>{{$step->mise_en_demeure}}<br></b>
+							</li>
+							<li class="list-group-item justify-content-between "> 
+								Année de mise en oeuvre 
+								<b>{{$step->annee_mis_en_dem}}<br></b>
+							</li>
 							<br>
 							@endforeach
-						</div>
-					</div>
-				</div>
-
-				@endif
-
-
-				<div class="col-md-9 offset-md-2">
-					<div class="card" id="lien4">
-						<div class="card-block">
-							<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
-							<ul class="list-group">
-								@foreach($lien_theme4s as $lien_theme4)
-								<li class="list-group-item justify-content-between ">{{$lien_theme4->libelle}} :
-									<a href="{{$lien_theme4->lien}}" target="_blank" style="max-width: 90%;" >
-										<b>Cliquez ici <br></b>
+							<li class="list-group-item justify-content-between "> 
+								Bibliothèque des schémas directeurs d'assainissement    
+								<b>
+									@foreach($lienGs as $lienG)
+									@if($lienG->nom=="b_schémas_assaiinissement")
+									<a href="{{$lienG->lien}}" target="_blank">
+										<b>Cliquez ici</b>
 									</a>
-								</li>	
-								@endforeach
+									@endif
+									@endforeach
+								</b>
+							</li>
+
+						</ul>
 
 
-
-							</ul>
-						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="col-md-10 offset-md-2">
+				<div class="card" id="cr">
+					<div class="card-block">
+						<h3 class="card-title">FORET </h3>
+
+
+						
+						<ul class="list-group">
+							@if (!empty($cfs->first()))
+							@foreach($cfs as $cf)
+							<li class="list-group-item justify-content-between "> 
+								Nom de la charte forestière
+
+								<b>{{$cf->nom_charte}}({{$cf->annee_maj}})<br></b>
+							</li>
+							<li class="list-group-item justify-content-between "> 
+								Démarche en cours
+
+								<b>{{$cf->demarche_en_cours}}<br></b>
+							</li>
+							<br>
+							@endforeach
+						@else
+						<li class="list-group-item justify-content-between "> 
+								<b>Pas de charte forestière pour la commune<br></b>
+							</li>
+						@endif
+						<li class="list-group-item justify-content-between "> 
+									Taux de boisement communal(pourcentage)
+									<b>
+										@if(!isset($comm->tx_bois))
+										pas d'information	
+										@else
+										{{$comm->tx_bois}}
+										@endif
+
+									</b>  
+								</li>
+
+						</ul>
+						
+						
+					</div>
+				</div>
+			</div>
+
+
+			
+
+			<div class="col-md-10 offset-md-2">
+				<div class="card" id="lien4">
+					<div class="card-block">
+						<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
+						<ul class="list-group">
+							@foreach($lien_theme4s as $lien_theme4)
+							<li class="list-group-item justify-content-between ">{{$lien_theme4->libelle}} :
+								<a href="{{$lien_theme4->lien}}" target="_blank" style="max-width: 90%;" >
+									<b>Cliquez ici <br></b>
+								</a>
+							</li>	
+							@endforeach
+
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
