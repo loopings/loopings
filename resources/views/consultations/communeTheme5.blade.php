@@ -1,35 +1,83 @@
 
-<div class="col-md-10 offset-md-1">
+<div class="col-md-10 offset-md-2">
 	<div class="card" >
 		<div class="card-block">
 			<h3 class="card-title">Informations </h3>
 			<ul class="list-group">
 
 				<li class="list-group-item justify-content-between "> 
-					Loi Solidarité et Renouvellement Urbain SRU :  
-					<b>@if($comm->loi_sru)Oui @else Non @endif</b>
+					Commune soumise à la loi SRU  
+					<b>@if(!isset($comm->loi_sru))
+						pas d'information	
+						@else
+						{{$comm->loi_sru}}
+						@endif
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between ">
+					Commune carencée
+					<b> 
+						@if(!isset($comm->comm_carencee))
+						pas d'information	
+						@else
+						@if($comm->comm_carencee)Oui
+						@else Non
+						@endif
+						@endif
+					</b> 
+				</li>
+				<li class="list-group-item justify-content-between ">
+					Commune exonérée
+					<b> 
+						@if(!isset($comm->comm_exoneree))
+						pas d'information	
+						@else
+						@if($comm->comm_exoneree)Oui
+						@else Non
+						@endif
+						@endif
+					</b> 
 				</li>
 
+
 				<li class="list-group-item justify-content-between ">
-					Objectif SCOT) : 
+					Objectif SCOT de production de logement
 					<b> {{$comm->dec_objectif}} logements par an et pour 1000 habitants</b> 
 				</li>
 
 				<li class="list-group-item justify-content-between ">
-					Objectif SCOT appliqué à la commune : 
+					Objectif SCOT appliqué à la commune
 					<b> {{$comm->objectif_log_cons}} logements</b> 
 				</li>
 
 				<li class="list-group-item justify-content-between ">
-					Type de polarité  : 
+					Type de polarité défini dans le SCOT 
 					<b> {{$comm->type_polarite}} </b> 
 				</li>
 				<li class="list-group-item justify-content-between ">
-					nombre de lits touristiques : 
-					<b> {{$comm->nb_lits_touristiques}} </b> 
+					Commune concernée par un PLH ou PLHI
+					<b>
+						@if(!isset($comm->libelle_plh))
+						Non
+						@else
+						{{$comm->libelle_plh}}
+						{{$comm->etat_avancement_plh}}
+						{{$comm->date_validation_plh}}
+						{{$comm->lien_doc_plh}}
+						@endif
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between "> 
+					Commune "touristique" R.133-42 du code du tourisme ou "station classé de tourise"
+					<b>@if(!isset($comm->comm_tourist))
+						pas d'information	
+						@else
+						{{$comm->comm_tourist}}
+						@endif
+					</b>
 				</li>
 				<li class="list-group-item justify-content-between ">
-					nombre de PPI : 
+					nombre de Logements du Parc Privé Potentiellement Indigne PPPI : 
 					<b> {{$comm->nb_ppi}} </b> 
 				</li>
 				
@@ -40,7 +88,44 @@
 	</div>
 </div>
 
-<div class="col-md-10 offset-md-1  ">
+
+<div class="col-md-10 offset-md-2">
+	<div class="card" >
+		<div class="card-block">
+			<h3 class="card-title">Politique de la ville </h3>
+			<ul class="list-group">
+
+				<li class="list-group-item justify-content-between "> 
+					Liste des quartiers prioritaires QP de la politque de la ville 
+					<b>
+						@foreach($lienGs as $lienG)
+						@if($lienG->nom=="liste_qp")
+						<a href="{{$lienG->lien}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+						@endforeach
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between ">
+					Lien vers la carte interactive du site "politique de la ville" zoomé sur la commune interrogée
+					<b>@if(!isset($comm->lien_politique_ville))
+						non disponible	
+						@else
+						<a href="{{$comm->lien_politique_ville}}" target="_blank">
+							<b>Cliquez ici</b>
+						</a>
+						@endif
+					</b>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+
+
+<div class="col-md-10 offset-md-2">
 	<div class="card" id="lgmts">
 		<div class="card-block">
 			<h3 class="card-title">Logements </h3>
@@ -49,15 +134,15 @@
 				<thead class="thead-default">
 					<tr>
 
-						<th>Année &nbsp; </th>
-						<th> Total &nbsp; </th>
-						<th>  Résidences principales   </th>
-						<th>  Résidences secondaires   </th>
-						<th> Logements vacants    </th>
-						<th>   Maisons &nbsp; </th>
-						<th>   Appartements &nbsp; </th>
-						<th>    Logements sociaux </th>
-						<th>     </th>
+						<th style="vertical-align:text-top;">Année </th>
+						<th style="vertical-align:text-top;"> Total  </th>
+						<th style="vertical-align:text-top;">  Résidences principales(dont construites avant 1975)</th>
+						<th style="vertical-align:text-top;">  Résidences secondaires   </th>
+						<th style="vertical-align:text-top;"> Logements vacants    </th>
+						<th style="vertical-align:text-top;">   Maisons </th>
+						<th style="vertical-align:text-top;">   Appartements  </th>
+						<th style="vertical-align:text-top;">    Logements sociaux </th>
+						<th style="vertical-align:text-top;">     </th>
 					</tr>
 				</thead>
 				<tbody>
@@ -67,7 +152,7 @@
 
 						<td> {{$lgmt->annee}}   </td>
 						<td> {{$lgmt->total_lgmts}}  </td>
-						<td> {{$lgmt->resid_princ}}  </td>
+						<td> {{$lgmt->resid_princ}}({{$lgmt->res_princ_av_75}})  </td>
 						<td> {{$lgmt->resid_second}}  </td>
 						<td> {{$lgmt->lgmts_vacants}}  </td>
 						<td> {{$lgmt->maisons}}  </td>
@@ -83,103 +168,24 @@
 	</div>
 </div>
 
-@if(!empty($cucs)) 
-<div class="col-md-10 offset-md-1 ">
-	<div class="card" id="cucs">
-		<div class="card-block">
-			<h3 class="card-title">Contrats Urbains de Cohésion Sociale CUCS </h3>
-			<ul class="list-group">
-
-				<li class="list-group-item justify-content-between "> 
-					Nom :  
-					<b>{{$cucs->nom_cucs}}<br></b>
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Lien SIG politique de la ville :  
-					<a href="{{$cucs->lien_sigvillegouv}}" target="_blank" style="max-width: 90%;" >
-						<b>Cliquez ici <br></b>
-					</a>
-				</li>
 
 
-
-			</ul>
-
-
-		</div>
-	</div>
-</div>
-
-@endif
-
-@if (!empty($zus->first()))
-
-<div class="col-md-10 offset-md-1  ">
-	<div class="card" id="lgmts">
-		<div class="card-block">
-			<h3 class="card-title">Zones urbaines sensibles ZUS </h3>
-			@foreach($zus as $zu)	
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Nom :  
-					<b>
-						{{$zu->nom_zus}} 
-					</b>
-				</li>
-
-			</ul>
-			<br>
-			@endforeach
-
-		</div>
-	</div>
-</div>
-@endif
-
-
-@if (!empty($quartiers->first()))
-<div class="col-md-10 offset-md-1  ">
-
-
-
-	<div class="card" id="lgmts">
-		<div class="card-block">
-			<h3 class="card-title">Quartiers non situés en Zones urbaines mais couverts par des Contrats Urbains de Cohésion Sociale </h3>
-			@foreach($quartiers as $quartier)	
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Nom :  
-					<b>
-						{{$quartier->nom_quartier}} 
-					</b>
-				</li>
-
-			</ul>
-			<br>
-			@endforeach
-
-		</div>
-	</div>
-</div>
-@endif
-
-
-<div class="col-md-10 offset-md-1 ">
+<div class="col-md-10 offset-md-2">
 	<div class="card" id="lien5">
 		<div class="card-block">
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 				@foreach($lien_theme5s as $lien_theme5)
-									<li class="list-group-item justify-content-between ">{{$lien_theme5->libelle}} :
-										<a href="{{$lien_theme5->lien}}" target="_blank" style="max-width: 90%;" >
-											<b>Cliquez ici <br></b>
-										</a>
-									</li>	
-									@endforeach
+				<li class="list-group-item justify-content-between ">{{$lien_theme5->libelle}} :
+					<a href="{{$lien_theme5->lien}}" target="_blank" style="max-width: 90%;" >
+						<b>Cliquez ici <br></b>
+					</a>
+				</li>	
+				@endforeach
 
 
 
-				</ul>
-			</div>
+			</ul>
 		</div>
 	</div>
+</div>

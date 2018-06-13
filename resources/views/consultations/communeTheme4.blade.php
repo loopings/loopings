@@ -351,7 +351,7 @@
 								Bibliothèque des schémas directeurs d'assainissement    
 								<b>
 									@foreach($lienGs as $lienG)
-									@if($lienG->nom=="b_schémas_assaiinissement")
+									@if($lienG->nom=="b_schémas_assainissement")
 									<a href="{{$lienG->lien}}" target="_blank">
 										<b>Cliquez ici</b>
 									</a>
