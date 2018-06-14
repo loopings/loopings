@@ -40,6 +40,7 @@ use App\assoc_step;
 use App\assoc_reserve;
 use App\assoc_captage;
 use App\assoc_res_strat;
+use App\assoc_aoc_aop;
 
 use App\cantons_ddt38;
 use App\appb_ddt38;
@@ -65,6 +66,7 @@ use App\colgestass_ddt38;
 use App\colgesteaup_ddt38;
 use App\colcompeaup_ddt38;
 use App\colcompeauu_ddt38;
+use App\aocaop_ddt38;
 class Consultations extends Controller
 {
     //
@@ -187,6 +189,10 @@ class Consultations extends Controller
    $assoc_step=DB::table('assoc_step')->where('id_comm',$request->idsearch)->get();
    $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
+      //AOC AOP
+   $assoc_aoc_aop=DB::table('assoc_aoc_aop')->where('id_comm',$request->idsearch)->get();
+   $aocaops=aocaop_ddt38::find($assoc_aoc_aop->pluck('id_aoc_aop'));
+
     //Tronçons
 
    $troncons=troncons_ddt38::where('id_comm',$request->idsearch)->get();
@@ -249,6 +255,7 @@ class Consultations extends Controller
      ->with('zus',$zus)
      ->with('lgmts',$lgmts)
      ->with('agricultures',$agricultures)
+     ->with('aocaops',$aocaops)
      ->with('troncons',$troncons)
      ->with('lgmtcs',$lgmtcs)
      ->with('lien_theme1s',$lien_theme1s)
@@ -352,6 +359,9 @@ class Consultations extends Controller
    $assoc_step=DB::table('assoc_step')->where('id_comm',$id)->get();
    $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
+    //AOC AOP
+   $assoc_aoc_aop=DB::table('assoc_aoc_aop')->where('id_comm',$request->idsearch)->get();
+   $aocaops=aocaop_ddt38::find($assoc_aoc_aop->pluck('id_aoc_aop'));
     //Tronçons
    $troncons=troncons_ddt38::where('id_comm',$request->idsearch)->get();
 
@@ -414,6 +424,7 @@ class Consultations extends Controller
      ->with('zus',$zus)
      ->with('lgmts',$lgmts)
      ->with('agricultures',$agricultures)
+     ->with('aocaops',$aocaops)
      ->with('troncons',$troncons)
      ->with('lgmtcs',$lgmtcs)
      ->with('lien_theme1s',$lien_theme1s)

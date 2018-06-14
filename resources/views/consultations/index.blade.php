@@ -117,10 +117,7 @@
 
 
 <form method="POST" action="/commune" accept-charset="UTF-8" style="white-space: nowrap;">
-               
-
-
-                
+                             
                 {{Form::select('idsearch', $search_comm,null, ['placeholder' => 'Rechercher une commune', 'class'=>'form-control chosen-select'])}}
                 {{ csrf_field() }}
 
