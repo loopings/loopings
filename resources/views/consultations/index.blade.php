@@ -23,8 +23,13 @@
   <!-- JQuery select -->
   <script src="/consultations/js/ancres/jquery.js" type="text/javascript"></script>
   <script type="text/javascript" src="/consultations/js/chosen/chosen.jquery.js"></script>
- 
-  
+  <style type="text/css">
+  a.chosen-single{
+    width: 100%;
+  }
+</style>
+
+
 </head>
 
 <body class="index-page">
@@ -116,21 +121,21 @@
               <div class="col-md-6">
 
 
-<form method="POST" action="/commune" accept-charset="UTF-8" style="white-space: nowrap;">
-                             
-                {{Form::select('idsearch', $search_comm,null, ['placeholder' => 'Rechercher une commune', 'class'=>'form-control chosen-select'])}}
-                {{ csrf_field() }}
+                <form method="POST" action="/commune" accept-charset="UTF-8" style="white-space: nowrap;">
 
-                <button class="btn btn-link btn-lg" type="submit">
-                  <span class="now-ui-icons ui-1_zoom-bold "></span>
-                </button>
-               </form>  
-                 
+                  {{Form::select('idsearch', $search_comm,null, ['placeholder' => 'Rechercher une commune', 'class'=>'form-control chosen-select'])}}
+                  {{ csrf_field() }}
+
+                  <button class="btn btn-link btn-lg" type="submit">
+                    <span class="now-ui-icons ui-1_zoom-bold "></span>
+                  </button>
+                </form>  
+
                 
 
               </div>
               <div class="col-md-3">
-                
+
               </div>
             </div>
           </div>
@@ -141,6 +146,22 @@
           <div class="row">
             <div class="col-md-12">
               <h1>EPCI</h1>
+              <div class="col-md-6">
+
+
+                <form method="POST" action="/epcicons" accept-charset="UTF-8" style="white-space: nowrap;">
+
+                  {{Form::select('idsearch', $search_epci,null, ['placeholder' => 'Rechercher un EPCI', 'class'=>'form-control chosen-select'])}}
+                  {{ csrf_field() }}
+
+                  <button class="btn btn-link btn-lg" type="submit">
+                    <span class="now-ui-icons ui-1_zoom-bold "></span>
+                  </button>
+                </form>  
+
+                
+
+              </div>
             </div>
           </div>
         </div>

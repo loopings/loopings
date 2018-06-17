@@ -51,6 +51,8 @@
    </script>
 
    <script type="text/javascript" src="/consultations/js/ancres/lancement.js"></script><!-- permet le lancement de la fonction de scroll -->
+  
+
 
  </head>
 
@@ -156,7 +158,7 @@
 
                   <li class="nav-item" style="width: 150px; text-align: center;">
                     <a class="nav-link" data-toggle="tab" href="#air" role="tab">
-                      <i class="glyphicon glyphicon-bullhorn"></i><br>  Transition énergétique et Déplacements
+                      <i class="glyphicon glyphicon-leaf"></i><br>  Transition énergétique et Déplacements
                     </a>
                   </li>
 

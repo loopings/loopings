@@ -160,6 +160,7 @@ Route::get('/', 'Consultations@index');
 Route::post('/commune', 'Consultations@voirComm');
 Route::get('/commune/{id}', 'Consultations@voirCommGet');
 Route::post('/epcicons', 'Consultations@voirEPCI');
+Route::get('/epcicons/{id}', 'Consultations@voirEPCIGet');
 
 //Routes temporaires
 Route::get('testbs', 'TestBS@index');

@@ -179,6 +179,7 @@ form{
 .chosen-container-single a:not([href]):not([tabindex]).chosen-single:not(.chosen-default) {
   color: #6c757d !important; }
 
+
 .chosen-container-single .chosen-search-input {
   display: none;
   border: none; }

@@ -41,6 +41,8 @@ use App\assoc_reserve;
 use App\assoc_captage;
 use App\assoc_res_strat;
 use App\assoc_aoc_aop;
+use App\assoc_tepos_pepcv;
+use App\assoc_pfre;
 
 use App\cantons_ddt38;
 use App\appb_ddt38;
@@ -67,15 +69,21 @@ use App\colgesteaup_ddt38;
 use App\colcompeaup_ddt38;
 use App\colcompeauu_ddt38;
 use App\aocaop_ddt38;
+use App\pcaet_ddt38;
+use App\tepospepcv_ddt38;
+use App\pfre_ddt38;
 class Consultations extends Controller
 {
     //
-    public function index()
-    {
+  public function index()
+  {
 
-      $search_comm=DB::table('comm_ddt38')->orderBy('nom_comm')->pluck('nom_comm','id');
+    $search_comm=DB::table('comm_ddt38')->orderBy('nom_comm')->pluck('nom_comm','id');
+    $search_epci=DB::table('epci_ddt38')->orderBy('nom_groupement')->pluck('nom_groupement','id');
 
-      return view('consultations.index')->with('search_comm', $search_comm);
+    return view('consultations.index')
+    ->with('search_epci', $search_epci)
+    ->with('search_comm', $search_comm);
   }
 
   public function voirComm(Request $request)
@@ -83,7 +91,19 @@ class Consultations extends Controller
    $comm=comm_ddt38::find($request->idsearch);
    $resultat_fusion=comm_ddt38::find($comm->resultat_fusion);
    $populations=population_comm_ddt38::where('id_comm',$request->idsearch)->get();
+   //affichage données EPCI à l'échelle communale
    $epci=epci_ddt38::find($comm->id_epci);
+   $pcaets=DB::table('pcaet_ddt38')->where('id_epci',$epci->id)->get();
+   
+   //tepospepcv
+   $assoc_tepos_pepcv=DB::table('assoc_tepos_pepcv')->where('id_epci',$epci->id)->get();
+   $tepospepcvs=tepospepcv_ddt38::find($assoc_tepos_pepcv->pluck('id_tp'));
+
+  //PFRE
+   $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$epci->id)->get();
+   $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
+   //
+
    $terri=territoires38_ddt38::find($comm->id_terri38);
    $scot=scot_ddt38::find($comm->id_scot);
    $cham=cham_ddt38::find($comm->id_cham);
@@ -215,6 +235,9 @@ class Consultations extends Controller
      ->with('resultat_fusion',$resultat_fusion)
      ->with('populations',$populations)
      ->with ('epci',$epci)
+     ->with('pcaets',$pcaets)
+     ->with('tepospepcvs',$tepospepcvs)
+     ->with('pfres',$pfres)
      ->with('terri',$terri)
      ->with('scot',$scot)
      ->with('cantons',$cantons)
@@ -268,102 +291,130 @@ class Consultations extends Controller
      ->with('lien_theme8s',$lien_theme8s)
      ->with('lienGs',$lienGs)
      ;
- }
- public function voirCommGet($id)
- {
-   $comm=comm_ddt38::find($id);
-   $resultat_fusion=comm_ddt38::find($comm->resultat_fusion);
-   $populations=population_comm_ddt38::where('id_comm',$id)->get();
-   $epci=epci_ddt38::find($comm->id_epci);
-   $terri=territoires38_ddt38::find($comm->id_terri38);
-   $scot=scot_ddt38::find($comm->id_scot);
-   $cham=cham_ddt38::find($comm->id_cham);
-   $cham2=cham_ddt38::find($comm->id_cham2);
-   $agent_car=agent_car_ddt38::find($comm->id_agent_car);
-   $agent_car2=agent_car_ddt38::find($comm->id_agent_car2);
-   $pnr=pnr_ddt38::find($comm->id_pnr);
-   $ze=ze_ddt38::find($comm->id_ze);
-   $dta=dta_ddt38::find($comm->id_dta);
-   $au=au_ddt38::find($comm->id_au);
-   $uu=uu_ddt38::find($comm->id_uu);
-   $cheau=cheau_ddt38::find($comm->id_cheau);
+   }
+   public function voirCommGet($id)
+   {
+     $comm=comm_ddt38::find($id);
+     $resultat_fusion=comm_ddt38::find($comm->resultat_fusion);
+     $populations=population_comm_ddt38::where('id_comm',$id)->get();
+     $epci=epci_ddt38::find($comm->id_epci);
+   //affichage données EPCI à l'échelle communale
+     $epci=epci_ddt38::find($comm->id_epci);
+     $pcaets=DB::table('pcaet_ddt38')->where('id_epci',$epci->id)->get();
+      //tepospepcv
+     $assoc_tepos_pepcv=DB::table('assoc_tepos_pepcv')->where('id_epci',$epci->id)->get();
+     $tepospepcvs=tepospepcv_ddt38::find($assoc_tepos_pepcv->pluck('id_tp'));
+   //
+     //PFRE
+   $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$epci->id)->get();
+   $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
+   //
+     $terri=territoires38_ddt38::find($comm->id_terri38);
+     $scot=scot_ddt38::find($comm->id_scot);
+     $cham=cham_ddt38::find($comm->id_cham);
+     $cham2=cham_ddt38::find($comm->id_cham2);
+     $agent_car=agent_car_ddt38::find($comm->id_agent_car);
+     $agent_car2=agent_car_ddt38::find($comm->id_agent_car2);
+     $pnr=pnr_ddt38::find($comm->id_pnr);
+     $ze=ze_ddt38::find($comm->id_ze);
+     $dta=dta_ddt38::find($comm->id_dta);
+     $au=au_ddt38::find($comm->id_au);
+     $uu=uu_ddt38::find($comm->id_uu);
+     $cheau=cheau_ddt38::find($comm->id_cheau);
    $hydroelec=hydroelec_ddt38::find($comm->id_hydroelec);
-   $conteco=conteco_ddt38::find($comm->id_conteco);
+   $conteco=conteco_ddt38::find($comm->id_eco);
    $contdigba=contdigba_ddt38::find($comm->id_contdigba);
    $gemapi=gemapi_ddt38::find($comm->id_gemapi);
    $cucs=cucs_ddt38::find($comm->id_cucs);
 
-   $barrages=barrages_ddt38::where('id_comm',$id)->get();
-   $quartiers=quartier_cucsnonzus_ddt38::where('id_comm',$id)->get();
-   $zus=zus_ddt38::where('id_comm',$id)->get();
-   $lgmts=lgmts_ddt38::where('id_comm',$id)->get();
-   $agricultures=agriculture_ddt38::where('id_comm',$id)->get();
-   $lgmtcs=lgmts_commences_ddt38::where('id_comm',$id)->get();
+     $barrages=barrages_ddt38::where('id_comm',$id)->get();
+     $quartiers=quartier_cucsnonzus_ddt38::where('id_comm',$id)->get();
+     $zus=zus_ddt38::where('id_comm',$id)->get();
+     $lgmts=lgmts_ddt38::where('id_comm',$id)->get();
+     $agricultures=agriculture_ddt38::where('id_comm',$id)->get();
+     $lgmtcs=lgmts_commences_ddt38::where('id_comm',$id)->get();
     //cantons
-   $assoc_cant=assoc_cantons::where('id_comm',$id)->get();
-   $cantons=cantons_ddt38::find($assoc_cant->pluck('id_cant'));
+     $assoc_cant=assoc_cantons::where('id_comm',$id)->get();
+     $cantons=cantons_ddt38::find($assoc_cant->pluck('id_cant'));
 
 
     //appb
-   $assoc_appb=DB::table('assoc_appb')->where('id_comm',$id)->get();
+     $assoc_appb=DB::table('assoc_appb')->where('id_comm',$id)->get();
 
-   $appbs=appb_ddt38::find($assoc_appb->pluck('id_appb'));
+     $appbs=appb_ddt38::find($assoc_appb->pluck('id_appb'));
 
 
    //reserve
-   $assoc_reserve=DB::table('assoc_reserve')->where('id_comm',$id)->get();
-   $reserves=reserve_ddt38::find($assoc_reserve->pluck('id_reserve'));
+     $assoc_reserve=DB::table('assoc_reserve')->where('id_comm',$id)->get();
+     $reserves=reserve_ddt38::find($assoc_reserve->pluck('id_reserve'));
 
    //maet
-   $assoc_maet=DB::table('assoc_maet')->where('id_comm',$id)->get();
-   $maets=maet_ddt38::find($assoc_maet->pluck('id_maet'));
+     $assoc_maet=DB::table('assoc_maet')->where('id_comm',$id)->get();
+     $maets=maet_ddt38::find($assoc_maet->pluck('id_maet'));
 
    //natura 2000
 
-   $assoc_natura2000=DB::table('assoc_natura2000')->where('id_comm',$id)->get();
-   $natura2000s=natura2000_ddt38::find($assoc_natura2000->pluck('id_natura2000'));
+     $assoc_natura2000=DB::table('assoc_natura2000')->where('id_comm',$id)->get();
+     $natura2000s=natura2000_ddt38::find($assoc_natura2000->pluck('id_natura2000'));
 
     //znieff    
-   $assoc_znieff=DB::table('assoc_znieff')->where('id_comm',$id)->get();
-   $znieffs=znieff_ddt38::find($assoc_znieff->pluck('id_znieff'));
+     $assoc_znieff=DB::table('assoc_znieff')->where('id_comm',$id)->get();
+     $znieffs=znieff_ddt38::find($assoc_znieff->pluck('id_znieff'));
 
    //zp
-   $assoc_zp=DB::table('assoc_zp')->where('id_comm',$id)->get();
-   $zps=zp_ddt38::find($assoc_zp->pluck('id_zp'));
+     $assoc_zp=DB::table('assoc_zp')->where('id_comm',$id)->get();
+     $zps=zp_ddt38::find($assoc_zp->pluck('id_zp'));
 
     //captage
-   $assoc_captage=DB::table('assoc_captage')->where('id_comm',$request->idsearch)->get();
-   $captages=captage_ddt38::find($assoc_captage->pluck('id_captage'));
+     $assoc_captage=DB::table('assoc_captage')->where('id_comm',$id)->get();
+     $captages=captage_ddt38::find($assoc_captage->pluck('id_captage'));
 
     //ressources stratégiques
-   $assoc_res_strat=DB::table('assoc_res_strat')->where('id_comm',$request->idsearch)->get();
-   $resstrats=resstrat_ddt38::find($assoc_res_strat->pluck('id_res_strat'));
+     $assoc_res_strat=DB::table('assoc_res_strat')->where('id_comm',$id)->get();
+     $resstrats=resstrat_ddt38::find($assoc_res_strat->pluck('id_res_strat'));
 
    //chartes forestières cf
-   $assoc_cf=DB::table('assoc_cf')->where('id_comm',$id)->get();
-   $cfs=cf_ddt38::find($assoc_cf->pluck('id_chforest'));
+     $assoc_cf=DB::table('assoc_cf')->where('id_comm',$id)->get();
+     $cfs=cf_ddt38::find($assoc_cf->pluck('id_chforest'));
 
    //contrats rivières cr
-   $assoc_cr=DB::table('assoc_cm')->where('id_comm',$id)->get();
-   $crs=cm_ddt38::find($assoc_cm->pluck('id_contrat_riviere'));
+     $assoc_cr=DB::table('assoc_cm')->where('id_comm',$id)->get();
+     $crs=cm_ddt38::find($assoc_cr->pluck('id_contrat_riviere'));
 
    //digues
-   $assoc_digues=DB::table('assoc_digues')->where('id_comm',$id)->get();
-   $digues=digues_ddt38::find($assoc_digues->pluck('id_digue'));
+     $assoc_digues=DB::table('assoc_digues')->where('id_comm',$id)->get();
+     $digues=digues_ddt38::find($assoc_digues->pluck('id_digue'));
 
    //SAGE
-   $assoc_sage=DB::table('assoc_sage')->where('id_comm',$id)->get();
-   $sages=sage_ddt38::find($assoc_sage->pluck('id_sage'));
+     $assoc_sage=DB::table('assoc_sage')->where('id_comm',$id)->get();
+     $sages=sage_ddt38::find($assoc_sage->pluck('id_sage'));
+      //GESTASS
+   $assoc_col_gest_ass=DB::table('assoc_col_gest_ass')->where('id_comm',$id)->get();
+   $colgestasss=colgestass_ddt38::find($assoc_col_gest_ass->pluck('id_col'));
+
+      //GESTEAUP
+   $assoc_col_gest_eaup=DB::table('assoc_col_gest_eaup')->where('id_comm',$id)->get();
+   $colgesteaups=colgesteaup_ddt38::find($assoc_col_gest_eaup->pluck('id_col'));
+
+      //COMPEAUP
+   $assoc_comp_eaup=DB::table('assoc_comp_eaup')->where('id_comm',$id)->get();
+   $colcompeaups=colcompeaup_ddt38::find($assoc_comp_eaup->pluck('id_col'));
+
+      //COMPEAUU
+   $assoc_comp_eauu=DB::table('assoc_comp_eauu')->where('id_comm',$id)->get();
+   $colcompeauus=colcompeauu_ddt38::find($assoc_comp_eauu->pluck('id_col'));
+
+
 
    //STEP
-   $assoc_step=DB::table('assoc_step')->where('id_comm',$id)->get();
-   $steps=step_ddt38::find($assoc_step->pluck('id_step'));
+     $assoc_step=DB::table('assoc_step')->where('id_comm',$id)->get();
+     $steps=step_ddt38::find($assoc_step->pluck('id_step'));
 
     //AOC AOP
-   $assoc_aoc_aop=DB::table('assoc_aoc_aop')->where('id_comm',$request->idsearch)->get();
-   $aocaops=aocaop_ddt38::find($assoc_aoc_aop->pluck('id_aoc_aop'));
+     $assoc_aoc_aop=DB::table('assoc_aoc_aop')->where('id_comm',$id)->get();
+     $aocaops=aocaop_ddt38::find($assoc_aoc_aop->pluck('id_aoc_aop'));
     //Tronçons
-   $troncons=troncons_ddt38::where('id_comm',$request->idsearch)->get();
+     $troncons=troncons_ddt38::where('id_comm',$id)->get();
 
     /* $assoc_troncons=DB::table('assoc_troncons')->where('id_comm',$id)->get();
      $troncons=troncons_ddt38::find($assoc_troncons->pluck('id_tr'));
@@ -378,12 +429,15 @@ class Consultations extends Controller
      $lien_theme6s=lien_unique::where('onglet','Agriculture')->orderBy('ordre')->get();
      $lien_theme7s=lien_unique::where('onglet','Air et Bruit')->orderBy('ordre')->get();
      $lien_theme8s=lien_unique::where('onglet','Foncier')->orderBy('ordre')->get();
-
+      $lienGs=lienG_ddt38::orderBy('nom')->get();
 
      return view('consultations.commune')->with('comm',$comm)
      ->with('resultat_fusion',$resultat_fusion)
      ->with('populations',$populations)
      ->with ('epci',$epci)
+     ->with('pcaets',$pcaets)
+     ->with('tepospepcvs',$tepospepcvs)
+     ->with('pfres',$pfres)
      ->with('terri',$terri)
      ->with('scot',$scot)
      ->with('cantons',$cantons)
@@ -435,11 +489,13 @@ class Consultations extends Controller
      ->with('lien_theme6s',$lien_theme6s)
      ->with('lien_theme7s',$lien_theme7s)
      ->with('lien_theme8s',$lien_theme8s)
+     ->with('lienGs',$lienGs)
      ;
- }
+   }
 
- public function voirEPCI(Request $request)
- {
-   return 'bonjour';
-}
-}
+   public function voirEPCI(Request $request)
+   {
+    $epci=epci_ddt38::find($request->idsearch);
+      return view('consultations.epci')->with('epci',$epci);
+   }
+ }

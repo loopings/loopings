@@ -368,7 +368,7 @@
 			</div>
 
 			<div class="col-md-10 offset-md-2">
-				<div class="card" id="cr">
+				<div class="card" id="cf">
 					<div class="card-block">
 						<h3 class="card-title">FORET </h3>
 
