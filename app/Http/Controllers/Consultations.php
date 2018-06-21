@@ -306,8 +306,8 @@ class Consultations extends Controller
      $tepospepcvs=tepospepcv_ddt38::find($assoc_tepos_pepcv->pluck('id_tp'));
    //
      //PFRE
-   $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$epci->id)->get();
-   $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
+     $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$epci->id)->get();
+     $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
    //
      $terri=territoires38_ddt38::find($comm->id_terri38);
      $scot=scot_ddt38::find($comm->id_scot);
@@ -321,11 +321,11 @@ class Consultations extends Controller
      $au=au_ddt38::find($comm->id_au);
      $uu=uu_ddt38::find($comm->id_uu);
      $cheau=cheau_ddt38::find($comm->id_cheau);
-   $hydroelec=hydroelec_ddt38::find($comm->id_hydroelec);
-   $conteco=conteco_ddt38::find($comm->id_eco);
-   $contdigba=contdigba_ddt38::find($comm->id_contdigba);
-   $gemapi=gemapi_ddt38::find($comm->id_gemapi);
-   $cucs=cucs_ddt38::find($comm->id_cucs);
+     $hydroelec=hydroelec_ddt38::find($comm->id_hydroelec);
+     $conteco=conteco_ddt38::find($comm->id_eco);
+     $contdigba=contdigba_ddt38::find($comm->id_contdigba);
+     $gemapi=gemapi_ddt38::find($comm->id_gemapi);
+     $cucs=cucs_ddt38::find($comm->id_cucs);
 
      $barrages=barrages_ddt38::where('id_comm',$id)->get();
      $quartiers=quartier_cucsnonzus_ddt38::where('id_comm',$id)->get();
@@ -389,20 +389,20 @@ class Consultations extends Controller
      $assoc_sage=DB::table('assoc_sage')->where('id_comm',$id)->get();
      $sages=sage_ddt38::find($assoc_sage->pluck('id_sage'));
       //GESTASS
-   $assoc_col_gest_ass=DB::table('assoc_col_gest_ass')->where('id_comm',$id)->get();
-   $colgestasss=colgestass_ddt38::find($assoc_col_gest_ass->pluck('id_col'));
+     $assoc_col_gest_ass=DB::table('assoc_col_gest_ass')->where('id_comm',$id)->get();
+     $colgestasss=colgestass_ddt38::find($assoc_col_gest_ass->pluck('id_col'));
 
       //GESTEAUP
-   $assoc_col_gest_eaup=DB::table('assoc_col_gest_eaup')->where('id_comm',$id)->get();
-   $colgesteaups=colgesteaup_ddt38::find($assoc_col_gest_eaup->pluck('id_col'));
+     $assoc_col_gest_eaup=DB::table('assoc_col_gest_eaup')->where('id_comm',$id)->get();
+     $colgesteaups=colgesteaup_ddt38::find($assoc_col_gest_eaup->pluck('id_col'));
 
       //COMPEAUP
-   $assoc_comp_eaup=DB::table('assoc_comp_eaup')->where('id_comm',$id)->get();
-   $colcompeaups=colcompeaup_ddt38::find($assoc_comp_eaup->pluck('id_col'));
+     $assoc_comp_eaup=DB::table('assoc_comp_eaup')->where('id_comm',$id)->get();
+     $colcompeaups=colcompeaup_ddt38::find($assoc_comp_eaup->pluck('id_col'));
 
       //COMPEAUU
-   $assoc_comp_eauu=DB::table('assoc_comp_eauu')->where('id_comm',$id)->get();
-   $colcompeauus=colcompeauu_ddt38::find($assoc_comp_eauu->pluck('id_col'));
+     $assoc_comp_eauu=DB::table('assoc_comp_eauu')->where('id_comm',$id)->get();
+     $colcompeauus=colcompeauu_ddt38::find($assoc_comp_eauu->pluck('id_col'));
 
 
 
@@ -429,7 +429,7 @@ class Consultations extends Controller
      $lien_theme6s=lien_unique::where('onglet','Agriculture')->orderBy('ordre')->get();
      $lien_theme7s=lien_unique::where('onglet','Air et Bruit')->orderBy('ordre')->get();
      $lien_theme8s=lien_unique::where('onglet','Foncier')->orderBy('ordre')->get();
-      $lienGs=lienG_ddt38::orderBy('nom')->get();
+     $lienGs=lienG_ddt38::orderBy('nom')->get();
 
      return view('consultations.commune')->with('comm',$comm)
      ->with('resultat_fusion',$resultat_fusion)
@@ -496,6 +496,23 @@ class Consultations extends Controller
    public function voirEPCI(Request $request)
    {
     $epci=epci_ddt38::find($request->idsearch);
-      return view('consultations.epci')->with('epci',$epci);
-   }
- }
+    $comms=DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->get();
+    $populations=
+    DB::table('comm_ddt38')
+    ->join('epci_ddt38', 'comm_ddt38.id_epci', '=', 'epci_ddt38.id')
+    ->join('population_comm_ddt38', 'comm_ddt38.id', '=', 'population_comm_ddt38.id_comm')
+    ->select('population_comm_ddt38.annee', DB::raw('SUM(population_comm_ddt38.population) as population'))
+    ->groupBy('population_comm_ddt38.annee')
+    ->orderBy('population_comm_ddt38.annee')
+    ->get();
+
+   
+    return view('consultations.epci')
+    ->with('epci',$epci)
+    ->with('comms',$comms)
+    ->with('populations',$populations)
+    ;
+  }
+}

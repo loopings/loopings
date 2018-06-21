@@ -158,7 +158,7 @@ Route::post('/assoce/store','Assoces@store');
 //Routes pour la consultation
 Route::get('/', 'Consultations@index');
 Route::post('/commune', 'Consultations@voirComm');
-Route::get('/commune/{id}', 'Consultations@voirCommGet');
+Route::get('/commune/{id}', 'Consultations@voirCommGet')->name('communeC');
 Route::post('/epcicons', 'Consultations@voirEPCI');
 Route::get('/epcicons/{id}', 'Consultations@voirEPCIGet');
 
