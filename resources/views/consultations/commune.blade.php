@@ -186,7 +186,7 @@
                   <div class="tab-pane" id="urbanisme" role="tabpanel">
                     @include ('consultations.communeTheme3')
 
-                    ])
+                    
 
                   </div>
                   <div class="tab-pane" id="eauf" role="tabpanel">

@@ -498,21 +498,138 @@ class Consultations extends Controller
     $epci=epci_ddt38::find($request->idsearch);
     $comms=DB::table('comm_ddt38')
     ->where('id_epci',$epci->id)
+    ->orderBy('nom_comm')
     ->get();
+
     $populations=
     DB::table('comm_ddt38')
-    ->join('epci_ddt38', 'comm_ddt38.id_epci', '=', 'epci_ddt38.id')
     ->join('population_comm_ddt38', 'comm_ddt38.id', '=', 'population_comm_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$epci->id)
     ->select('population_comm_ddt38.annee', DB::raw('SUM(population_comm_ddt38.population) as population'))
     ->groupBy('population_comm_ddt38.annee')
     ->orderBy('population_comm_ddt38.annee')
     ->get();
 
-   
+   $scots=
+    DB::table('scot_ddt38')
+    ->join('comm_ddt38', 'scot_ddt38.id', '=', 'comm_ddt38.id_scot')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->distinct()
+    ->get(['scot_ddt38.nom_scot']);
+    ;
+
+     $pnrs=
+    DB::table('pnr_ddt38')
+    ->join('comm_ddt38', 'pnr_ddt38.id', '=', 'comm_ddt38.id_pnr')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->distinct()
+    ->get(['pnr_ddt38.nom_pnr','pnr_ddt38.annee_maj']);
+    ;
+
+    $lienGs=lienG_ddt38::orderBy('nom')->get();
+
+     $tris=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->distinct()
+    ->get(['comm_ddt38.tri'])
+    ;
+
+    $slgris=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->distinct()
+    ->get(['comm_ddt38.slgri'])
+    ;
+     $zms=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$ecpi->id)
+    ->where('class_zonemontagne','EN TOTALITE')
+    ->orWhere('class_zonemontagne','PARTIELLEMENT')
+    ->get()
+    ;
     return view('consultations.epci')
     ->with('epci',$epci)
     ->with('comms',$comms)
     ->with('populations',$populations)
+    ->with('scots',$scots)
+    ->with('lienGs',$lienGs)
+    ->with('pnrs',$pnrs)
+     ->with('tris',$tris)
+     ->with('slgris',$slgris)
+     ->with('zms',$zms)
+    ;
+  }
+
+   public function voirEpciGet($id)
+   {
+    $epci=epci_ddt38::find($id);
+    $comms=DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->orderBy('nom_comm')
+    ->get();
+
+    $populations=
+   DB::table('comm_ddt38')
+    ->join('population_comm_ddt38', 'comm_ddt38.id', '=', 'population_comm_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$id)
+    ->select('population_comm_ddt38.annee', DB::raw('SUM(population_comm_ddt38.population) as population'))
+    ->groupBy('population_comm_ddt38.annee')
+    ->orderBy('population_comm_ddt38.annee')
+    ->get();
+
+     $scots=
+    DB::table('scot_ddt38')
+    ->join('comm_ddt38', 'scot_ddt38.id', '=', 'comm_ddt38.id_scot')
+    ->where('comm_ddt38.id_epci',$id)
+    ->distinct()
+    ->get(['scot_ddt38.nom_scot']);
+    ;
+   
+   $pnrs=
+  DB::table('pnr_ddt38')
+    ->join('comm_ddt38', 'pnr_ddt38.id', '=', 'comm_ddt38.id_pnr')
+    ->where('comm_ddt38.id_epci',$id)
+    ->distinct()
+    ->get(['pnr_ddt38.nom_pnr','pnr_ddt38.annee_maj']);
+    ;
+
+    $lienGs=lienG_ddt38::orderBy('nom')->get();
+
+   $tris=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->distinct()
+   ->get(['comm_ddt38.tri'])
+    ;
+
+     $slgris=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->distinct()
+   ->get(['comm_ddt38.slgri'])
+    ;
+
+     $zms=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->where('class_zonemontagne','EN TOTALITE')
+    ->orWhere('class_zonemontagne','PARTIELLEMENT')
+    ->get()
+    ;
+
+   
+
+    return view('consultations.epci')
+    ->with('epci',$epci)
+    ->with('comms',$comms)
+    ->with('populations',$populations)
+    ->with('scots',$scots)
+     ->with('lienGs',$lienGs)
+    ->with('pnrs',$pnrs)
+     ->with('tris',$tris)
+      ->with('slgris',$slgris)
+      ->with('zms',$zms)
     ;
   }
 }

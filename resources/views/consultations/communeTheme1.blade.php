@@ -51,7 +51,12 @@
 					</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between ">EPCI <b>
-							@if(!empty($epci)){{$epci->nom_groupement}}@endif</b>  
+							@if(!empty($epci))
+							<a href="{{route('epciC', ['id' => $epci->id])}}" target="_blank">
+										<b>{{$epci->nom_groupement}}</b>
+									</a>
+
+						@endif</b>  
 						</li>
 
 						<li class="list-group-item justify-content-between ">Territoire 38 <b>@if(!empty($terri)) {{$terri->nom_terri38}} @endif</b>  

@@ -210,8 +210,8 @@
 				</li>
 			
 			</ul>
-			</div>
 			<br>
+			</div>
 			<div class="col-md-12">			
 			<h3 class="card-title">Plan Cilmat Air Energie Territorial </h3>
 			<ul class="list-group">

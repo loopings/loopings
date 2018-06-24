@@ -40,7 +40,7 @@
 					@if(!isset($comm->doc_urba_opposable))
 					pas d'information	
 					@else
-					{{$comm->disposition_opposable}}
+					{{$comm->doc_urba_opposable}}
 
 				@endif</b>  
 			</li>
