@@ -43,6 +43,7 @@ use App\assoc_res_strat;
 use App\assoc_aoc_aop;
 use App\assoc_tepos_pepcv;
 use App\assoc_pfre;
+use App\assoc_contact_cm;
 
 use App\cantons_ddt38;
 use App\appb_ddt38;
@@ -72,6 +73,8 @@ use App\aocaop_ddt38;
 use App\pcaet_ddt38;
 use App\tepospepcv_ddt38;
 use App\pfre_ddt38;
+use App\contactcm_ddt38;
+
 class Consultations extends Controller
 {
     //
@@ -510,7 +513,7 @@ class Consultations extends Controller
     ->orderBy('population_comm_ddt38.annee')
     ->get();
 
-   $scots=
+    $scots=
     DB::table('scot_ddt38')
     ->join('comm_ddt38', 'scot_ddt38.id', '=', 'comm_ddt38.id_scot')
     ->where('comm_ddt38.id_epci',$epci->id)
@@ -518,7 +521,7 @@ class Consultations extends Controller
     ->get(['scot_ddt38.nom_scot']);
     ;
 
-     $pnrs=
+    $pnrs=
     DB::table('pnr_ddt38')
     ->join('comm_ddt38', 'pnr_ddt38.id', '=', 'comm_ddt38.id_pnr')
     ->where('comm_ddt38.id_epci',$epci->id)
@@ -528,7 +531,7 @@ class Consultations extends Controller
 
     $lienGs=lienG_ddt38::orderBy('nom')->get();
 
-     $tris=
+    $tris=
     DB::table('comm_ddt38')
     ->where('id_epci',$epci->id)
     ->distinct()
@@ -541,13 +544,75 @@ class Consultations extends Controller
     ->distinct()
     ->get(['comm_ddt38.slgri'])
     ;
-     $zms=
+    $zms=
     DB::table('comm_ddt38')
-    ->where('id_epci',$ecpi->id)
+    ->where('id_epci',$epci->id)
     ->where('class_zonemontagne','EN TOTALITE')
     ->orWhere('class_zonemontagne','PARTIELLEMENT')
     ->get()
     ;
+
+    $resstrats=
+    DB::table('assoc_res_strat')
+    ->join('comm_ddt38', 'assoc_res_strat.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('resstrat_ddt38', 'resstrat_ddt38.id', '=', 'assoc_res_strat.id_res_strat')
+    ->select('resstrat_ddt38.nom_resstrat','resstrat_ddt38.annee_maj')
+    ->orderBy('resstrat_ddt38.nom_resstrat')
+    ->distinct()
+    ->get();
+
+    //peut poser problème
+    $sdage_deficits=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->where('sdage_deficit_aver','oui')
+    ->orWhere('sdage_deficit_aver','OUI')   
+    ->get()
+    ;
+    
+
+    //peut poser problème
+    $sdage_equis=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->where('sdage_equi_frag','oui')
+    ->orWhere('sdage_equi_frag','OUI')   
+    ->get()
+    ;
+
+    //peut poser problème
+    $pgres=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->where('pgre','oui')
+    ->orWhere('pgre','OUI')   
+    ->get()
+    ;
+
+
+    $gemapis=
+    DB::table('gemapi_ddt38')
+    ->join('comm_ddt38', 'gemapi_ddt38.id', '=', 'comm_ddt38.id_gemapi')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->distinct()
+    ->get();
+    ;
+
+    //assoc ecpi
+    $assoc_contact_cm=DB::table('assoc_contact_cm')->where('id_epci',$epci->id)->get();
+    $contactcms=contactcm_ddt38::find($assoc_contact_cm->pluck('id_contact'));
+    
+    $cms=
+    DB::table('assoc_cm')
+    ->join('comm_ddt38', 'assoc_cm.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$ecpi->id)
+    ->join('cm_ddt38', 'cm_ddt38.id', '=', 'assoc_cm.id_cm')
+    ->select('cm_ddt38.nom_contrat','cm_ddt38.annee_maj')
+    ->orderBy('cm_ddt38.nom_contrat')
+    ->distinct()
+    ->get();
+
     return view('consultations.epci')
     ->with('epci',$epci)
     ->with('comms',$comms)
@@ -555,14 +620,21 @@ class Consultations extends Controller
     ->with('scots',$scots)
     ->with('lienGs',$lienGs)
     ->with('pnrs',$pnrs)
-     ->with('tris',$tris)
-     ->with('slgris',$slgris)
-     ->with('zms',$zms)
+    ->with('tris',$tris)
+    ->with('slgris',$slgris)
+    ->with('zms',$zms)
+    ->with('resstrats',$resstrats)
+    ->with('sdage_deficits',$sdage_deficits)
+    ->with('sdage_equis',$sdage_equis)
+    ->with('pgres',$pgres)
+    ->with('gemapis',$gemapis)
+    ->with('contactcms',$contactcms)
+    ->with('cms',$cms)
     ;
   }
 
-   public function voirEpciGet($id)
-   {
+  public function voirEpciGet($id)
+  {
     $epci=epci_ddt38::find($id);
     $comms=DB::table('comm_ddt38')
     ->where('id_epci',$id)
@@ -570,7 +642,7 @@ class Consultations extends Controller
     ->get();
 
     $populations=
-   DB::table('comm_ddt38')
+    DB::table('comm_ddt38')
     ->join('population_comm_ddt38', 'comm_ddt38.id', '=', 'population_comm_ddt38.id_comm')
     ->where('comm_ddt38.id_epci',$id)
     ->select('population_comm_ddt38.annee', DB::raw('SUM(population_comm_ddt38.population) as population'))
@@ -578,16 +650,16 @@ class Consultations extends Controller
     ->orderBy('population_comm_ddt38.annee')
     ->get();
 
-     $scots=
+    $scots=
     DB::table('scot_ddt38')
     ->join('comm_ddt38', 'scot_ddt38.id', '=', 'comm_ddt38.id_scot')
     ->where('comm_ddt38.id_epci',$id)
     ->distinct()
     ->get(['scot_ddt38.nom_scot']);
     ;
-   
-   $pnrs=
-  DB::table('pnr_ddt38')
+
+    $pnrs=
+    DB::table('pnr_ddt38')
     ->join('comm_ddt38', 'pnr_ddt38.id', '=', 'comm_ddt38.id_pnr')
     ->where('comm_ddt38.id_epci',$id)
     ->distinct()
@@ -596,21 +668,21 @@ class Consultations extends Controller
 
     $lienGs=lienG_ddt38::orderBy('nom')->get();
 
-   $tris=
+    $tris=
     DB::table('comm_ddt38')
     ->where('id_epci',$id)
     ->distinct()
-   ->get(['comm_ddt38.tri'])
+    ->get(['comm_ddt38.tri'])
     ;
 
-     $slgris=
+    $slgris=
     DB::table('comm_ddt38')
     ->where('id_epci',$id)
     ->distinct()
-   ->get(['comm_ddt38.slgri'])
+    ->get(['comm_ddt38.slgri'])
     ;
 
-     $zms=
+    $zms=
     DB::table('comm_ddt38')
     ->where('id_epci',$id)
     ->where('class_zonemontagne','EN TOTALITE')
@@ -618,18 +690,103 @@ class Consultations extends Controller
     ->get()
     ;
 
-   
+    $resstrats=
+    DB::table('assoc_res_strat')
+    ->join('comm_ddt38', 'assoc_res_strat.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('resstrat_ddt38', 'resstrat_ddt38.id', '=', 'assoc_res_strat.id_res_strat')
+    ->select('resstrat_ddt38.nom_resstrat','resstrat_ddt38.annee_maj')
+    ->orderBy('resstrat_ddt38.nom_resstrat')
+    ->distinct()
+    ->get();
 
+    //peut poser problème
+    $sdage_deficits=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->where('sdage_deficit_aver','oui')
+    ->orWhere('sdage_deficit_aver','OUI')   
+    ->get()
+    ;
+    
+    //peut poser problème
+    $sdage_equis=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->where('sdage_equi_frag','oui')
+    ->orWhere('sdage_equi_frag','OUI')   
+    ->get()
+    ;
+
+      //peut poser problème
+    $pgres=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->where('pgre','oui')
+    ->orWhere('pgre','OUI')   
+    ->get()
+    ;
+
+     $gemapis=
+    DB::table('gemapi_ddt38')
+    ->join('comm_ddt38', 'gemapi_ddt38.id', '=', 'comm_ddt38.id_gemapi')
+    ->where('comm_ddt38.id_epci',$id)
+    ->distinct()
+    ->get();
+    ;
+
+    //assoc ecpi
+    $assoc_contact_cm=DB::table('assoc_contact_cm')->where('id_epci',$id)->get();
+    $contactcms=contactcm_ddt38::find($assoc_contact_cm->pluck('id_contact'));
+
+    //somme des cm des communes
+    $cms=
+    DB::table('assoc_cm')
+    ->join('comm_ddt38', 'assoc_cm.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('cm_ddt38', 'cm_ddt38.id', '=', 'assoc_cm.id_cm')
+    ->select('cm_ddt38.nom_contrat','cm_ddt38.annee_maj')
+    ->orderBy('cm_ddt38.nom_contrat')
+    ->distinct()
+    ->get();
+
+
+
+   
     return view('consultations.epci')
     ->with('epci',$epci)
     ->with('comms',$comms)
     ->with('populations',$populations)
     ->with('scots',$scots)
-     ->with('lienGs',$lienGs)
+    ->with('lienGs',$lienGs)
     ->with('pnrs',$pnrs)
-     ->with('tris',$tris)
-      ->with('slgris',$slgris)
-      ->with('zms',$zms)
+    ->with('tris',$tris)
+    ->with('slgris',$slgris)
+    ->with('zms',$zms)
+    ->with('resstrats',$resstrats)
+    ->with('sdage_deficits',$sdage_deficits)
+    ->with('sdage_equis',$sdage_equis)
+    ->with('pgres',$pgres)
+    ->with('gemapis',$gemapis)
+     ->with('contactcms',$contactcms)
+     ->with('cms',$cms)
+
     ;
   }
 }
+
+/*
+@foreach($lgmts as $lgmt) 
+          <tr>
+
+            <td> {{$lgmt->annee}}   </td>
+            <td> {{$lgmt->total_lgmts}}  </td>
+            <td> {{$lgmt->resid_princ}}({{$lgmt->res_princ_av_75}})  </td>
+            <td> {{$lgmt->resid_second}}  </td>
+            <td> {{$lgmt->lgmts_vacants}}  </td>
+            <td> {{$lgmt->maisons}}  </td>
+            <td> {{$lgmt->appartements}}  </td>
+            <td> {{$lgmt->lgmts_sociaux}}  </td>
+          </tr>
+          @endforeach
+          */

@@ -142,7 +142,7 @@
 						<th style="vertical-align:text-top;">   Maisons </th>
 						<th style="vertical-align:text-top;">   Appartements  </th>
 						<th style="vertical-align:text-top;">    Logements sociaux </th>
-						<th style="vertical-align:text-top;">     </th>
+						
 					</tr>
 				</thead>
 				<tbody>
