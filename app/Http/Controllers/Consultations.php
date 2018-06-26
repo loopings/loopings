@@ -606,12 +606,53 @@ class Consultations extends Controller
     $cms=
     DB::table('assoc_cm')
     ->join('comm_ddt38', 'assoc_cm.id_comm', '=', 'comm_ddt38.id')
-    ->where('comm_ddt38.id_epci',$ecpi->id)
+    ->where('comm_ddt38.id_epci',$epci->id)
     ->join('cm_ddt38', 'cm_ddt38.id', '=', 'assoc_cm.id_cm')
     ->select('cm_ddt38.nom_contrat','cm_ddt38.annee_maj')
     ->orderBy('cm_ddt38.nom_contrat')
     ->distinct()
     ->get();
+
+    $sages=
+    DB::table('assoc_sage')
+    ->join('comm_ddt38', 'assoc_sage.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('sage_ddt38', 'sage_ddt38.id', '=', 'assoc_sage.id_sage')
+    ->select('sage_ddt38.nom_sage','sage_ddt38.annee_maj','sage_ddt38.contact1','sage_ddt38.contact2','sage_ddt38.lien_gesteau')
+    ->orderBy('sage_ddt38.nom_sage')
+    ->distinct()
+    ->get();
+
+    $colgestasss=
+    DB::table('assoc_col_gest_ass')
+    ->join('comm_ddt38', 'assoc_col_gest_ass.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('colgestass_ddt38', 'colgestass_ddt38.id', '=', 'assoc_col_gest_ass.id_col')
+    ->select('colgestass_ddt38.nom_colgestass','colgestass_ddt38.annee_maj')
+    ->orderBy('colgestass_ddt38.nom_colgestass')
+    ->distinct()
+    ->get();
+
+    $colgesteaups=
+    DB::table('assoc_col_gest_eaup')
+    ->join('comm_ddt38', 'assoc_col_gest_eaup.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('colgesteaup_ddt38', 'colgesteaup_ddt38.id', '=', 'assoc_col_gest_eaup.id_col')
+    ->select('colgesteaup_ddt38.nom_colgesteaup','colgesteaup_ddt38.annee_maj')
+    ->orderBy('colgesteaup_ddt38.nom_colgesteaup')
+    ->distinct()
+    ->get();
+
+    $cfs=
+    DB::table('assoc_cf')
+    ->join('comm_ddt38', 'assoc_cf.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('cf_ddt38', 'cf_ddt38.id', '=', 'assoc_cf.id_chforest')
+    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj')
+    ->orderBy('cf_ddt38.nom_charte')
+    ->distinct()
+    ->get();
+
 
     return view('consultations.epci')
     ->with('epci',$epci)
@@ -630,6 +671,11 @@ class Consultations extends Controller
     ->with('gemapis',$gemapis)
     ->with('contactcms',$contactcms)
     ->with('cms',$cms)
+    ->with('sages',$sages)
+    ->with('colgestasss',$colgestasss)
+    ->with('colgesteaups',$colgesteaups)
+     ->with('cfs',$cfs)
+
     ;
   }
 
@@ -727,13 +773,14 @@ class Consultations extends Controller
     ->get()
     ;
 
-     $gemapis=
+    $gemapis=
     DB::table('gemapi_ddt38')
     ->join('comm_ddt38', 'gemapi_ddt38.id', '=', 'comm_ddt38.id_gemapi')
     ->where('comm_ddt38.id_epci',$id)
     ->distinct()
-    ->get();
+    ->get()
     ;
+    
 
     //assoc ecpi
     $assoc_contact_cm=DB::table('assoc_contact_cm')->where('id_epci',$id)->get();
@@ -750,9 +797,46 @@ class Consultations extends Controller
     ->distinct()
     ->get();
 
+    $sages=
+    DB::table('assoc_sage')
+    ->join('comm_ddt38', 'assoc_sage.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('sage_ddt38', 'sage_ddt38.id', '=', 'assoc_sage.id_sage')
+    ->select('sage_ddt38.nom_sage','sage_ddt38.annee_maj','sage_ddt38.contact1','sage_ddt38.contact2','sage_ddt38.lien_gesteau')
+    ->orderBy('sage_ddt38.nom_sage')
+    ->distinct()
+    ->get();
 
+    $colgestasss=
+    DB::table('assoc_col_gest_ass')
+    ->join('comm_ddt38', 'assoc_col_gest_ass.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('colgestass_ddt38', 'colgestass_ddt38.id', '=', 'assoc_col_gest_ass.id_col')
+    ->select('colgestass_ddt38.nom_colgestass','colgestass_ddt38.annee_maj')
+    ->orderBy('colgestass_ddt38.nom_colgestass')
+    ->distinct()
+    ->get();
 
-   
+    $colgesteaups=
+    DB::table('assoc_col_gest_eaup')
+    ->join('comm_ddt38', 'assoc_col_gest_eaup.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('colgesteaup_ddt38', 'colgesteaup_ddt38.id', '=', 'assoc_col_gest_eaup.id_col')
+    ->select('colgesteaup_ddt38.nom_colgesteaup','colgesteaup_ddt38.annee_maj')
+    ->orderBy('colgesteaup_ddt38.nom_colgesteaup')
+    ->distinct()
+    ->get();
+
+    $cfs=
+    DB::table('assoc_cf')
+    ->join('comm_ddt38', 'assoc_cf.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('cf_ddt38', 'cf_ddt38.id', '=', 'assoc_cf.id_chforest')
+    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj')
+    ->orderBy('cf_ddt38.nom_charte')
+    ->distinct()
+    ->get();
+
     return view('consultations.epci')
     ->with('epci',$epci)
     ->with('comms',$comms)
@@ -768,8 +852,12 @@ class Consultations extends Controller
     ->with('sdage_equis',$sdage_equis)
     ->with('pgres',$pgres)
     ->with('gemapis',$gemapis)
-     ->with('contactcms',$contactcms)
-     ->with('cms',$cms)
+    ->with('contactcms',$contactcms)
+    ->with('cms',$cms)
+    ->with('sages',$sages)
+    ->with('colgestasss',$colgestasss)
+    ->with('colgesteaups',$colgesteaups)
+     ->with('cfs',$cfs)
 
     ;
   }
