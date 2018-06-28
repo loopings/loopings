@@ -546,9 +546,11 @@ class Consultations extends Controller
     ;
     $zms=
     DB::table('comm_ddt38')
-    ->where('id_epci',$epci->id)
-    ->where('class_zonemontagne','EN TOTALITE')
-    ->orWhere('class_zonemontagne','PARTIELLEMENT')
+    ->where([
+      ['id_epci',$epci->id],
+      ['sdage_deficit_aver','<>','non'],
+      ['sdage_deficit_aver','<>','NON']
+    ])
     ->get()
     ;
 
@@ -565,44 +567,50 @@ class Consultations extends Controller
     //peut poser problème
     $sdage_deficits=
     DB::table('comm_ddt38')
-    ->where('id_epci',$epci->id)
-    ->where('sdage_deficit_aver','oui')
-    ->orWhere('sdage_deficit_aver','OUI')   
+    ->where([
+      ['id_epci',$epci->id],
+      ['sdage_deficit_aver','<>','non'],
+      ['sdage_deficit_aver','<>','NON']
+    ])
     ->get()
     ;
     
-
     //peut poser problème
     $sdage_equis=
     DB::table('comm_ddt38')
-    ->where('id_epci',$epci->id)
-    ->where('sdage_equi_frag','oui')
-    ->orWhere('sdage_equi_frag','OUI')   
+    ->where([
+      ['id_epci',$epci->id],
+      ['sdage_equi_frag','<>','non'],
+      ['sdage_equi_frag','<>','NON']
+    ])  
     ->get()
     ;
 
-    //peut poser problème
+      //peut poser problème
     $pgres=
     DB::table('comm_ddt38')
-    ->where('id_epci',$epci->id)
-    ->where('pgre','oui')
-    ->orWhere('pgre','OUI')   
+    ->where([
+      ['id_epci',$epci->id],
+      ['pgre','<>','non'],
+      ['pgre','<>','NON']
+    ])   
     ->get()
     ;
-
 
     $gemapis=
     DB::table('gemapi_ddt38')
     ->join('comm_ddt38', 'gemapi_ddt38.id', '=', 'comm_ddt38.id_gemapi')
     ->where('comm_ddt38.id_epci',$epci->id)
     ->distinct()
-    ->get();
+    ->get()
     ;
+    
 
     //assoc ecpi
     $assoc_contact_cm=DB::table('assoc_contact_cm')->where('id_epci',$epci->id)->get();
     $contactcms=contactcm_ddt38::find($assoc_contact_cm->pluck('id_contact'));
-    
+
+    //somme des cm des communes
     $cms=
     DB::table('assoc_cm')
     ->join('comm_ddt38', 'assoc_cm.id_comm', '=', 'comm_ddt38.id')
@@ -653,6 +661,65 @@ class Consultations extends Controller
     ->distinct()
     ->get();
 
+    $existence_reg_boiss=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['existence_reg_bois','<>','non'],
+      ['existence_reg_bois','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $existence_for_prots=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['existence_for_prot','<>','non'],
+      ['existence_for_prot','<>','NON']
+    ])
+    ->get()
+    ;
+
+
+    $comm_tourists=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['comm_tourist','<>','non'],
+      ['comm_tourist','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $logements=
+    DB::table('comm_ddt38')
+    ->join('lgmts_ddt38', 'comm_ddt38.id', '=', 'lgmts_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->select('lgmts_ddt38.annee', DB::raw('
+      SUM(lgmts_ddt38.total_lgmts) as total_lgmts,
+      SUM(lgmts_ddt38.resid_princ) as resid_princ,
+      SUM(lgmts_ddt38.resid_second) as resid_second,
+      SUM(lgmts_ddt38.lgmts_vacants) as lgmts_vacants,
+      SUM(lgmts_ddt38.maisons) as maisons,
+      SUM(lgmts_ddt38.appartements) as appartements,
+      SUM(lgmts_ddt38.lgmts_sociaux) as lgmts_sociaux,
+      SUM(lgmts_ddt38.res_princ_av_75) as res_princ_av_75
+      '))
+    ->groupBy('lgmts_ddt38.annee')
+    ->orderBy('lgmts_ddt38.annee')
+    ->get();
+
+    $aocaops=
+    DB::table('assoc_aoc_aop')
+    ->join('comm_ddt38', 'assoc_aoc_aop.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('aocaop_ddt38', 'aocaop_ddt38.id', '=', 'assoc_aoc_aop.id_aoc_aop')
+    ->select('aocaop_ddt38.nom_aocaop','aocaop_ddt38.annee_maj')
+    ->orderBy('aocaop_ddt38.nom_aocaop')
+    ->distinct()
+    ->get();
+
 
     return view('consultations.epci')
     ->with('epci',$epci)
@@ -674,8 +741,10 @@ class Consultations extends Controller
     ->with('sages',$sages)
     ->with('colgestasss',$colgestasss)
     ->with('colgesteaups',$colgesteaups)
-     ->with('cfs',$cfs)
-
+    ->with('cfs',$cfs)
+    ->with('comm_tourists',$comm_tourists)
+    ->with('logements',$logements)
+    ->with('aocaops',$aocaops)
     ;
   }
 
@@ -730,9 +799,11 @@ class Consultations extends Controller
 
     $zms=
     DB::table('comm_ddt38')
-    ->where('id_epci',$id)
-    ->where('class_zonemontagne','EN TOTALITE')
-    ->orWhere('class_zonemontagne','PARTIELLEMENT')
+    ->where([
+      ['id_epci',$id],
+      ['sdage_deficit_aver','<>','non'],
+      ['sdage_deficit_aver','<>','NON']
+    ])
     ->get()
     ;
 
@@ -749,27 +820,33 @@ class Consultations extends Controller
     //peut poser problème
     $sdage_deficits=
     DB::table('comm_ddt38')
-    ->where('id_epci',$id)
-    ->where('sdage_deficit_aver','oui')
-    ->orWhere('sdage_deficit_aver','OUI')   
+    ->where([
+      ['id_epci',$id],
+      ['sdage_deficit_aver','<>','non'],
+      ['sdage_deficit_aver','<>','NON']
+    ])
     ->get()
     ;
     
     //peut poser problème
     $sdage_equis=
     DB::table('comm_ddt38')
-    ->where('id_epci',$id)
-    ->where('sdage_equi_frag','oui')
-    ->orWhere('sdage_equi_frag','OUI')   
+    ->where([
+      ['id_epci',$id],
+      ['sdage_equi_frag','<>','non'],
+      ['sdage_equi_frag','<>','NON']
+    ])  
     ->get()
     ;
 
       //peut poser problème
     $pgres=
     DB::table('comm_ddt38')
-    ->where('id_epci',$id)
-    ->where('pgre','oui')
-    ->orWhere('pgre','OUI')   
+    ->where([
+      ['id_epci',$id],
+      ['pgre','<>','non'],
+      ['pgre','<>','NON']
+    ])   
     ->get()
     ;
 
@@ -837,6 +914,66 @@ class Consultations extends Controller
     ->distinct()
     ->get();
 
+    $existence_reg_boiss=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['existence_reg_bois','<>','non'],
+      ['existence_reg_bois','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $existence_for_prots=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['existence_for_prot','<>','non'],
+      ['existence_for_prot','<>','NON']
+    ])
+    ->get()
+    ;
+
+
+    $comm_tourists=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['comm_tourist','<>','non'],
+      ['comm_tourist','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $logements=
+    DB::table('comm_ddt38')
+    ->join('lgmts_ddt38', 'comm_ddt38.id', '=', 'lgmts_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$id)
+    ->select('lgmts_ddt38.annee', DB::raw('
+      SUM(lgmts_ddt38.total_lgmts) as total_lgmts,
+      SUM(lgmts_ddt38.resid_princ) as resid_princ,
+      SUM(lgmts_ddt38.resid_second) as resid_second,
+      SUM(lgmts_ddt38.lgmts_vacants) as lgmts_vacants,
+      SUM(lgmts_ddt38.maisons) as maisons,
+      SUM(lgmts_ddt38.appartements) as appartements,
+      SUM(lgmts_ddt38.lgmts_sociaux) as lgmts_sociaux,
+      SUM(lgmts_ddt38.res_princ_av_75) as res_princ_av_75
+      '))
+    ->groupBy('lgmts_ddt38.annee')
+    ->orderBy('lgmts_ddt38.annee')
+    ->get();
+
+    $aocaops=
+    DB::table('assoc_aoc_aop')
+    ->join('comm_ddt38', 'assoc_aoc_aop.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('aocaop_ddt38', 'aocaop_ddt38.id', '=', 'assoc_aoc_aop.id_aoc_aop')
+    ->select('aocaop_ddt38.nom_aocaop','aocaop_ddt38.annee_maj')
+    ->orderBy('aocaop_ddt38.nom_aocaop')
+    ->distinct()
+    ->get();
+
+
     return view('consultations.epci')
     ->with('epci',$epci)
     ->with('comms',$comms)
@@ -857,24 +994,25 @@ class Consultations extends Controller
     ->with('sages',$sages)
     ->with('colgestasss',$colgestasss)
     ->with('colgesteaups',$colgesteaups)
-     ->with('cfs',$cfs)
-
+    ->with('cfs',$cfs)
+    ->with('comm_tourists',$comm_tourists)
+    ->with('logements',$logements)
+    ->with('aocaops',$aocaops)
     ;
   }
 }
 
 /*
-@foreach($lgmts as $lgmt) 
-          <tr>
-
-            <td> {{$lgmt->annee}}   </td>
-            <td> {{$lgmt->total_lgmts}}  </td>
-            <td> {{$lgmt->resid_princ}}({{$lgmt->res_princ_av_75}})  </td>
-            <td> {{$lgmt->resid_second}}  </td>
-            <td> {{$lgmt->lgmts_vacants}}  </td>
-            <td> {{$lgmt->maisons}}  </td>
-            <td> {{$lgmt->appartements}}  </td>
-            <td> {{$lgmt->lgmts_sociaux}}  </td>
-          </tr>
-          @endforeach
-          */
+@if (!empty($maets->first()))
+        @foreach($maets as $maet)
+        <li class="list-group-item justify-content-between "> 
+          Nom :  
+          <b>{{$maet->nom_maet}}<br></b>
+        </li>
+        @endforeach
+        @else
+        <li class="list-group-item justify-content-between "> 
+          <b>Pas de MAET<br></b>
+        </li>
+        @endif
+        */
