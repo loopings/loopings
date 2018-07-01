@@ -368,10 +368,15 @@
             <ul class="nav nav-second-level">
 
               <li>
-                <a href="/lien">Liens uniques</a>
+                <a href="/lien">Liens uniques (échelle communale)</a>
               </li>
+
+              <li>
+                <a href="/lienE">Liens uniques (échelle EPCI)</a>
+              </li>
+
                <li>
-                <a href="/lienG">Liens généraux</a>
+                <a href="/lienG">Liens généraux (hors liens utiles)</a>
               </li>
 
 

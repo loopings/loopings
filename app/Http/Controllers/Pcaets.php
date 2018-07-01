@@ -23,17 +23,18 @@ class pcaets extends Controller
     {
         //
 
-     $pcaets = DB::table('pcaet_ddt38')
+       $pcaets = DB::table('pcaet_ddt38')
 
-     ->join('epci_ddt38', function ($join) {
+       ->join('epci_ddt38', function ($join) {
         $join->on('pcaet_ddt38.id_epci', '=', 'epci_ddt38.id');})
-     ->select( 'id_epci','nom_groupement','type_pcaet','correspondant_ddt','etat_avancement_demarche','nom_groupement')
-     ->orderBy('nom_groupement')
-     ->orderBy('correspondant_ddt')
-     ->paginate(20);
+       ->select( 'id_epci','nom_groupement','type_pcaet','correspondant_ddt','etat_avancement_demarche','nom_groupement','correspondant2_ddt','annee_maj','nom_pcaet')
+       ->orderBy('nom_groupement')
+       ->orderBy('nom_pcaet')
+       ->orderBy('correspondant_ddt')
+       ->paginate(20);
 
-     return view('pcaets.index')->with('pcaets', $pcaets);
- }
+       return view('pcaets.index')->with('pcaets', $pcaets);
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -58,13 +59,13 @@ class pcaets extends Controller
     {
       $message=null;
       try{
-  
-
-
         $id_epci=$request->id;
+        $nom_pcaet=$request->nom_pcaet;
         $correspondant_ddt=$request->correspondant_ddt;
+        $correspondant2_ddt=$request->correspondant2_ddt;
         $etat_avancement_demarche=$request->etat_avancement_demarche;
         $type_pcaet=$request->type_pcaet;
+        $annee_maj=$request->annee_maj;
 
 
 
@@ -73,13 +74,13 @@ class pcaets extends Controller
                 'id_epci'=>$id_epci,  
                 'correspondant_ddt'=>$correspondant_ddt,
                 'etat_avancement_demarche'=>$etat_avancement_demarche,
-                'type_pcaet'=>$type_pcaet
+                'type_pcaet'=>$type_pcaet,
+                'correspondant2_ddt'=>$correspondant2_ddt,
+                'nom_pcaet'=>$nom_pcaet,
+                'annee_maj'=>$annee_maj
+            )
 
-                
-
-                )
-
-            );
+        );
     }catch(QueryException $ex){
 
         $message=$ex->getMessage();
@@ -111,7 +112,7 @@ class pcaets extends Controller
     public function edit($id)
     {
         $pcaet= pcaet_ddt38::find($id);
-      
+
         return view('pcaets.edit',compact('pcaet'))->with('pcaet', $pcaet);
     }
 
@@ -127,25 +128,28 @@ class pcaets extends Controller
 
 
 
-     $message=null;
-     try{
-       DB::table('pcaet_ddt38')
-       ->where('id_epci',$id)
-       ->update  ( 
-           array(
-            'correspondant_ddt'=>$request->correspondant_ddt,
-            'etat_avancement_demarche'=>$request->etat_avancement_demarche,
-            'type_pcaet'=>$request->type_pcaet
+       $message=null;
+       try{
+         DB::table('pcaet_ddt38')
+         ->where('id_epci',$id)
+         ->update  ( 
+             array(
+                'correspondant_ddt'=>$request->correspondant_ddt,
+                'correspondant2_ddt'=>$request->correspondant2_ddt,
+                'nom_pcaet'=>$request->nom_pcaet,
+                'annee_maj'=>$request->annee_maj,
+                'etat_avancement_demarche'=>$request->etat_avancement_demarche,
+                'type_pcaet'=>$request->type_pcaet
 
             )
-           );
+         );
 
-   }catch(QueryException $ex){
+     }catch(QueryException $ex){
 
-    $message=$ex->getMessage();
-}
+        $message=$ex->getMessage();
+    }
 
-return redirect('pcaet')->with('message', $message);
+    return redirect('pcaet')->with('message', $message);
 }
 
     /**

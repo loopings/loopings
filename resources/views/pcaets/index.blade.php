@@ -99,13 +99,22 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 					Nom EPCI
 				</th>
 				<th>
+					Nom PCAET
+				</th>
+				<th>
 					Correspondant DDT
+				</th>
+				<th>
+					Autre correspondant DDT
 				</th>
 				<th>
 					Type PCAET
 				</th>
 				<th>
 					Etat d'avancement de la démarche
+				</th>
+				<th>
+					Année de la donnée
 				</th>
 				
 
@@ -122,9 +131,15 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 				<td>
 					{{$pcaet->nom_groupement}}
 				</td>
+				<td>
+					{{$pcaet->nom_pcaet}}
+				</td>
 
 				<td>
 					{{$pcaet->correspondant_ddt}}
+				</td>
+				<td>
+					{{$pcaet->correspondant2_ddt}}
 				</td>
 
 				<td>
@@ -132,6 +147,9 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 				</td>
 				<td>
 					{{$pcaet->etat_avancement_demarche}}
+				</td>
+				<td>
+					{{$pcaet->annee_maj}}
 				</td>
 				
 

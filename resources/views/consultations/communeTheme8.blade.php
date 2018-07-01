@@ -44,13 +44,13 @@
 						pas de vidéo	
 						@else
 						<a href="{{$comm->video_com_foncier}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
+							<b>Cliquez ici</b>
+						</a>
 						
 						@endif
 
 					</b>
- 
+					
 				</li>
 				<li class="list-group-item justify-content-between"> 
 					Commune concernée par la consultation de la CDEPNAF lors de l'élaboration ou de la révision
@@ -62,7 +62,7 @@
 						@endif
 
 					</b>
- 
+					
 				</li>
 			</ul>
 			
@@ -73,60 +73,60 @@
 
 <div class="row col-md-12">
 	<div class="col-md-6 d-flex align-items-stretch">		
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title">EPF local ou d'Etat</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Présence d'in établissement public foncier
-					<b>
-						@if(!isset($comm->epf))
-						pas d'information	
-						@else
-						{{$comm->epf}}
-						@endif
+		<div class="card">
+			<div class="card-block">
+				<h3 class="card-title">EPF local ou d'Etat</h3>
+				<ul class="list-group">
+					<li class="list-group-item justify-content-between "> 
+						Présence d'in établissement public foncier
+						<b>
+							@if(!isset($comm->epf))
+							pas d'information	
+							@else
+							{{$comm->epf}}
+							@endif
 
-					</b>  
-				</li>
-			</ul>
-			
+						</b>  
+					</li>
+				</ul>
+				
+			</div>
 		</div>
 	</div>
-</div>
 
 
 	<div class="col-md-6 d-flex align-items-stretch">
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title">Zones agricoles protégées</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Présence d'une ZAP, démarche Etat
-					<b>
-						@if(!isset($comm->zap))
-						pas d'information	
-						@else
-						{{$comm->zap}}
-						@endif
+		<div class="card">
+			<div class="card-block">
+				<h3 class="card-title">Zones agricoles protégées</h3>
+				<ul class="list-group">
+					<li class="list-group-item justify-content-between "> 
+						Présence d'une ZAP, démarche Etat
+						<b>
+							@if(!isset($comm->zap))
+							pas d'information	
+							@else
+							{{$comm->zap}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Présence d'un PAEN, démarche CD38
-					<b>
-						@if(!isset($comm->paen))
-						pas d'information	
-						@else
-						{{$comm->paen}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Présence d'un PAEN, démarche CD38
+						<b>
+							@if(!isset($comm->paen))
+							pas d'information	
+							@else
+							{{$comm->paen}}
+							@endif
 
-					</b>  
-				</li>
+						</b>  
+					</li>
+					
+				</ul>
 				
-			</ul>
-			
+			</div>
 		</div>
-	</div>
 	</div>
 </div>
 
@@ -137,26 +137,26 @@
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between "> 
-					Présence d'une ZAP, démarche Etat
+					Lien OFPI
 					<b>
 						@if(!isset($epci->doc_ofpi))
 						pas de vidéo	
 						@else
 						<a href="{{$epci->doc_ofpi}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
+							<b>Cliquez ici</b>
+						</a>
 						
 						@endif
 
 					</b>
 				</li>
 				@foreach($lien_theme8s as $lien_theme8)
-									<li class="list-group-item justify-content-between ">{{$lien_theme8->libelle}} :
-										<a href="{{$lien_theme8->lien}}" target="_blank" style="max-width: 90%;" >
-											<b>Cliquez ici <br></b>
-										</a>
-									</li>	
-									@endforeach
+				<li class="list-group-item justify-content-between ">{{$lien_theme8->libelle}} :
+					<a href="{{$lien_theme8->lien}}" target="_blank" style="max-width: 90%;" >
+						<b>Cliquez ici <br></b>
+					</a>
+				</li>	
+				@endforeach
 
 			</ul>
 

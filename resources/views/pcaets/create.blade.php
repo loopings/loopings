@@ -28,16 +28,24 @@ maxViewMode: 2
 			{{Form::label('id', 'Epci : ')}}
 			{{Form::select('id', $epcis,null, ['placeholder' => 'Sélectionner un epci', 'class' => 'form-control'])}}
 
+			{{ Form::label('nom_pcaet', 'Nom PCAET : ') }}
+			{{ Form::text('nom_pcaet','', array('class' => 'form-control')) }}
 
 
 			{{ Form::label('correspondant_ddt', 'Correspondant DDT : ') }}
 			{{ Form::text('correspondant_ddt','', array('class' => 'form-control')) }}
+
+			{{ Form::label('correspondant2_ddt', 'Autre correspondant DDT : ') }}
+			{{ Form::text('correspondant2_ddt','', array('class' => 'form-control')) }}
 
 			{{ Form::label('type_pcaet', 'Type de pcaet : ') }}
 			{{ Form::text('type_pcaet','', array('class' => 'form-control')) }}
 
 			{{ Form::label('etat_avancement_demarche', 'Etat d\'avancement de la démarche : ') }}
 			{{ Form::text('etat_avancement_demarche','', array('class' => 'form-control')) }}
+
+			{{ Form::label('annee_maj', 'Année de mise à jour de la donnée : ') }}
+			{{ Form::text('annee_maj','', array('class' => 'form-control')) }}
 
 			
 		</div>

@@ -152,7 +152,7 @@ Route::get('/assoce/create/{type_assoc}/{nomtable}/{typenom}/{nomid}/{id}','Asso
 
 Route::post('/assoce/store','Assoces@store');
 
-
+Route::resource('lienE', 'LienEs');
 
 
 //Routes pour la consultation

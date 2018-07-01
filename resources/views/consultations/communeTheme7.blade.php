@@ -1,117 +1,117 @@
 
 <div class="row col-md-12">
 	<div class="col-md-6 d-flex align-items-stretch">		
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title">Déplacement domicile-travail et actifs restant/sortant () </h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Nombre d'actifs total
-					<b>
-						@if(!isset($comm->nb_actifs))
-						pas d'information	
-						@else
-						{{$comm->nb_actifs}}
-						@endif
+		<div class="card">
+			<div class="card-block">
+				<h3 class="card-title">Déplacement domicile-travail et actifs restant/sortant () </h3>
+				<ul class="list-group">
+					<li class="list-group-item justify-content-between "> 
+						Nombre d'actifs total
+						<b>
+							@if(!isset($comm->nb_actifs))
+							pas d'information	
+							@else
+							{{$comm->nb_actifs}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Actifs résidents travaillant<br>sur la commune
-					<b>
-						@if(!isset($comm->nb_actifs_restants))
-						pas d'information	
-						@else
-						{{$comm->nb_actifs_restants}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Actifs résidents travaillant<br>sur la commune
+						<b>
+							@if(!isset($comm->nb_actifs_restants))
+							pas d'information	
+							@else
+							{{$comm->nb_actifs_restants}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Actifs résidents travaillant<br>hors de la commune
-					<b>
-						@if(!isset($comm->nb_actifs_sortants))
-						pas d'information	
-						@else
-						{{$comm->nb_actifs_sortants}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Actifs résidents travaillant<br>hors de la commune
+						<b>
+							@if(!isset($comm->nb_actifs_sortants))
+							pas d'information	
+							@else
+							{{$comm->nb_actifs_sortants}}
+							@endif
 
-					</b>  
-				</li>
+						</b>  
+					</li>
 
-			</ul>
-			
+				</ul>
+				
+			</div>
 		</div>
 	</div>
-</div>
 
 
 	<div class="col-md-6 d-flex align-items-stretch">
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title">Motorisation des ménages dernières données disponible {{$comm->annee_maj_motor}} </h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Nombre de ménages
-					<b>
-						@if(!isset($comm->nb_men_tot))
-						pas d'information	
-						@else
-						{{$comm->nb_men_tot}}
-						@endif
+		<div class="card">
+			<div class="card-block">
+				<h3 class="card-title">Motorisation des ménages dernières données disponible {{$comm->annee_maj_motor}} </h3>
+				<ul class="list-group">
+					<li class="list-group-item justify-content-between "> 
+						Nombre de ménages
+						<b>
+							@if(!isset($comm->nb_men_tot))
+							pas d'information	
+							@else
+							{{$comm->nb_men_tot}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Ménage possédant au moins un véhicule
-					<b>
-						@if(!isset($comm->nb_men_1veh))
-						pas d'information	
-						@else
-						{{$comm->nb_men_1veh}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Ménage possédant au moins un véhicule
+						<b>
+							@if(!isset($comm->nb_men_1veh))
+							pas d'information	
+							@else
+							{{$comm->nb_men_1veh}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Ménage possédant deux véhicules et plus
-					<b>
-						@if(!isset($comm->nb_men_2veh))
-						pas d'information	
-						@else
-						{{$comm->nb_men_2veh}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Ménage possédant deux véhicules et plus
+						<b>
+							@if(!isset($comm->nb_men_2veh))
+							pas d'information	
+							@else
+							{{$comm->nb_men_2veh}}
+							@endif
 
-					</b>  
-				</li>
+						</b>  
+					</li>
 
-				<li class="list-group-item justify-content-between "> 
-					Nombre de voiture par ménage
-					<b>
-						@if(!isset($comm->nb_voit_men))
-						pas d'information	
-						@else
-						{{$comm->nb_voit_men}}
-						@endif
+					<li class="list-group-item justify-content-between "> 
+						Nombre de voiture par ménage
+						<b>
+							@if(!isset($comm->nb_voit_men))
+							pas d'information	
+							@else
+							{{$comm->nb_voit_men}}
+							@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Evolution sur les 5 dernières années
-					<b>
-						@if(!isset($comm->evolution_5))
-						pas d'information	
-						@else
-						{{$comm->evolution_5}}
-						@endif
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Evolution sur les 5 dernières années
+						<b>
+							@if(!isset($comm->evolution_5))
+							pas d'information	
+							@else
+							{{$comm->evolution_5}}
+							@endif
 
-					</b>  
-				</li>
+						</b>  
+					</li>
 
-			</ul>
-			
+				</ul>
+				
+			</div>
 		</div>
-	</div>
 	</div>
 </div>
 
@@ -122,125 +122,131 @@
 			<div class="row">
 				<div class="col-md-6">
 					
-				
-			<h3 class="card-title">Plan de déplacements urbains</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between"> 
-					Territoire concerné par un PDU
-					<b>
-						@if(!isset($comm->territoire_pdu))
-						pas d'information	
-						@else
-						{{$comm->territoire_pdu}}
-						@endif
+					
+					<h3 class="card-title">Plan de déplacements urbains</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between"> 
+							Territoire concerné par un PDU
+							<b>
+								@if(!isset($comm->territoire_pdu))
+								pas d'information	
+								@else
+								{{$comm->territoire_pdu}}
+								@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between"> 
-					Lien vers le serveur : accès aux documents
-					<b>
-									@foreach($lienGs as $lienG)
-									@if($lienG->nom=="lien_serveur")
-									<a href="{{$lienG->lien}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
-									@endif
-									@endforeach
-								</b> 
-				</li>
-			</ul>
-			</div>
-			<div class="col-md-6">
-			<h3 class="card-title">Plan de protection de l'atmosphère</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between"> 
-					Territoire concerné par un PPA
-					<b>
-						@if(!isset($comm->territoire_ppa))
-						pas d'information	
-						@else
-						{{$comm->territoire_pdu}}
-						@endif
+							</b>  
+						</li>
+						<li class="list-group-item justify-content-between"> 
+							Lien vers le serveur : accès aux documents
+							<b>
+								@foreach($lienGs as $lienG)
+								@if($lienG->nom=="lien_serveur")
+								<a href="{{$lienG->lien}}" target="_blank">
+									<b>Cliquez ici</b>
+								</a>
+								@endif
+								@endforeach
+							</b> 
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<h3 class="card-title">Plan de protection de l'atmosphère</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between"> 
+							Territoire concerné par un PPA
+							<b>
+								@if(!isset($comm->territoire_ppa))
+								pas d'information	
+								@else
+								{{$comm->territoire_ppa}}
+								@endif
 
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between"> 
-					Lien vers le serveur : accès aux documents
-					<b>
-									@foreach($lienGs as $lienG)
-									@if($lienG->nom=="lien_serveur")
-									<a href="{{$lienG->lien}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
-									@endif
-									@endforeach
-								</b> 
-				</li>
-			
-			</ul>
-			</div>			
+							</b>  
+						</li>
+						<li class="list-group-item justify-content-between"> 
+							Lien vers le serveur : accès aux documents
+							<b>
+								@foreach($lienGs as $lienG)
+								@if($lienG->nom=="lien_serveur")
+								<a href="{{$lienG->lien}}" target="_blank">
+									<b>Cliquez ici</b>
+								</a>
+								@endif
+								@endforeach
+							</b> 
+						</li>
+						
+					</ul>
+				</div>			
 			</div>
 			<br>
-				
-			<div class="col-md-6">
-			<h3 class="card-title">Plan d'exposition au bruit</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between"> 
-					Territoire concerné par un PEB
-					<b>
-						@if(!isset($comm->territoire_peb))
-						pas d'information	
-						@else
-						{{$comm->territoire_pdu}}
-						@endif
-
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between"> 
-					Lien vers le serveur : accès aux documents
-					<b>
-									@foreach($lienGs as $lienG)
-									@if($lienG->nom=="lien_serveur")
-									<a href="{{$lienG->lien}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
-									@endif
-									@endforeach
-								</b> 
-				</li>
 			
-			</ul>
-			<br>
+			<div class="col-md-6">
+				<h3 class="card-title">Plan d'exposition au bruit</h3>
+				<ul class="list-group">
+					<li class="list-group-item justify-content-between"> 
+						Territoire concerné par un PEB
+						<b>
+							@if(!isset($comm->territoire_peb))
+							pas d'information	
+							@else
+							{{$comm->territoire_peb}}
+							@endif
+
+						</b>  
+					</li>
+					<li class="list-group-item justify-content-between"> 
+						Lien vers le serveur : accès aux documents
+						<b>
+							@foreach($lienGs as $lienG)
+							@if($lienG->nom=="lien_serveur")
+							<a href="{{$lienG->lien}}" target="_blank">
+								<b>Cliquez ici</b>
+							</a>
+							@endif
+							@endforeach
+						</b> 
+					</li>
+					
+				</ul>
+				<br>
 			</div>
 			<div class="col-md-12">			
-			<h3 class="card-title">Plan Cilmat Air Energie Territorial </h3>
-			<ul class="list-group">
-				@if (!empty($pcaets->first()))
-				@foreach($pcaets as $pcaet)
-				<li class="list-group-item justify-content-between "> 
-					Correspondant de la DDT (PCAET)   
-					<b>{{$pcaet->correspondant_ddt}}<br></b>
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Nom 
-					<b>{{$pcaet->nom_pcaet}}({{$pcaet->annee_maj}})<br></b>
-				</li>
-								<li class="list-group-item justify-content-between "> 
-					Type PCAET
-					<b>{{$pcaet->type_pcaet}}<br></b>
-				</li>
+				<h3 class="card-title">Plan Cilmat Air Energie Territorial </h3>
+				<ul class="list-group">
+					@if (!empty($pcaets->first()))
+					@foreach($pcaets as $pcaet)
+					<li class="list-group-item justify-content-between "> 
+						Correspondant de la DDT (PCAET)   
+						<b>{{$pcaet->correspondant_ddt}}<br></b>
+					</li>
+					@if (isset($pcaet->correspondant2_ddt))
+					<li class="list-group-item justify-content-between "> 
+						Autre correspondant de la DDT (PCAET)   
+						<b>{{$pcaet->correspondant2_ddt}}<br></b>
+					</li>
+					@endif
+					<li class="list-group-item justify-content-between "> 
+						Nom 
+						<b>{{$pcaet->nom_pcaet}}({{$pcaet->annee_maj}})<br></b>
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Type PCAET
+						<b>{{$pcaet->type_pcaet}}<br></b>
+					</li>
 
-				@endforeach
-				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de PCAET répertorié<br></b>
-				</li>
-				@endif
-			</ul>
+					@endforeach
+					@else
+					<li class="list-group-item justify-content-between "> 
+						<b>Pas de PCAET répertorié<br></b>
+					</li>
+					@endif
+				</ul>
 
 			</div>
-			</div>
-					
+		</div>
+		
 		
 	</div>
 </div>
@@ -346,12 +352,12 @@
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
 			<ul class="list-group">
 				@foreach($lien_theme7s as $lien_theme7)
-									<li class="list-group-item justify-content-between ">{{$lien_theme7->libelle}} :
-										<a href="{{$lien_theme7->lien}}" target="_blank" style="max-width: 90%;" >
-											<b>Cliquez ici <br></b>
-										</a>
-									</li>	
-									@endforeach
+				<li class="list-group-item justify-content-between ">{{$lien_theme7->libelle}} :
+					<a href="{{$lien_theme7->lien}}" target="_blank" style="max-width: 90%;" >
+						<b>Cliquez ici <br></b>
+					</a>
+				</li>	
+				@endforeach
 
 			</ul>
 

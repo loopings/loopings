@@ -24,6 +24,7 @@ use App\agriculture_ddt38;
 use App\troncons_ddt38;
 use App\lgmts_commences_ddt38;
 use App\lien_unique;
+use App\lien_unique_epci;
 use App\lienG_ddt38;
 
 use App\assoc_cantons;
@@ -720,6 +721,122 @@ class Consultations extends Controller
     ->distinct()
     ->get();
 
+    $maets=
+    DB::table('assoc_maet')
+    ->join('comm_ddt38', 'assoc_maet.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->join('maet_ddt38', 'maet_ddt38.id', '=', 'assoc_maet.id_maet')
+    ->select('maet_ddt38.nom_maet','maet_ddt38.annee_maj')
+    ->orderBy('maet_ddt38.nom_maet')
+    ->distinct()
+    ->get();
+
+    $commune_men=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->select( DB::raw('
+      SUM(nb_men_tot) as nb_men_tot,
+      SUM(nb_men_1veh) as nb_men_1veh,
+      SUM(nb_men_2veh) as nb_men_2veh,
+      SUM(nb_voit_men) as nb_voit_men
+      '))
+    ->get();
+
+    $comm_pdu=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['territoire_pdu','<>','non'],
+      ['territoire_pdu','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_ppa=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['territoire_ppa','<>','non'],
+      ['territoire_ppa','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_peb=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['territoire_peb','<>','non'],
+      ['territoire_peb','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $pcaets=pcaet_ddt38::where('id_epci',$epci->id)->get();
+
+    //
+    $assoc_tepos_pepcv=DB::table('assoc_tepos_pepcv')->where('id_epci',$epci->id)->get();
+    $tepospepcvs=tepospepcv_ddt38::find($assoc_tepos_pepcv->pluck('id_tp'));
+
+    //
+    $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$epci->id)->get();
+    $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
+
+
+    $lgmtcs=
+    DB::table('comm_ddt38')
+    ->join('lgmts_commences_ddt38', 'comm_ddt38.id', '=', 'lgmts_commences_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$epci->id)
+    ->select('lgmts_commences_ddt38.annee', DB::raw('
+      SUM(lgmts_commences_ddt38.nb_indiv_pur) as nb_indiv_pur,
+      SUM(lgmts_commences_ddt38.nb_indiv_gpes) as nb_indiv_gpes,
+      SUM(lgmts_commences_ddt38.nb_collectifs) as nb_collectifs,
+      SUM(lgmts_commences_ddt38.nb_residence) as nb_residence
+      '))
+    ->groupBy('lgmts_commences_ddt38.annee')
+    ->orderBy('lgmts_commences_ddt38.annee')
+    ->get();
+
+
+    $comm_zap=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['zap','<>','non'],
+      ['zap','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_epf=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['epf','<>','non'],
+      ['epf','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_paen=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$epci->id],
+      ['paen','<>','non'],
+      ['paen','<>','NON']
+    ])
+    ->get()
+    ;
+
+     //LIENS UNIQUES
+    $lien_theme1s=lien_unique_epci::where('onglet','Fiche administrative')->orderBy('ordre')->get();
+    $lien_theme2s=lien_unique_epci::where('onglet','Ressources naturelles et paysagères')->orderBy('ordre')->get();
+    $lien_theme3s=lien_unique_epci::where('onglet','Urbanismes, risques et déplacements')->orderBy('ordre')->get();
+    $lien_theme4s=lien_unique_epci::where('onglet','Eau et forêts')->orderBy('ordre')->get();
+    $lien_theme5s=lien_unique_epci::where('onglet','Logement et politique de la ville')->orderBy('ordre')->get();
+    $lien_theme6s=lien_unique_epci::where('onglet','Agriculture')->orderBy('ordre')->get();
+    $lien_theme7s=lien_unique_epci::where('onglet','Air et Bruit')->orderBy('ordre')->get();
+    $lien_theme8s=lien_unique_epci::where('onglet','Foncier')->orderBy('ordre')->get();
 
     return view('consultations.epci')
     ->with('epci',$epci)
@@ -745,6 +862,26 @@ class Consultations extends Controller
     ->with('comm_tourists',$comm_tourists)
     ->with('logements',$logements)
     ->with('aocaops',$aocaops)
+    ->with('maets',$maets)
+    ->with('commune_men',$commune_men)
+    ->with('comm_pdu',$comm_pdu)
+    ->with('comm_ppa',$comm_ppa)
+    ->with('comm_peb',$comm_peb)
+    ->with('pcaets',$pcaets)
+    ->with('tepospepcvs',$tepospepcvs)
+    ->with('pfres',$pfres)
+    ->with('lgmtcs',$lgmtcs)
+    ->with('comm_paen',$comm_paen)
+    ->with('comm_zap',$comm_zap)
+    ->with('comm_epf',$comm_epf)
+    ->with('lien_theme1s',$lien_theme1s)
+    ->with('lien_theme2s',$lien_theme2s)
+    ->with('lien_theme3s',$lien_theme3s)
+    ->with('lien_theme4s',$lien_theme4s)
+    ->with('lien_theme5s',$lien_theme5s)
+    ->with('lien_theme6s',$lien_theme6s)
+    ->with('lien_theme7s',$lien_theme7s)
+    ->with('lien_theme8s',$lien_theme8s)
     ;
   }
 
@@ -973,6 +1110,123 @@ class Consultations extends Controller
     ->distinct()
     ->get();
 
+    $maets=
+    DB::table('assoc_maet')
+    ->join('comm_ddt38', 'assoc_maet.id_comm', '=', 'comm_ddt38.id')
+    ->where('comm_ddt38.id_epci',$id)
+    ->join('maet_ddt38', 'maet_ddt38.id', '=', 'assoc_maet.id_maet')
+    ->select('maet_ddt38.nom_maet','maet_ddt38.annee_maj')
+    ->orderBy('maet_ddt38.nom_maet')
+    ->distinct()
+    ->get();
+
+    $commune_men=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$id)
+    ->select( DB::raw('
+      SUM(nb_men_tot) as nb_men_tot,
+      SUM(nb_men_1veh) as nb_men_1veh,
+      SUM(nb_men_2veh) as nb_men_2veh,
+      SUM(nb_voit_men) as nb_voit_men
+      '))
+    ->get();
+
+    $comm_pdu=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['territoire_pdu','<>','non'],
+      ['territoire_pdu','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_ppa=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['territoire_ppa','<>','non'],
+      ['territoire_ppa','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_peb=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['territoire_peb','<>','non'],
+      ['territoire_peb','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $pcaets=pcaet_ddt38::where('id_epci',$id)->get();
+
+    //
+    $assoc_tepos_pepcv=DB::table('assoc_tepos_pepcv')->where('id_epci',$id)->get();
+    $tepospepcvs=tepospepcv_ddt38::find($assoc_tepos_pepcv->pluck('id_tp'));
+    
+    //
+    $assoc_pfre=DB::table('assoc_pfre')->where('id_epci',$id)->get();
+    $pfres=pfre_ddt38::find($assoc_pfre->pluck('id_pfre'));
+
+    $lgmtcs=
+    DB::table('comm_ddt38')
+    ->join('lgmts_commences_ddt38', 'comm_ddt38.id', '=', 'lgmts_commences_ddt38.id_comm')
+    ->where('comm_ddt38.id_epci',$id)
+    ->select('lgmts_commences_ddt38.annee', DB::raw('
+      SUM(lgmts_commences_ddt38.nb_indiv_pur) as nb_indiv_pur,
+      SUM(lgmts_commences_ddt38.nb_indiv_gpes) as nb_indiv_gpes,
+      SUM(lgmts_commences_ddt38.nb_collectifs) as nb_collectifs,
+      SUM(lgmts_commences_ddt38.nb_residence) as nb_residence
+      '))
+    ->groupBy('lgmts_commences_ddt38.annee')
+    ->orderBy('lgmts_commences_ddt38.annee')
+    ->get();
+
+
+    $comm_zap=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['zap','<>','non'],
+      ['zap','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_epf=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['epf','<>','non'],
+      ['epf','<>','NON']
+    ])
+    ->get()
+    ;
+
+    $comm_paen=
+    DB::table('comm_ddt38')
+    ->where([
+      ['id_epci',$id],
+      ['paen','<>','non'],
+      ['paen','<>','NON']
+    ])
+    ->get()
+    ;
+
+     //LIENS UNIQUES
+    $lien_theme1s=lien_unique_epci::where('onglet','Fiche administrative')->orderBy('ordre')->get();
+    $lien_theme2s=lien_unique_epci::where('onglet','Ressources naturelles et paysagères')->orderBy('ordre')->get();
+    $lien_theme3s=lien_unique_epci::where('onglet','Urbanismes, risques et déplacements')->orderBy('ordre')->get();
+    $lien_theme4s=lien_unique_epci::where('onglet','Eau et forêts')->orderBy('ordre')->get();
+    $lien_theme5s=lien_unique_epci::where('onglet','Logement et politique de la ville')->orderBy('ordre')->get();
+    $lien_theme6s=lien_unique_epci::where('onglet','Agriculture')->orderBy('ordre')->get();
+    $lien_theme7s=lien_unique_epci::where('onglet','Air et Bruit')->orderBy('ordre')->get();
+    $lien_theme8s=lien_unique_epci::where('onglet','Foncier')->orderBy('ordre')->get();
+
+
 
     return view('consultations.epci')
     ->with('epci',$epci)
@@ -998,21 +1252,28 @@ class Consultations extends Controller
     ->with('comm_tourists',$comm_tourists)
     ->with('logements',$logements)
     ->with('aocaops',$aocaops)
+    ->with('maets',$maets)
+    ->with('commune_men',$commune_men)
+    ->with('comm_pdu',$comm_pdu)
+    ->with('comm_ppa',$comm_ppa)
+    ->with('comm_peb',$comm_peb)
+    ->with('pcaets',$pcaets)
+    ->with('tepospepcvs',$tepospepcvs)
+    ->with('pfres',$pfres)
+    ->with('lgmtcs',$lgmtcs)
+    ->with('comm_paen',$comm_paen)
+    ->with('comm_zap',$comm_zap)
+    ->with('comm_epf',$comm_epf)
+    ->with('lien_theme1s',$lien_theme1s)
+    ->with('lien_theme2s',$lien_theme2s)
+    ->with('lien_theme3s',$lien_theme3s)
+    ->with('lien_theme4s',$lien_theme4s)
+    ->with('lien_theme5s',$lien_theme5s)
+    ->with('lien_theme6s',$lien_theme6s)
+    ->with('lien_theme7s',$lien_theme7s)
+    ->with('lien_theme8s',$lien_theme8s)
     ;
   }
 }
 
 /*
-@if (!empty($maets->first()))
-        @foreach($maets as $maet)
-        <li class="list-group-item justify-content-between "> 
-          Nom :  
-          <b>{{$maet->nom_maet}}<br></b>
-        </li>
-        @endforeach
-        @else
-        <li class="list-group-item justify-content-between "> 
-          <b>Pas de MAET<br></b>
-        </li>
-        @endif
-        */
