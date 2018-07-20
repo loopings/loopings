@@ -18,19 +18,19 @@
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between "> 
 					Contact à la DDT chargé de la police des eaux et ouvrage soumis à la police de l'eau
-					<b>{{$cheau->nom_cheau}}({{$cheau->annee_maj}})<br></b>
+					<b>{{$cheau->nom_cheau}}(Donnée MaJ {{$cheau->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Contact à la DDT pour l'hydroélectricité
-					<b>{{$hydroelec->nom_hydroelec}}({{$hydroelec->annee_maj}})<br></b>
+					<b>{{$hydroelec->nom_hydroelec}}(Donnée MaJ {{$hydroelec->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Contact à la DDT sur les questions écologiques
-					<b>{{$conteco->nom_conteco}}({{$conteco->annee_maj}})<br></b>
+					<b>{{$conteco->nom_conteco}}(Donnée MaJ {{$conteco->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Contact à la DDT pour les digues et barrages
-					<b>{{$contdigba->nom_contdigba}}({{$contdigba->annee_maj}})<br></b>
+					<b>{{$contdigba->nom_contdigba}}(Donnée MaJ {{$contdigba->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Commune concernée par la zone nitrate
@@ -62,13 +62,13 @@
 						@foreach($captages as $captage)
 						@if(!empty($captage))
 						<li>	
-							<b>{{$captage->nom_captage}} {{$captage->dup}}({{$captage->annee_maj}})</b>
+							<b>{{$captage->nom_captage}} {{$captage->dup}}(Donnée MaJ {{$captage->annee_maj}})</b>
 							<li>
 								@endif
 								@endforeach
 							</ul>
 							@else
-							<b>Pas de captage</b>	
+							<b>pas de captage</b>	
 							@endif	
 
 						</li>
@@ -80,13 +80,13 @@
 								@foreach($resstrats as $resstrat)
 								@if(!empty($resstrat))
 								<li>	
-									<b>{{$resstrat->nom_resstrat}}({{$resstrat->annee_maj}})  </b>
+									<b>{{$resstrat->nom_resstrat}}(Donnée MaJ {{$resstrat->annee_maj}})  </b>
 									<li>
 										@endif
 										@endforeach
 									</ul>
 									@else
-									<b>Pas de ressource</b>	
+									<b>pas de ressource</b>	
 									@endif	
 
 								</li>
@@ -129,7 +129,7 @@
 										@if(empty($gemapi))
 										aucune	
 										@else
-										{{$gemapi->nom_gemapi}}({{$gemapi->annee_maj}})
+										{{$gemapi->nom_gemapi}}(Donnée MaJ {{$gemapi->annee_maj}})
 										@endif
 
 									</b>  
@@ -156,18 +156,18 @@
 								@foreach($cms as $cm)
 								<li class="list-group-item justify-content-between "> 
 									Nom :  
-									<b>{{$cm->nom_contrat}}({{$cm->annee_maj}})<br></b>
+									<b>{{$cm->nom_contrat}}(Donnée MaJ {{$cm->annee_maj}})<br></b>
 								</li>
 
 								<br>
 								@endforeach
 								@else 
 								<li class="list-group-item justify-content-between"> 
-									<b> Pas de contrat</b>
+									<b> pas de contrat</b>
 								</li>
 							</ul>
 							@endif
-
+							<br>
 							<h3 class="card-title">SAGE </h3>
 							<ul class="list-group">
 								@if (!empty($sages->first()))
@@ -185,7 +185,7 @@
 								@endif
 								<li class="list-group-item justify-content-between"> 
 									Nom du SAGE 
-									<b>{{$sage->nom_sage}}({{$sage->annee_maj}})</b>
+									<b>{{$sage->nom_sage}}(Donnée MaJ {{$sage->annee_maj}})</b>
 								</li>
 								<li class="list-group-item justify-content-between"> 
 									Lien fiche descriptive  
@@ -197,7 +197,7 @@
 								@endforeach
 								@else 
 								<li class="list-group-item justify-content-between" >
-									<b> Pas de SAGE sur la commune</b>
+									<b> pas de SAGE sur la commune</b>
 								</li>
 								@endif
 							</ul>
@@ -223,7 +223,7 @@
 									@foreach($colcompeaups as $colcompeaup)
 									<ul>
 										<li>
-											<b>{{$colcompeaup->nom_colcompeaup}}({{$colcompeaup->annee_maj}})<br></b>
+											<b>{{$colcompeaup->nom_colcompeaup}}(Donnée MaJ {{$colcompeaup->annee_maj}})<br></b>
 										</li>	
 									</ul>
 									@endforeach
@@ -243,7 +243,7 @@
 									@foreach($colgesteaups as $colgesteaup)
 									<ul>
 										<li>  
-											<b>{{$colgesteaup->nom_colgesteaup}} ({{$colgesteaup->annee_maj}})<br></b>
+											<b>{{$colgesteaup->nom_colgesteaup}} (Donnée MaJ {{$colgesteaup->annee_maj}})<br></b>
 										</li>	
 									</ul>
 									@endforeach
@@ -270,7 +270,7 @@
 									@foreach($colcompeauus as $colcompeauu)
 									<ul>
 										<li>
-											<b>{{$colcompeauu->nom_colcompeauu}}({{$colcompeauu->annee_maj}})<br></b>
+											<b>{{$colcompeauu->nom_colcompeauu}}(Donnée MaJ {{$colcompeauu->annee_maj}})<br></b>
 										</li>	
 									</ul>
 									@endforeach
@@ -289,7 +289,7 @@
 									@foreach($colgestasss as $colgestass)
 									<ul>
 										<li>  
-											<b>{{$colgestass->nom_colgestass}} ({{$colgestass->annee_maj}})<br></b>
+											<b>{{$colgestass->nom_colgestass}} (Donnée MaJ {{$colgestass->annee_maj}})<br></b>
 										</li>	
 									</ul>
 									@endforeach
@@ -329,7 +329,7 @@
 							</li>
 
 							<li class="list-group-item justify-content-between "> 
-								Niveau de priorité en matière de restriction :  
+								Niveau de priorité en matière de restriction 
 								<b>{{$step->niveau_priorite}}<br></b>
 							</li>
 
@@ -380,7 +380,7 @@
 							<li class="list-group-item justify-content-between "> 
 								Nom de la charte forestière
 
-								<b>{{$cf->nom_charte}}({{$cf->annee_maj}})<br></b>
+								<b>{{$cf->nom_charte}}(Donnée MaJ {{$cf->annee_maj}})<br></b>
 							</li>
 							<li class="list-group-item justify-content-between "> 
 								Démarche en cours
@@ -391,7 +391,7 @@
 							@endforeach
 						@else
 						<li class="list-group-item justify-content-between "> 
-								<b>Pas de charte forestière pour la commune<br></b>
+								<b>pas de charte forestière pour la commune<br></b>
 							</li>
 						@endif
 						<li class="list-group-item justify-content-between "> 

@@ -3,31 +3,6 @@
 <div style="position:fixed;">
 	<ul class="nav nav-pills flex-column" >
 
-		@if (!empty($appbs->first()))
-		<li class="nav-item" >
-			<a class="nav-link " href="#appb"  style="width: 140px;background-color:#f0f5ff;"><br>APPB</a>
-		</li>
-		@endif
-
-		@if (!empty($natura2000s->first()))
-		<li class="nav-item">
-			<a class="nav-link" href="#natura2000" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Natura 2000</a>
-		</li>
-		@endif
-
-		@if (!empty($znieffs->first()))
-		<li class="nav-item" >
-			<a class="nav-link" href="#znieff" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>ZNIEFF</a>
-		</li>
-		@endif
-
-		@if(!empty($pnr)) 
-		<li class="nav-item">
-			<a class="nav-link" href="#pnr" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>PNR</a>
-		</li>
-		@endif
-
-
 		<li class="nav-item">
 			<a class="nav-link" href="#lien" style="width: 140px;margin-top: 20px;background-color:#f0f5ff;"><br>Liens utiles</a>
 		</li>

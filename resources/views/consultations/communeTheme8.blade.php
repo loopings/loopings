@@ -71,60 +71,62 @@
 	</div>
 </div>
 
-<div class="row col-md-12">
-	<div class="col-md-6 d-flex align-items-stretch">		
-		<div class="card">
-			<div class="card-block">
-				<h3 class="card-title">EPF local ou d'Etat</h3>
-				<ul class="list-group">
-					<li class="list-group-item justify-content-between "> 
-						Présence d'in établissement public foncier
-						<b>
-							@if(!isset($comm->epf))
-							pas d'information	
-							@else
-							{{$comm->epf}}
-							@endif
+<div class="col-md-12">
+	<div class="row">
+		<div class="col-md-6 d-flex align-items-stretch">		
+			<div class="card">
+				<div class="card-block">
+					<h3 class="card-title">EPF local ou d'Etat</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between "> 
+							Présence d'in établissement public foncier
+							<b>
+								@if(!isset($comm->epf))
+								pas d'information	
+								@else
+								{{$comm->epf}}
+								@endif
 
-						</b>  
-					</li>
-				</ul>
-				
+							</b>  
+						</li>
+					</ul>
+					
+				</div>
 			</div>
 		</div>
-	</div>
 
 
-	<div class="col-md-6 d-flex align-items-stretch">
-		<div class="card">
-			<div class="card-block">
-				<h3 class="card-title">Zones agricoles protégées</h3>
-				<ul class="list-group">
-					<li class="list-group-item justify-content-between "> 
-						Présence d'une ZAP, démarche Etat
-						<b>
-							@if(!isset($comm->zap))
-							pas d'information	
-							@else
-							{{$comm->zap}}
-							@endif
+		<div class="col-md-6 d-flex align-items-stretch">
+			<div class="card">
+				<div class="card-block">
+					<h3 class="card-title">Zones agricoles protégées</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between "> 
+							Présence d'une ZAP, démarche Etat
+							<b>
+								@if(!isset($comm->zap))
+								pas d'information	
+								@else
+								{{$comm->zap}}
+								@endif
 
-						</b>  
-					</li>
-					<li class="list-group-item justify-content-between "> 
-						Présence d'un PAEN, démarche CD38
-						<b>
-							@if(!isset($comm->paen))
-							pas d'information	
-							@else
-							{{$comm->paen}}
-							@endif
+							</b>  
+						</li>
+						<li class="list-group-item justify-content-between "> 
+							Présence d'un PAEN, démarche CD38
+							<b>
+								@if(!isset($comm->paen))
+								pas d'information	
+								@else
+								{{$comm->paen}}
+								@endif
 
-						</b>  
-					</li>
+							</b>  
+						</li>
+						
+					</ul>
 					
-				</ul>
-				
+				</div>
 			</div>
 		</div>
 	</div>

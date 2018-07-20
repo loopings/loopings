@@ -72,7 +72,7 @@
 						<div class="row">
 							
 						@foreach($comms as $comm)
-						<li class="list-group-item text-center d-inline-block justify-content-between col-md-3">
+						<li class="list-group-item text-center d-inline-block justify-content-between col-md-4">
 						<a href="{{route('communeC', ['id' => $comm->id])}}" target="_blank">
 										<b>{{$comm->nom_comm}}</b>
 									</a>

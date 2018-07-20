@@ -49,7 +49,7 @@
 	<div class="col-md-6 d-flex align-items-stretch">
 		<div class="card">
 			<div class="card-block">
-				<h3 class="card-title">Motorisation des ménages dernières données disponible {{$comm->annee_maj_motor}} </h3>
+				<h3 class="card-title">Motorisation des ménages dernières données disponible (Donnée MaJ {{$comm->annee_maj_motor}}) </h3>
 				<ul class="list-group">
 					<li class="list-group-item justify-content-between "> 
 						Nombre de ménages
@@ -140,7 +140,7 @@
 							Lien vers le serveur : accès aux documents
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="lien_serveur")
+								@if($lienG->nom=="lien_serveur_pdu")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -168,7 +168,7 @@
 							Lien vers le serveur : accès aux documents
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="lien_serveur")
+								@if($lienG->nom=="lien_serveur_ppa")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -181,69 +181,72 @@
 				</div>			
 			</div>
 			<br>
-			
-			<div class="col-md-6">
-				<h3 class="card-title">Plan d'exposition au bruit</h3>
-				<ul class="list-group">
-					<li class="list-group-item justify-content-between"> 
-						Territoire concerné par un PEB
-						<b>
-							@if(!isset($comm->territoire_peb))
-							pas d'information	
-							@else
-							{{$comm->territoire_peb}}
-							@endif
+			<div class="row">
+				<div class="col-md-6">
+					<h3 class="card-title">Plan d'exposition au bruit</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between"> 
+							Territoire concerné par un PEB
+							<b>
+								@if(!isset($comm->territoire_peb))
+								pas d'information	
+								@else
+								{{$comm->territoire_peb}}
+								@endif
 
-						</b>  
-					</li>
-					<li class="list-group-item justify-content-between"> 
-						Lien vers le serveur : accès aux documents
-						<b>
-							@foreach($lienGs as $lienG)
-							@if($lienG->nom=="lien_serveur")
-							<a href="{{$lienG->lien}}" target="_blank">
-								<b>Cliquez ici</b>
-							</a>
-							@endif
-							@endforeach
-						</b> 
-					</li>
-					
-				</ul>
-				<br>
+							</b>  
+						</li>
+						<li class="list-group-item justify-content-between"> 
+							Lien vers le serveur : accès aux documents
+							<b>
+								@foreach($lienGs as $lienG)
+								@if($lienG->nom=="lien_serveur_peb")
+								<a href="{{$lienG->lien}}" target="_blank">
+									<b>Cliquez ici</b>
+								</a>
+								@endif
+								@endforeach
+							</b> 
+						</li>
+						
+					</ul>
+					<br>
+				</div>
 			</div>
-			<div class="col-md-12">			
-				<h3 class="card-title">Plan Cilmat Air Energie Territorial </h3>
-				<ul class="list-group">
-					@if (!empty($pcaets->first()))
-					@foreach($pcaets as $pcaet)
-					<li class="list-group-item justify-content-between "> 
-						Correspondant de la DDT (PCAET)   
-						<b>{{$pcaet->correspondant_ddt}}<br></b>
-					</li>
-					@if (isset($pcaet->correspondant2_ddt))
-					<li class="list-group-item justify-content-between "> 
-						Autre correspondant de la DDT (PCAET)   
-						<b>{{$pcaet->correspondant2_ddt}}<br></b>
-					</li>
-					@endif
-					<li class="list-group-item justify-content-between "> 
-						Nom 
-						<b>{{$pcaet->nom_pcaet}}({{$pcaet->annee_maj}})<br></b>
-					</li>
-					<li class="list-group-item justify-content-between "> 
-						Type PCAET
-						<b>{{$pcaet->type_pcaet}}<br></b>
-					</li>
+			<div class="row">
+				<div class="col-md-12">			
+					<h3 class="card-title">Plan Cilmat Air Energie Territorial </h3>
+					<ul class="list-group">
+						@if (!empty($pcaets->first()))
+						@foreach($pcaets as $pcaet)
+						<li class="list-group-item justify-content-between "> 
+							Correspondant de la DDT (PCAET)   
+							<b>{{$pcaet->correspondant_ddt}}<br></b>
+						</li>
+						@if (isset($pcaet->correspondant2_ddt))
+						<li class="list-group-item justify-content-between "> 
+							Autre correspondant de la DDT (PCAET)   
+							<b>{{$pcaet->correspondant2_ddt}}<br></b>
+						</li>
+						@endif
+						<li class="list-group-item justify-content-between "> 
+							Nom 
+							<b>{{$pcaet->nom_pcaet}}(Donnée MaJ {{$pcaet->annee_maj}})<br></b>
+						</li>
+						<li class="list-group-item justify-content-between "> 
+							Type PCAET
+							<b>{{$pcaet->type_pcaet}}<br></b>
+						</li>
 
-					@endforeach
-					@else
-					<li class="list-group-item justify-content-between "> 
-						<b>Pas de PCAET répertorié<br></b>
-					</li>
-					@endif
-				</ul>
+						@endforeach
+						@else
+						<li class="list-group-item justify-content-between "> 
+							<b>Pas de PCAET répertorié<br></b>
+						</li>
+						@endif
+					</ul>
 
+				</div>
 			</div>
 		</div>
 		
@@ -261,7 +264,7 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Nom 
-					<b>{{$tepospepcv->nom_tepospepcv}}({{$tepospepcv->annee_maj}})<br></b>
+					<b>{{$tepospepcv->nom_tepospepcv}}(Donnée MaJ {{$tepospepcv->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Tepos ou pepcv 
@@ -270,8 +273,8 @@
 				<br>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de TEPOS ou PEPCV pour l'EPCI incluant cette commune<br></b>
+				<li class="list-group-item justify-content-between "> &nbsp;
+					<b>Pas de TEPOS ou PEPCV pour l'EPCI incluant cette commune</b>
 				</li>
 				@endif
 			</ul>
@@ -289,13 +292,13 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Nom 
-					<b>{{$pfre->nom_pfre}}(Année de mise à jour de la donnée{{$pfre->annee_maj}})<br></b>
+					<b>{{$pfre->nom_pfre}}(Donnée MaJ {{$pfre->annee_maj}})<br></b>
 				</li>
 				<br>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de PFRE pour l'EPCI incluant cette commune<br></b>
+				<li class="list-group-item justify-content-between "> &nbsp;
+					<b>Pas de PFRE pour l'EPCI incluant cette commune</b>
 				</li>
 				@endif
 			</ul>
@@ -335,8 +338,8 @@
 			</table>
 			@else
 			<ul class="list-group">	
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de PFRE pour l'EPCI incluant cette commune<br></b>
+				<li class="list-group-item justify-content-between "> &nbsp;
+					<b>Pas de tronçon pour l'EPCI incluant cette commune</b>
 				</li>	
 			</ul>
 			@endif

@@ -57,8 +57,10 @@
 				</li>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de MAET<br></b>
+				<li class="list-group-item justify-content-between "> &nbsp;
+					<b class="text-right">
+						Pas de MAET
+					</b>
 				</li>
 				@endif
 				<li class="list-group-item justify-content-between "> 
@@ -93,49 +95,49 @@
 					Liste des AOC/AOP, pour connaitre les iGP voir site INAO
 					@if (!empty($aocaops->first()))
 					<ul>
-					@foreach($aocaops as $aocaop)
-					<li>
-					<b>
-						{{$aocaop->nom_aoc_aop}} {{$aocaop->annee_maj}}
-					</b>
-					</li>
-					@endforeach
+						@foreach($aocaops as $aocaop)
+						<li>
+							<b>
+								{{$aocaop->nom_aoc_aop}} (Donnée MaJ {{$aocaop->annee_maj}})
+							</b>
+						</li>
+						@endforeach
 					</ul>
 					@else
-				 
+					
 					<b>Pas de AOC AOP<br></b>
 					@endif
 				</li>				
 
 			</ul>
-			</div>
 		</div>
 	</div>
+</div>
 
 
-	<div class="col-md-12 ">
-		<div class="card">
-			<div class="card-block">
-				<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
-				<ul class="list-group">
+<div class="col-md-12 ">
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>
+			<ul class="list-group">
 
-					@if(!(empty($comm->lien_enjeuxagri)))
-					<li class="list-group-item justify-content-between ">
-						Lien enjeux agricoles :  <b>{{$comm->lien_enjeuxagri}}</b>
-					</li>
-					@endif
-					@foreach($lien_theme6s as $lien_theme6)
-					<li class="list-group-item justify-content-between ">{{$lien_theme6->libelle}} :
-						<a href="{{$lien_theme6->lien}}" target="_blank" style="max-width: 90%;" >
-							<b>Cliquez ici <br></b>
-						</a>
-					</li>	
-					@endforeach
+				@if(!(empty($comm->lien_enjeuxagri)))
+				<li class="list-group-item justify-content-between ">
+					Lien enjeux agricoles :  <b>{{$comm->lien_enjeuxagri}}</b>
+				</li>
+				@endif
+				@foreach($lien_theme6s as $lien_theme6)
+				<li class="list-group-item justify-content-between ">{{$lien_theme6->libelle}} :
+					<a href="{{$lien_theme6->lien}}" target="_blank" style="max-width: 90%;" >
+						<b>Cliquez ici <br></b>
+					</a>
+				</li>	
+				@endforeach
 
-				</ul>
+			</ul>
 
-			</div>
 		</div>
 	</div>
+</div>
 
 

@@ -657,11 +657,10 @@ class Consultations extends Controller
     ->join('comm_ddt38', 'assoc_cf.id_comm', '=', 'comm_ddt38.id')
     ->where('comm_ddt38.id_epci',$epci->id)
     ->join('cf_ddt38', 'cf_ddt38.id', '=', 'assoc_cf.id_chforest')
-    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj')
+    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj','cf_ddt38.demarche_en_cours')
     ->orderBy('cf_ddt38.nom_charte')
     ->distinct()
     ->get();
-
     $existence_reg_boiss=
     DB::table('comm_ddt38')
     ->where([
@@ -740,6 +739,14 @@ class Consultations extends Controller
       SUM(nb_men_2veh) as nb_men_2veh,
       SUM(nb_voit_men) as nb_voit_men
       '))
+    ->get();
+
+    $annee_maj_motor=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->select('comm_ddt38.annee_maj_motor')
+    ->orderBy('comm_ddt38.annee_maj_motor')
+    ->distinct()
     ->get();
 
     $comm_pdu=
@@ -866,6 +873,7 @@ class Consultations extends Controller
     ->with('aocaops',$aocaops)
     ->with('maets',$maets)
     ->with('commune_men',$commune_men)
+    ->with('annee_maj_motor',$annee_maj_motor)
     ->with('comm_pdu',$comm_pdu)
     ->with('comm_ppa',$comm_ppa)
     ->with('comm_peb',$comm_peb)
@@ -1048,7 +1056,7 @@ class Consultations extends Controller
     ->join('comm_ddt38', 'assoc_cf.id_comm', '=', 'comm_ddt38.id')
     ->where('comm_ddt38.id_epci',$id)
     ->join('cf_ddt38', 'cf_ddt38.id', '=', 'assoc_cf.id_chforest')
-    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj')
+    ->select('cf_ddt38.nom_charte','cf_ddt38.annee_maj','cf_ddt38.demarche_en_cours')
     ->orderBy('cf_ddt38.nom_charte')
     ->distinct()
     ->get();
@@ -1131,6 +1139,14 @@ class Consultations extends Controller
       SUM(nb_men_2veh) as nb_men_2veh,
       SUM(nb_voit_men) as nb_voit_men
       '))
+    ->get();
+
+    $annee_maj_motor=
+    DB::table('comm_ddt38')
+    ->where('id_epci',$epci->id)
+    ->select('comm_ddt38.annee_maj_motor')
+    ->orderBy('comm_ddt38.annee_maj_motor')
+    ->distinct()
     ->get();
 
     $comm_pdu=
@@ -1258,6 +1274,7 @@ class Consultations extends Controller
     ->with('aocaops',$aocaops)
     ->with('maets',$maets)
     ->with('commune_men',$commune_men)
+    ->with('annee_maj_motor',$annee_maj_motor)
     ->with('comm_pdu',$comm_pdu)
     ->with('comm_ppa',$comm_ppa)
     ->with('comm_peb',$comm_peb)

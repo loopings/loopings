@@ -105,6 +105,7 @@ class Epcis extends Controller
     		$actif_res_tr_terri=$request->actif_res_tr_terri;
     		$actif_res_tr_horsterri=$request->actif_res_tr_horsterri;
     		$nb_actif_res_terri=$request->nb_actif_res_terri;
+            $annee_maj_deplacement_dom_travail=$request->annee_maj_deplacement_dom_travail;
 
 
     		epci_ddt38::insert(
@@ -150,7 +151,8 @@ class Epcis extends Controller
     				'nb_emploi_terri'=>$nb_emploi_terri,
     				'actif_res_tr_terri'=>$actif_res_tr_terri,
     				'actif_res_tr_horsterri'=>$actif_res_tr_horsterri,
-    				'nb_actif_res_terri'=>$nb_actif_res_terri
+    				'nb_actif_res_terri'=>$nb_actif_res_terri,
+                    'annee_maj_deplacement_dom_travail'=>$annee_maj_deplacement_dom_travail
 
 
     			)
@@ -253,6 +255,8 @@ class Epcis extends Controller
     				'actif_res_tr_terri'=>$request->actif_res_tr_terri,
     				'actif_res_tr_horsterri'=>$request->actif_res_tr_horsterri,
     				'nb_actif_res_terri'=>$request->nb_actif_res_terri,
+                    'annee_maj_deplacement_dom_travail'=>$request->annee_maj_deplacement_dom_travail
+                    
 
 
     			)

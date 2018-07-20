@@ -5,19 +5,19 @@
 				<div class="card-block">
 					<h3 class="card-title"> Urbanisme</h3>
 					<ul class="list-group">
-						<li class="list-group-item justify-content-between ">Chargé de planification <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}} @endif</b>  </li>
+						<li class="list-group-item justify-content-between">Chargé de planification <b>@if(!empty($cham)) {{$cham->prenom_cham}}&nbsp;{{$cham->nom_cham}} @endif</b>  </li>
 
 						@if(!empty($cham2)) 
-						<li class="list-group-item justify-content-between ">Deuxième chargé de planification <b>{{$cham2->prenom_cham}}&nbsp;{{$cham2->nom_cham}} </b>  </li>
+						<li class="list-group-item justify-content-between">Deuxième chargé de planification <b>{{$cham2->prenom_cham}}&nbsp;{{$cham2->nom_cham}} </b>  </li>
 						@endif
 
-						<li class="list-group-item justify-content-between ">Présence d'une DTA<br> <b>
-							@if(!empty($dta)) {{$dta->nom_dta}}&nbsp;(Année de mise à jour {{$dta->annee_maj}}) 
+						<li class="list-group-item justify-content-between">Présence d'une DTA <b class="text-right">
+							@if(!empty($dta)) {{$dta->nom_dta}}&nbsp;(Donnée MaJ {{$dta->annee_maj}}) 
 							@else
 							Pas de DTA
 						@endif </b>  </li>
 
-						<li class="list-group-item justify-content-between ">SCOT  <b>@if(!empty($scot)){{$scot->nom_scot}}
+						<li class="list-group-item justify-content-between">SCOT  <b>@if(!empty($scot)){{$scot->nom_scot}}
 							@else
 							Non
 						@endif</b>  
@@ -25,7 +25,7 @@
 
 
 
-					<li class="list-group-item justify-content-between ">et comprenant des dispositions opposables  <b>
+					<li class="list-group-item justify-content-between">et comprenant des dispositions opposables  <b>
 						@if(!isset($comm->disposition_opposable))
 						pas d'information	
 						@else
@@ -134,7 +134,7 @@
 				<li class="list-group-item justify-content-between ">Libellé 
 					<b>
 
-						{{$ze->libelle_ze}} (Année de mise à jour {{$ze->annee_maj}})
+						{{$ze->libelle_ze}} (Donnée MaJ {{$ze->annee_maj}})
 						
 
 					</b>  
@@ -150,7 +150,7 @@
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between ">typologie 
 					<b>
-						{{$au->typologie}} (Année de mise à jour {{$au->annee_maj}})
+						{{$au->typologie}} (Donnée MaJ {{$au->annee_maj}})
 					</b>  
 				</li>
 				<li class="list-group-item justify-content-between ">Libellé de la ville centre 
@@ -168,7 +168,7 @@
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between ">Libellé de l'unité 
 					<b>
-						{{$uu->libelle_uu}} (Année de mise à jour {{$uu->annee_maj}})
+						{{$uu->libelle_uu}} (Donnée MaJ {{$uu->annee_maj}})
 					</b>  
 				</li>
 				<li class="list-group-item justify-content-between ">Population 
@@ -383,7 +383,7 @@
 
 						<li class="list-group-item justify-content-between "> 
 							Site patrimonial remarquable
-							<b>{{$zp->site_patri_remarq}} (Année de mise à jour {{$zp->annee_maj}}) <br></b>
+							<b>{{$zp->site_patri_remarq}} (Donnée MaJ {{$zp->annee_maj}}) <br></b>
 						</li> <br>
 						@endforeach
 						@else

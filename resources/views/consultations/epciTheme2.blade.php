@@ -5,15 +5,15 @@
 			
 			<div class="row">
 				<div class="col-md-6">
-					<h3 class="card-title">
-						Espace réglementaire protégé (APPB,réserve,...) voir BD communale DREAL pour plus de détail 
+					<h3 class="card-title" style="margin-bottom: 50px;">
+						Espace réglementaire protégé (APPB,réserve,...) voir BD communale DREAL pour plus de détails                                                                  
 					</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
 							Lien vers la carte de l'observatoire
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="epci_carte_observatoire")
+								@if($lienG->nom=="epci_carte_observatoire_espace_reg_protege")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -26,14 +26,14 @@
 
 				<div class="col-md-6">
 					<h3 class="card-title">
-						Zones Naturelles d'intêret Ecologique Faunistique er Floristique ZNIEFF voir BD communale DREAL
+						Zones Naturelles d'intêret Ecologique Faunistique er Floristique ZNIEFF voir BD communale DREAL pour plus de détails
 					</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
 							Lien vers la carte de l'observatoire
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="epci_carte_observatoire")
+								@if($lienG->nom=="epci_carte_observatoire_znieff")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -47,11 +47,11 @@
 
 			</div>
 			<br>
-
+			<br>
 			<div class="row">
 				<div class="col-md-6">
-					<h3 class="card-title">
-						Espace naturel sensible gérés par le CD 38
+					<h3 class="card-title" style="margin-bottom: 50px;">
+						Espace naturel sensible géré par le CD 38
 					</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
@@ -71,14 +71,14 @@
 
 				<div class="col-md-6">
 					<h3 class="card-title">
-						Zones Natura 2000, voir BD communale DREAL
+						Zones Natura 2000, voir BD communale DREAL pour plus de détails
 					</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
 							Lien vers la carte de l'observatoire
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="epci_carte_observatoire")
+								@if($lienG->nom=="epci_carte_observatoire_natura2000")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -91,9 +91,9 @@
 				</div>
 
 			</div>
-			<br>
+			<br><br>
 			<h3 class="card-title">
-				Parc naturels régionaux
+				Parcs naturels régionaux
 			</h3>
 			<ul class="list-group">
 				@if (!empty($pnrs->first()))
@@ -101,13 +101,13 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Nom 
-					<b>{{$pnr->nom_pnr}}(Année de mise à jour de la donnée{{$pnr->annee_maj}})<br></b>
+					<b>{{$pnr->nom_pnr}}(Donnée MaJ {{$pnr->annee_maj}})</b>
 				</li>
 				<br>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de PNR cet EPCI<br></b>
+				<li class="list-group-item justify-content-between ">&nbsp;
+					<b class="text-right">Pas de PNR sur cet EPCI</b>
 				</li>
 				@endif
 			</ul>

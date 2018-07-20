@@ -1,56 +1,68 @@
 <div class="col-md-12">	
-	<h3 class="card-title">Déplacements domicile-travail Dernières données disponibles ()</h3>
-	<ul class="list-group">
-		<li class="list-group-item justify-content-between">
-			Nombre d'emplois localisés sur le territoire
-			<b>
-				@if(!isset($epci->nb_emploi_terri))
-				pas d'information	
-				@else
-				{{$epci->nb_emploi_terri}}
-				@endif
-				
-			</b>
-		</li>
-		<li class="list-group-item justify-content-between">
-			Actifs résidents travaillant sur le territoire
-			<b>
-				@if(!isset($epci->actif_res_tr_terri))
-				pas d'information	
-				@else
-				{{$epci->actif_res_tr_terri}}
-				@endif
-			</b>
-		</li>
-		<li class="list-group-item justify-content-between">
-			Actifs résidents travaillant hors du territoire
-			<b>
-				@if(!isset($epci->actif_res_tr_horsterri))
-				pas d'information	
-				@else
-				{{$epci->actif_res_tr_horsterri}}
-				@endif
-			</b>
-		</li>
+	<div class="card">
+		<div class="card-block">
+			<h3 class="card-title">
+				Déplacements domicile-travail Dernières données disponibles (
+				@if (isset($epci->annee_maj_deplacement_dom_travail))
+				Année de MaJ {{$epci->annee_maj_deplacement_dom_travail}}
+			@endif)
+			</h3>
+			<ul class="list-group">
+				<li class="list-group-item justify-content-between">
+					Nombre d'emplois localisés sur le territoire
+					<b>
+						@if(!isset($epci->nb_emploi_terri))
+						pas d'information	
+						@else
+						{{$epci->nb_emploi_terri}}
+						@endif
+						
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between">
+					Actifs résidents travaillant sur le territoire
+					<b>
+						@if(!isset($epci->actif_res_tr_terri))
+						pas d'information	
+						@else
+						{{$epci->actif_res_tr_terri}}
+						@endif
+					</b>
+				</li>
+				<li class="list-group-item justify-content-between">
+					Actifs résidents travaillant hors du territoire
+					<b>
+						@if(!isset($epci->actif_res_tr_horsterri))
+						pas d'information	
+						@else
+						{{$epci->actif_res_tr_horsterri}}
+						@endif
+					</b>
+				</li>
 
-		<li class="list-group-item justify-content-between">
-			Vulnérabilité énergétique aux déplacements
-			<b>
-				@if(!isset($epci->vulnerabilite_energetique))
-				pas d'information	
-				@else
-				{{$epci->vulnerabilite_energetique}}
-				@endif
-			</b>
-		</li>
-	</ul>
+				<li class="list-group-item justify-content-between">
+					Vulnérabilité énergétique aux déplacements
+					<b>
+						@if(!isset($epci->vulnerabilite_energetique))
+						pas d'information	
+						@else
+						{{$epci->vulnerabilite_energetique}}
+						@endif
+					</b>
+				</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 
 <div class="col-md-12">	
 	<div class="card">
 		<div class="card-block">
-			<h3 class="card-title">Motorisation des ménages dernières données disponible (?? pas de date) </h3>
+			<h3 class="card-title">Motorisation des ménages dernières données disponible (
+				@if (!empty($annee_maj_motor->first()))
+				Année de MaJ &nbsp;&nbsp;  {{$annee_maj_motor->first()->annee_maj_motor}}
+			@endif) </h3>
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between "> 
 					Nombre de ménages
@@ -97,12 +109,6 @@
 
 					</b>  
 				</li>
-				<li class="list-group-item justify-content-between "> 
-					Evolution sur les 5 dernières années
-					<b>
-						(comment faire info dispo sur l'échelle communale uniquement)
-					</b>  
-				</li>
 
 			</ul>
 			
@@ -120,7 +126,7 @@
 					<h3 class="card-title">Plan de déplacements urbains</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
-							Territoire concerné par un PDU ou partiellemnt
+							Territoire concerné par un PDU ou partiellement
 							<b>
 								@if (!empty($comm_pdu->first()))	
 								Oui
@@ -134,7 +140,7 @@
 							Lien vers le serveur : accès aux documents
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="lien_serveur")
+								@if($lienG->nom=="lien_serveur_pdu")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -148,7 +154,7 @@
 					<h3 class="card-title">Plan de protection de l'atmosphère</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between"> 
-							Territoire concerné par un PPA ou partiellemnt
+							Territoire concerné par un PPA ou partiellement
 							<b>
 								@if (!empty($comm_ppa->first()))	
 								Oui
@@ -161,7 +167,7 @@
 							Lien vers le serveur : accès aux documents
 							<b>
 								@foreach($lienGs as $lienG)
-								@if($lienG->nom=="lien_serveur")
+								@if($lienG->nom=="lien_serveur_ppa")
 								<a href="{{$lienG->lien}}" target="_blank">
 									<b>Cliquez ici</b>
 								</a>
@@ -179,7 +185,7 @@
 				<h3 class="card-title">Plan d'exposition au bruit</h3>
 				<ul class="list-group">
 					<li class="list-group-item justify-content-between"> 
-						Territoire concerné par un PEB ou partiellemnt
+						Territoire concerné par un PEB ou partiellement
 						<b>
 							@if (!empty($comm_peb->first()))	
 							Oui
@@ -193,7 +199,7 @@
 						Lien vers le serveur : accès aux documents
 						<b>
 							@foreach($lienGs as $lienG)
-							@if($lienG->nom=="lien_serveur")
+							@if($lienG->nom=="lien_serveur_peb")
 							<a href="{{$lienG->lien}}" target="_blank">
 								<b>Cliquez ici</b>
 							</a>
@@ -222,7 +228,7 @@
 					@endif
 					<li class="list-group-item justify-content-between "> 
 						Nom 
-						<b>{{$pcaet->nom_pcaet}}({{$pcaet->annee_maj}})<br></b>
+						<b>{{$pcaet->nom_pcaet}}(Donnée MaJ{{$pcaet->annee_maj}})<br></b>
 					</li>
 					<li class="list-group-item justify-content-between "> 
 						Type PCAET
@@ -255,17 +261,18 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Nom 
-					<b>{{$tepospepcv->nom_tepospepcv}}({{$tepospepcv->annee_maj}})<br></b>
+					<b>{{$tepospepcv->nom_tepospepcv}}(Donnée MaJ{{$tepospepcv->annee_maj}})<br></b>
 				</li>
 				<li class="list-group-item justify-content-between "> 
 					Tepos ou pepcv 
-					<b>{{$tepospepcv->tepos_ou_pepcv}}<br></b>
+					<b>{{$tepospepcv->tepos_ou_pepcv}}</b>
 				</li>
 				<br>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> 
-					<b>Pas de TEPOS ou PEPCV pour l'EPCI <br></b>
+				<li class="list-group-item justify-content-between ">
+					&nbsp; 
+					<b>Pas de TEPOS ou PEPCV pour l'EPCI </b>
 				</li>
 				@endif
 			</ul>
@@ -283,13 +290,14 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Nom 
-					<b>{{$pfre->nom_pfre}}(Année de mise à jour de la donnée{{$pfre->annee_maj}})<br></b>
+					<b>{{$pfre->nom_pfre}}(Donnée MaJ{{$pfre->annee_maj}})</b>
 				</li>
 				<br>
 				@endforeach
 				@else
 				<li class="list-group-item justify-content-between "> 
-					<b>Pas de PFRE pour l'EPCI<br></b>
+					&nbsp;
+					<b>Pas de PFRE pour l'EPCI</b>
 				</li>
 				@endif
 			</ul>

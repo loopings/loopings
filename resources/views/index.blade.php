@@ -468,7 +468,7 @@
           <h1 class="panel-title">Association EPCI</h1>
         </div>
         <div class="panel-body">
-          Veuillez sélectionner une EPCI que vous pourriez associer à
+          Veuillez sélectionner un EPCI que vous pourriez associer à
           <div class="col-lg-12">
             <br>
 

@@ -222,6 +222,10 @@ $(':checkbox').checkboxpicker();
           {{ Form::label('nb_actif_res_terri', ' Nombre d\'actifs résidents travaillant sur le territoire :') }}
           {{ Form::text('nb_actif_res_terri',$epci->nb_actif_res_terri, array('class' => 'form-control')) }}
         </div>
+         <div class="form-group col-md-6">
+          {{ Form::label('annee_maj_deplacement_dom_travail', ' Année de mise à jour déplacements domicile-travail :') }}
+          {{ Form::text('annee_maj_deplacement_dom_travail',$epci->annee_maj_deplacement_dom_travail, array('class' => 'form-control')) }}
+        </div>
       </div>
     </div>
 

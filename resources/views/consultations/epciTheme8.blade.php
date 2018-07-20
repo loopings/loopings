@@ -35,7 +35,7 @@
 <div class="col-md-12">
 	<div class="card" >
 		<div class="card-block">
-			<h3 class="card-title">consommation du foncier</h3>
+			<h3 class="card-title">Consommation du foncier</h3>
 			<ul class="list-group">
 				<li class="list-group-item justify-content-between"> 
 					Observatoire OFPI
@@ -44,13 +44,13 @@
 						pas d'information
 						@else
 						<a href="{{$epci->doc_ofpi}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
+							<b>Cliquez ici</b>
+						</a>
 						
 						@endif
 
 					</b>
- 
+
 				</li>
 				<li class="list-group-item justify-content-between"> 
 					Vidéo
@@ -59,13 +59,13 @@
 						pas de vidéo	
 						@else
 						<a href="{{$epci->video_epci_foncier}}" target="_blank">
-										<b>Cliquez ici</b>
-									</a>
+							<b>Cliquez ici</b>
+						</a>
 						
 						@endif
 
 					</b>
- 
+
 				</li>
 				
 			</ul>
@@ -75,68 +75,66 @@
 	</div>
 </div>
 
-<div class="row col-md-12">
-	<div class="col-md-6 d-flex align-items-stretch">		
+<div class="row col-md-12">			
 	<div class="card">
 		<div class="card-block">
-			<h3 class="card-title">EPF local ou d'Etat</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Présence d'un établissement public foncier
-					<b>
-						@if (!empty($comm_epf->first()))	
-						Oui
-						@else
-						Non
-						@endif
+			<div class="row">
+				<div class="col-md-6">
+
+					<h3 class="card-title">EPF local ou d'Etat</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between "> 
+							Présence d'un établissement public foncier
+							<b>
+								@if (!empty($comm_epf->first()))	
+								Oui
+								@else
+								Non
+								@endif
 
 
-					</b>  
-				</li>
-			</ul>
-			
+							</b>  
+						</li>
+					</ul>
+
+
+				</div>
+
+				<div class="col-md-6">
+
+					<h3 class="card-title">Zones agricoles protégées</h3>
+					<ul class="list-group">
+						<li class="list-group-item justify-content-between "> 
+							Présence d'une ZAP, démarche Etat
+							<b>
+								@if (!empty($comm_zap->first()))	
+								Oui
+								@else
+								Non
+								@endif
+							</b>  
+						</li>
+						<li class="list-group-item justify-content-between "> 
+							Présence d'un PAEN, démarche CD38
+							<b>
+								@if (!empty($comm_paen->first()))	
+								Oui
+								@else
+								Non
+								@endif
+							</b>  
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 
-	<div class="col-md-6 d-flex align-items-stretch">
-	<div class="card">
-		<div class="card-block">
-			<h3 class="card-title">Zones agricoles protégées</h3>
-			<ul class="list-group">
-				<li class="list-group-item justify-content-between "> 
-					Présence d'une ZAP, démarche Etat
-					<b>
-						@if (!empty($comm_zap->first()))	
-						Oui
-						@else
-						Non
-						@endif
 
-
-
-					</b>  
-				</li>
-				<li class="list-group-item justify-content-between "> 
-					Présence d'un PAEN, démarche CD38
-					<b>
-						@if (!empty($comm_paen->first()))	
-						Oui
-						@else
-						Non
-						@endif
-
-
-					</b>  
-				</li>
-				
-			</ul>
-			
-		</div>
-	</div>
-	</div>
-</div>
 
 
 <div class="col-md-12">

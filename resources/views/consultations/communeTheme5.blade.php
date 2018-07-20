@@ -1,5 +1,5 @@
 
-<div class="col-md-10 offset-md-2">
+<div class="col-md-12">
 	<div class="card" >
 		<div class="card-block">
 			<h3 class="card-title">Informations </h3>
@@ -77,7 +77,7 @@
 					</b>
 				</li>
 				<li class="list-group-item justify-content-between ">
-					nombre de Logements du Parc Privé Potentiellement Indigne PPPI : 
+					Nombre de Logements du Parc Privé Potentiellement Indigne PPPI
 					<b> {{$comm->nb_ppi}} </b> 
 				</li>
 				
@@ -89,7 +89,7 @@
 </div>
 
 
-<div class="col-md-10 offset-md-2">
+<div class="col-md-12">
 	<div class="card" >
 		<div class="card-block">
 			<h3 class="card-title">Politique de la ville </h3>
@@ -97,12 +97,10 @@
 
 				<li class="list-group-item justify-content-between "> 
 					Liste des quartiers prioritaires QP de la politque de la ville 
-					<b>
+					<b class="text-left">
 						@foreach($lienGs as $lienG)
 						@if($lienG->nom=="liste_qp")
-						<a href="{{$lienG->lien}}" target="_blank">
-							<b>Cliquez ici</b>
-						</a>
+							{{$lienG->lien}}
 						@endif
 						@endforeach
 					</b>
@@ -125,7 +123,7 @@
 </div>
 
 
-<div class="col-md-10 offset-md-2">
+<div class="col-md-12">
 	<div class="card" id="lgmts">
 		<div class="card-block">
 			<h3 class="card-title">Logements </h3>
@@ -170,7 +168,7 @@
 
 
 
-<div class="col-md-10 offset-md-2">
+<div class="col-md-12">
 	<div class="card" id="lien5">
 		<div class="card-block">
 			<h3 class="card-title"><i class="glyphicon glyphicon-link"></i>Liens utiles</h3>

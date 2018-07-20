@@ -8,7 +8,7 @@
 					<b>
 						@if (!empty($resstrats->first()))
 						@foreach($resstrats as $resstrat)
-						{{$resstrat->nom_resstrat}} ({{$resstrat->annee_maj}} )
+						{{$resstrat->nom_resstrat}} (Donnée MaJ {{$resstrat->annee_maj}} )
 						@endforeach
 						@else
 						Non
@@ -52,7 +52,7 @@
 						@if (!empty($gemapis->first()))	
 
 						@foreach($gemapis as $gemapi)
-						{{$gemapi->nom_gemapi}}({{$gemapi->annee_maj}})<br>
+						{{$gemapi->nom_gemapi}}(Donnée MaJ {{$gemapi->annee_maj}})<br>
 						@endforeach
 						@else
 						Non
@@ -80,7 +80,7 @@
 							@if (!empty($contactcms->first()))	
 
 							@foreach($contactcms as $contactcm)
-							{{$contactcm->nom_contactcm}}(Donnée {{$contactcm->annee_maj}})<br>
+							{{$contactcm->nom_contactcm}}(Donnée MaJ {{$contactcm->annee_maj}})<br>
 							@endforeach
 							@else
 							Pas d'information
@@ -92,7 +92,7 @@
 						<b>
 							@if (!empty($cms->first()))
 							@foreach($cms as $cm)
-							{{$cm->nom_contrat}} (Donnée {{$cm->annee_maj}} )<br>
+							{{$cm->nom_contrat}} (Donnée MaJ {{$cm->annee_maj}})<br>
 							@endforeach
 							@else
 							Non
@@ -100,10 +100,10 @@
 						</b>
 					</li>
 					<li class="list-group-item justify-content-between">
-						Procédure en cours
+						Carte des contrats de milieux
 						<b>
 							@foreach($lienGs as $lienG)
-							@if($lienG->nom=="contrats_milieu_procedure_en_cours")
+							@if($lienG->nom=="carte_contrats_milieux")
 							<a href="{{$lienG->lien}}" target="_blank">
 								<b>Cliquez ici</b>
 							</a>
@@ -135,7 +135,7 @@
 					@endif
 					<li class="list-group-item justify-content-between"> 
 						Nom du SAGE 
-						<b>{{$sage->nom_sage}}({{$sage->annee_maj}})</b>
+						<b>{{$sage->nom_sage}}(Donnée MaJ{{$sage->annee_maj}})</b>
 					</li>
 					<li class="list-group-item justify-content-between"> 
 						Lien fiche descriptive ( à revoir) 
@@ -174,13 +174,13 @@
 
 							</b>
 						</li>
-						<li class="list-group-item justify-content-between">
-							Services gestionnaires de la <br>dépollution des eaux usées
-							<b>
+						<li class="list-group-item">
+							Services gestionnaires de la dépollution des eaux usées
+							<b class="text-left">
 								@if (!empty($colgestasss->first()))	
 
 								@foreach($colgestasss as $colgestass)
-								{{$colgestass->nom_colgestass}}(Donnée {{$colgestass->annee_maj}})<br>
+								{{$colgestass->nom_colgestass}}(Donnée Maj {{$colgestass->annee_maj}})<br>
 								@endforeach
 								@else
 								Aucun service
@@ -225,7 +225,7 @@
 								@if (!empty($colgesteaups->first()))	
 
 								@foreach($colgesteaups as $colgesteaup)
-								{{$colgesteaup->nom_colgesteaup}}(Donnée {{$colgesteaup->annee_maj}})<br>
+								{{$colgesteaup->nom_colgesteaup}}(Donnée Maj {{$colgesteaup->annee_maj}})<br>
 								@endforeach
 								@else
 								Aucun service
@@ -261,20 +261,38 @@
 			<br>
 
 			<div class="col-md-12">	
-				<h3 class="card-title">Chartes foresières (à revoir pour le lien)</h3>
+				<h3 class="card-title">Chartes foresières</h3>
 				<ul class="list-group">
 					<li class="list-group-item justify-content-between">
 						Territoire concerné par une charte forestière
-						<b>
-							@if (!empty($cfs->first()))
-							@foreach($cfs as $cf)
-							{{$cf->nom_charte}}(Année de mise à jour de la donnée{{$cf->annee_maj}})
-							<br>
-							@endforeach
+						@if (!empty($cfs->first()))
+					
+						<table class="table">
+							<thead class="thead-default">
+								<tr>
+									<th style="vertical-align:text-top;">Nom charte  </th>
+									<th style="vertical-align:text-top;">Démarche en cours</th>
+									<th style="vertical-align:text-top;">Année de MaJ </th>
+								</tr>
+							</thead>
+							<tbody>
+
+								@foreach($cfs as $cf) 
+								<tr>
+									<td class="text-left"> {{$cf->nom_charte}}  </td>
+									<td class="text-left"> {{$cf->demarche_en_cours}}  </td>
+									<td> {{$cf->annee_maj}}  </td>
+								</tr>
+								@endforeach
+
+
+							</tbody>
+						</table>
 							@else
+							<b>
 							Non
-							@endif
 						</b>
+						@endif
 					</li>
 					<li class="list-group-item justify-content-between">
 						Existence d'une règlementation de boisements
