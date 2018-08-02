@@ -98,7 +98,7 @@ class Epcis extends Controller
     		$nb_quart_prio=$request->nb_quart_prio;
     		$nb_hab_quart_prio=$request->nb_hab_quart_prio;
     		$recensement_agri_2010=$request->recensement_agri_2010;
-    		$culture_decl_année=$request->culture_decl_année;
+    		$culture_decl_annee=$request->culture_decl_annee;
     		$tab_group_cult_bio=$request->tab_group_cult_bio;
     		$carte_occup_agrico=$request->carte_occup_agrico;
     		$nb_emploi_terri=$request->nb_emploi_terri;
@@ -145,7 +145,7 @@ class Epcis extends Controller
     				'nb_quart_prio'=>$nb_quart_prio,
     				'nb_hab_quart_prio'=>$nb_hab_quart_prio,
     				'recensement_agri_2010'=>$recensement_agri_2010,
-    				'culture_decl_année'=>$culture_decl_année,
+    				'culture_decl_annee'=>$culture_decl_annee,
     				'tab_group_cult_bio'=>$tab_group_cult_bio,
     				'carte_occup_agrico'=>$carte_occup_agrico,
     				'nb_emploi_terri'=>$nb_emploi_terri,
@@ -248,7 +248,7 @@ class Epcis extends Controller
     				'nb_quart_prio'=>$request->nb_quart_prio,
     				'nb_hab_quart_prio'=>$request->nb_hab_quart_prio,
     				'recensement_agri_2010'=>$request->recensement_agri_2010,
-    				'culture_decl_année'=>$request->culture_decl_année,
+    				'culture_decl_annee'=>$request->culture_decl_annee,
     				'tab_group_cult_bio'=>$request->tab_group_cult_bio,
     				'carte_occup_agrico'=>$request->carte_occup_agrico,
     				'nb_emploi_terri'=>$request->nb_emploi_terri,

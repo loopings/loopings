@@ -151,8 +151,8 @@ $(':checkbox').checkboxpicker();
           {{ Form::text('carte_occup_agrico','', array('class' => 'form-control')) }}
         </div>
         <div class="form-group col-md-2">
-          {{ Form::label('culture_decl_année', 'Année culture déclarée : ') }}
-          {{ Form::text('culture_decl_année','', array('class' => 'form-control')) }}
+          {{ Form::label('culture_decl_annee', 'Année culture déclarée : ') }}
+          {{ Form::text('culture_decl_annee','', array('class' => 'form-control')) }}
         </div>
 
       </div>

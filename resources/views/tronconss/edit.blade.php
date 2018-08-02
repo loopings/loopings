@@ -23,8 +23,8 @@ Mise à jour
 {{ Form::label('categorie_nuisonore', 'Categorie nuisance sonore : ') }}
 {{ Form::text('categorie_nuisonore',$troncons->categorie_nuisonore, array('class' => 'form-control')) }}
 
-{{ Form::label('longueur_m', 'Longueur : ') }}
-{{ Form::text('longueur_m',$troncons->longueur_m, array('class' => 'form-control')) }}
+{{ Form::label('nom_numero_voie', 'Nom ou numéro de voie : ') }}
+{{ Form::text('nom_numero_voie',$troncons->nom_numero_voie, array('class' => 'form-control')) }}
 
 {{ Form::label('annee_maj', 'Année de la donnée : ') }}
 {{ Form::text('annee_maj',$troncons->annee_maj, array('class' => 'form-control')) }}

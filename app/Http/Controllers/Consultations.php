@@ -638,6 +638,8 @@ class Consultations extends Controller
     ->where('comm_ddt38.id_epci',$epci->id)
     ->join('colgestass_ddt38', 'colgestass_ddt38.id', '=', 'assoc_col_gest_ass.id_col')
     ->select('colgestass_ddt38.nom_colgestass','colgestass_ddt38.annee_maj')
+    ->where('colgestass_ddt38.nom_colgestass', '<>', 'non renseigné dans SISPEA')
+    ->where('colgestass_ddt38.nom_colgestass', '<>', 'pas d’assainissement communal')
     ->orderBy('colgestass_ddt38.nom_colgestass')
     ->distinct()
     ->get();
@@ -1037,6 +1039,8 @@ class Consultations extends Controller
     ->where('comm_ddt38.id_epci',$id)
     ->join('colgestass_ddt38', 'colgestass_ddt38.id', '=', 'assoc_col_gest_ass.id_col')
     ->select('colgestass_ddt38.nom_colgestass','colgestass_ddt38.annee_maj')
+    ->where('colgestass_ddt38.nom_colgestass', '<>', 'non renseigné dans SISPEA')
+    ->where('colgestass_ddt38.nom_colgestass', '<>', 'pas d’assainissement communal')
     ->orderBy('colgestass_ddt38.nom_colgestass')
     ->distinct()
     ->get();
@@ -1267,7 +1271,7 @@ class Consultations extends Controller
     ->with('colgestasss',$colgestasss)
     ->with('colgesteaups',$colgesteaups)
     ->with('cfs',$cfs)
-     ->with('existence_reg_boiss',$existence_reg_boiss)
+    ->with('existence_reg_boiss',$existence_reg_boiss)
     ->with('existence_for_prots',$existence_for_prots)
     ->with('comm_tourists',$comm_tourists)
     ->with('logements',$logements)

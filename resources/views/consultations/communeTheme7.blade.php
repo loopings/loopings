@@ -320,7 +320,7 @@
 						<th>Route ou tronçon</th>
 						<th>Type</th>
 						<th>Catégorie de nuisance sonore</th>
-						<th>Longueur (en mètres)</th>
+						<th>MaJ Donnée</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -328,10 +328,10 @@
 					@foreach($troncons as $troncon)
 					<tr>
 
-						<td>{{$troncon->numero_route_ou_troncon}}</td>
+						<td>{{$troncon->nom_numero_voie}}</td>
 						<td>{{$troncon->type}}</td>
 						<td>{{$troncon->categorie_nuisonore}}</td>
-						<td>{{(int)$troncon->longueur_m}}</td>
+						<td>{{$troncon->annee_maj}}</td>
 					</tr>
 					@endforeach
 				</tbody>

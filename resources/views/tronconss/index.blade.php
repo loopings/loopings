@@ -109,7 +109,7 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 				</th>
 			
 				<th>
-					Longueur
+					Nom ou numéro de voie
 				</th>
 
 				<th>
@@ -133,7 +133,7 @@ $('#ModalMod').on('show.bs.modal', function(e) {
 				</td>
 
 				<td>
-					{{$troncons->longueur_m}}
+					{{$troncons->nom_numero_voie}}
 				</td>
 
 				<td>

@@ -28,7 +28,7 @@ class Tronconss extends Controller
 
      ->join('comm_ddt38', function ($join) {
         $join->on('troncons_ddt38.id_comm', '=', 'comm_ddt38.id');})
-     ->select( 'troncons_ddt38.id','nom_comm','type','categorie_nuisonore','longueur_m','annee_maj')
+     ->select( 'troncons_ddt38.id','nom_comm','type','categorie_nuisonore','nom_numero_voie','annee_maj')
      ->orderBy('nom_comm')
      ->orderBy('type')
      ->orderBy('categorie_nuisonore')
@@ -59,7 +59,7 @@ class Tronconss extends Controller
       $message=null;
       try{
    
-        $longueur_m=$request->longueur_m;
+        $nom_numero_voie=$request->nom_numero_voie;
         $type=$request->type;
         $categorie_nuisonore=$request->categorie_nuisonore;
         $id_comm=$request->id_comm;
@@ -69,7 +69,7 @@ class Tronconss extends Controller
         troncons_ddt38::insert(
                 array(
                 
-                'longueur_m'=>$longueur_m,
+                'nom_numero_voie'=>$nom_numero_voie,
                 'type'=>$type,
                 'categorie_nuisonore'=>$categorie_nuisonore,
                 'id_comm'=>$id_comm,
@@ -132,7 +132,7 @@ class Tronconss extends Controller
        ->update  ( 
            array(
            
-            'longueur_m'=>$request->longueur_m,
+            'nom_numero_voie'=>$request->nom_numero_voie,
             'type'=>$request->type,
             'categorie_nuisonore'=>$request->categorie_nuisonore,
             'annee_maj'=>$request->annee_maj
