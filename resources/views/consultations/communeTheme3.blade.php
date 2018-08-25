@@ -390,7 +390,19 @@
 						<li class="list-group-item justify-content-between "> 
 							Pas de Site Patrimonial Remarquable sur la commune
 						</li>
-						@endif	
+						@endif
+						<li class="list-group-item justify-content-between ">
+							Tous les sites y compris les monuments historiques<br> sont dans l'atlas (guide pour l'utiliser)
+							<b>
+								@foreach($lienGs as $lienG)
+								@if($lienG->nom=="comment_utiliser_atlas")
+								<a href="{{$lienG->lien}}" target="_blank">
+									<b>Cliquez ici</b>
+								</a>
+								@endif
+								@endforeach
+							</b> 
+						</li>	
 					</ul>
 				</div>
 			</div>

@@ -227,12 +227,16 @@
 					</li>
 					@endif
 					<li class="list-group-item justify-content-between "> 
-						Nom 
-						<b>{{$pcaet->nom_pcaet}}(Donnée MaJ{{$pcaet->annee_maj}})<br></b>
+						Etat d'avancement 
+						<b>{{$pcaet->etat_avancement_demarche}}<br></b>
 					</li>
 					<li class="list-group-item justify-content-between "> 
 						Type PCAET
 						<b>{{$pcaet->type_pcaet}}<br></b>
+					</li>
+					<li class="list-group-item justify-content-between "> 
+						Nom 
+						<b>{{$pcaet->nom_pcaet}} (Donnée MaJ {{$pcaet->annee_maj}})<br></b>
 					</li>
 					<br>
 					@endforeach
