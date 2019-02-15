@@ -149,7 +149,7 @@ $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 				CAPTAGE
 			</a>
 			
-			<a href="/assoc/create/assoc_res_strat/resstrat_ddt38/nom_resstrat/id_captage/{{$comm->id}}" class="list-group-item list-group-item-action">
+			<a href="/assoc/create/assoc_res_strat/resstrat_ddt38/nom_resstrat/id_res_strat/{{$comm->id}}" class="list-group-item list-group-item-action">
 				Ressource stratégique pour l'avenir(aires à préserver)
 			</a>
 

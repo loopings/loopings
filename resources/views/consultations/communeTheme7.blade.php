@@ -3,7 +3,7 @@
 	<div class="col-md-6 d-flex align-items-stretch">		
 		<div class="card">
 			<div class="card-block">
-				<h3 class="card-title">Déplacement domicile-travail et actifs restant/sortant () </h3>
+				<h3 class="card-title">Déplacements domicile-travail et actifs restants/sortants () </h3>
 				<ul class="list-group">
 					<li class="list-group-item justify-content-between "> 
 						Nombre d'actifs total
@@ -49,7 +49,7 @@
 	<div class="col-md-6 d-flex align-items-stretch">
 		<div class="card">
 			<div class="card-block">
-				<h3 class="card-title">Motorisation des ménages dernières données disponible (Donnée MaJ {{$comm->annee_maj_motor}}) </h3>
+				<h3 class="card-title">Motorisation des ménages dernières données disponibles (Donnée MaJ {{$comm->annee_maj_motor}}) </h3>
 				<ul class="list-group">
 					<li class="list-group-item justify-content-between "> 
 						Nombre de ménages

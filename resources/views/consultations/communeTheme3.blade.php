@@ -148,7 +148,7 @@
 				Aires urbaines
 			</h3>
 			<ul class="list-group">
-				<li class="list-group-item justify-content-between ">typologie 
+				<li class="list-group-item justify-content-between ">Typologie 
 					<b>
 						{{$au->typologie}} (Donnée MaJ {{$au->annee_maj}})
 					</b>  
@@ -171,7 +171,7 @@
 						{{$uu->libelle_uu}} (Donnée MaJ {{$uu->annee_maj}})
 					</b>  
 				</li>
-				<li class="list-group-item justify-content-between ">Population 
+				<li class="list-group-item justify-content-between ">Population de l'unité urbaine
 					<b>
 						{{$uu->population}}
 					</b>  
@@ -306,7 +306,7 @@
 					</b>  
 				</li>
 				@if(isset($comm->liste_hameaux))
-				<li class="list-group-item justify-content-between "> Si la commune est pariellementen zone montagne<br>Les hameaux classés( dernier ajout en 1982)
+				<li class="list-group-item justify-content-between "> Si la commune est partiellement en zone montagne<br>Les hameaux classés (dernier ajout en 1982)
 					<b>
 						{{$comm->liste_hameaux}}
 					</b>  

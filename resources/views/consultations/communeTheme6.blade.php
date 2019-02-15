@@ -57,10 +57,11 @@
 				</li>
 				@endforeach
 				@else
-				<li class="list-group-item justify-content-between "> &nbsp;
-					<b class="text-right">
+				<li class="list-group-item justify-content-between "> 
+					<div class="col-md-12"> <b>
 						Pas de MAET
 					</b>
+				</div>
 				</li>
 				@endif
 				<li class="list-group-item justify-content-between "> 

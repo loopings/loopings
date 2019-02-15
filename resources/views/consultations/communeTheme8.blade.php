@@ -79,7 +79,7 @@
 					<h3 class="card-title">EPF local ou d'Etat</h3>
 					<ul class="list-group">
 						<li class="list-group-item justify-content-between "> 
-							Présence d'in établissement public foncier
+							Présence d'un établissement public foncier
 							<b>
 								@if(!isset($comm->epf))
 								pas d'information	

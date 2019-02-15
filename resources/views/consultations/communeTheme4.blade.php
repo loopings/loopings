@@ -342,7 +342,7 @@
 								<b>{{$step->mise_en_demeure}}<br></b>
 							</li>
 							<li class="list-group-item justify-content-between "> 
-								Année de mise en oeuvre 
+								Année de mise en demeure 
 								<b>{{$step->annee_mis_en_dem}}<br></b>
 							</li>
 							<br>
